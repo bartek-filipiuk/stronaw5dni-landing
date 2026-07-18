@@ -10,148 +10,158 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#FAF7F2; --ink:#16130E; --ink-soft:#4A443A; --line:#E4DDD1;
-    --accent:#D8491B; --accent-ink:#B03A13; --ok:#1E7A46;
-    --mono:'JetBrains Mono',monospace; --serif:'Fraunces',serif; --sans:'Schibsted Grotesk',sans-serif;
+    --bg:#15181E; --bg-2:#1B1F27; --surface:#20252E; --edge:#2C323D;
+    --txt:#F0EDE5; --txt-soft:#A8A395; --txt-dim:#6E6A5F;
+    --amber:#FFC24B; --amber-deep:#E8A72A; --ok:#5FD68C; --red:#E8745A;
+    --paper:#F5EFE2; --ink:#16130E; --ink-soft:#4A443A; --paper-edge:#E0D7C4;
+    --mono:'JetBrains Mono',monospace; --disp:'Bricolage Grotesque',sans-serif; --sans:'Instrument Sans',sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    font-family:var(--sans);color:var(--ink);background:var(--paper);
-    line-height:1.6;font-size:17px;
+    font-family:var(--sans);color:var(--txt);background:var(--bg);
+    line-height:1.65;font-size:17px;
     background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size:72px 72px;
-    background-position:center top;
+      radial-gradient(ellipse 90% 50% at 50% -10%, rgba(255,194,75,.07), transparent),
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:100% 100%, 64px 64px, 64px 64px;
   }
-  ::selection{background:var(--accent);color:#fff}
-  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
-  section{padding:72px 0}
-  @media(min-width:768px){section{padding:104px 0}}
+  ::selection{background:var(--amber);color:var(--ink)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  section{padding:76px 0}
+  @media(min-width:768px){section{padding:110px 0}}
 
-  .mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
-  .eyebrow{color:var(--accent-ink);display:flex;align-items:center;gap:.6em;margin-bottom:1.2em}
-  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(30,122,70,.15)}
-  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:-.01em}
-  h1{font-size:clamp(2.5rem,7vw,4.6rem)}
-  h2{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:.5em}
-  .lead{font-size:clamp(1.05rem,2vw,1.25rem);color:var(--ink-soft);max-width:38em}
+  .mono{font-family:var(--mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase}
+  .eyebrow{color:var(--amber);display:flex;align-items:center;gap:.6em;margin-bottom:1.3em}
+  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 12px var(--ok)}
+  h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+  h1{font-size:clamp(2.7rem,8vw,5.4rem);font-weight:800}
+  h2{font-size:clamp(1.8rem,4.4vw,2.9rem);margin-bottom:.5em}
+  .lead{font-size:clamp(1.05rem,2vw,1.22rem);color:var(--txt-soft);max-width:37em}
 
   .btn{
-    display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
-    font-weight:700;font-size:1.05rem;padding:1em 1.7em;border-radius:10px;
-    box-shadow:0 2px 0 var(--accent-ink), 0 10px 28px rgba(216,73,27,.28);
+    display:inline-block;background:var(--amber);color:var(--ink);text-decoration:none;
+    font-weight:700;font-size:1.05rem;padding:1.05em 1.8em;border-radius:12px;
+    box-shadow:0 3px 0 var(--amber-deep), 0 12px 40px rgba(255,194,75,.22);
     transition:transform .15s ease, box-shadow .15s ease;
   }
-  .btn:hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--accent-ink), 0 16px 34px rgba(216,73,27,.34)}
-  .btn:active{transform:translateY(0)}
-  .under-cta{font-size:.85rem;color:var(--ink-soft);max-width:34em;margin-top:1em}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--amber-deep), 0 18px 48px rgba(255,194,75,.3)}
+  .btn:active{transform:translateY(1px)}
+  .btn.on-paper{background:var(--ink);color:var(--amber);box-shadow:0 3px 0 #000, 0 12px 34px rgba(22,19,14,.35)}
+  .btn.on-paper:hover{box-shadow:0 5px 0 #000, 0 16px 40px rgba(22,19,14,.4)}
+  .under-cta{font-size:.86rem;color:var(--txt-soft);max-width:34em;margin-top:1.1em}
 
   /* HERO */
-  .hero{padding:90px 0 72px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(250,247,242,0) 60%,rgba(228,221,209,.35))}
-  .hero .sub{font-family:var(--serif);font-weight:500;font-size:clamp(1.2rem,3vw,1.7rem);color:var(--ink-soft);margin:.4em 0 .9em;max-width:22em}
-  .hero-grid{display:grid;gap:44px}
-  @media(min-width:900px){.hero-grid{grid-template-columns:1.5fr 1fr;align-items:end}}
-  .specs{border:1px solid var(--line);border-radius:14px;background:#fff;padding:22px;box-shadow:0 14px 40px rgba(22,19,14,.06)}
-  .specs dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:14px}
+  .hero{padding:96px 0 80px;border-bottom:1px solid var(--edge);position:relative;overflow:hidden}
+  .hero .sub{font-family:var(--disp);font-weight:500;font-size:clamp(1.2rem,3vw,1.65rem);color:var(--txt-soft);margin:.5em 0 1em;max-width:23em;letter-spacing:-.01em}
+  .hero-grid{display:grid;gap:48px}
+  @media(min-width:920px){.hero-grid{grid-template-columns:1.55fr 1fr;align-items:end}}
+  .specs{border:1px solid var(--edge);border-radius:16px;background:linear-gradient(160deg,var(--surface),var(--bg-2));padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+  .specs dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--txt-dim);margin-top:15px}
   .specs dt:first-child{margin-top:0}
-  .specs dd{font-weight:500}
+  .specs dd{font-weight:600;color:var(--txt)}
+  .accent{color:var(--amber)}
 
-  /* DEMO */
-  .browser{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 24px 60px rgba(22,19,14,.10)}
-  .browser-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);background:#F3EFE8}
-  .browser-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
-  .browser-bar .url{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);margin-left:10px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 10px}
-  .demo-slot{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--ink-soft);background:
-    repeating-linear-gradient(45deg,#FBF9F5,#FBF9F5 14px,#F5F1E9 14px,#F5F1E9 28px)}
-  .demo-slot .play{width:64px;height:64px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center}
-  .demo-slot .play::after{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
-  .shots{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin-top:14px}
+  /* DEMO — sekcja dowodowa nr 2 */
+  .demo-wrap{position:relative}
+  .browser{border:1px solid var(--edge);border-radius:16px;overflow:hidden;background:var(--bg-2);box-shadow:0 0 0 1px rgba(255,194,75,.12), 0 30px 90px rgba(0,0,0,.5), 0 0 80px rgba(255,194,75,.06)}
+  .browser-bar{display:flex;align-items:center;gap:6px;padding:11px 15px;border-bottom:1px solid var(--edge);background:var(--surface)}
+  .browser-bar i{width:10px;height:10px;border-radius:50%;background:var(--edge)}
+  .browser-bar i:nth-child(1){background:#D26A5A}.browser-bar i:nth-child(2){background:#D8B45A}.browser-bar i:nth-child(3){background:#6BBF80}
+  .browser-bar .url{font-family:var(--mono);font-size:.72rem;color:var(--txt-soft);margin-left:10px;background:var(--bg);border:1px solid var(--edge);border-radius:6px;padding:2px 12px}
+  .demo-slot{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--txt-soft);background:
+    repeating-linear-gradient(45deg,var(--bg-2),var(--bg-2) 16px,#181C23 16px,#181C23 32px)}
+  .demo-slot .play{width:70px;height:70px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(255,194,75,.35)}
+  .demo-slot .play::after{content:"";border-left:20px solid var(--ink);border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:6px}
+  .shots{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin-top:16px}
   @media(min-width:768px){.shots{grid-template-columns:repeat(4,1fr)}}
-  .shot{aspect-ratio:4/3;border:1px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-family:var(--mono);font-size:.7rem;text-align:center;padding:8px}
-  .caption{font-size:.85rem;color:var(--ink-soft);margin-top:14px}
+  .shot{aspect-ratio:4/3;border:1px solid var(--edge);border-radius:12px;background:var(--bg-2);display:flex;align-items:center;justify-content:center;color:var(--txt-dim);font-family:var(--mono);font-size:.7rem;text-align:center;padding:8px}
+  .caption{font-size:.85rem;color:var(--txt-dim);margin-top:16px}
 
-  /* RESULT LIST */
-  .formula{font-family:var(--mono);font-size:clamp(.85rem,2.4vw,1.05rem);border:1.5px dashed var(--accent);color:var(--accent-ink);border-radius:10px;padding:14px 18px;display:inline-block;margin:18px 0 30px;background:rgba(216,73,27,.05)}
+  /* RESULT */
+  .formula{font-family:var(--mono);font-size:clamp(.85rem,2.4vw,1.05rem);border:1.5px dashed var(--amber);color:var(--amber);border-radius:12px;padding:15px 20px;display:inline-block;margin:20px 0 34px;background:rgba(255,194,75,.06)}
   .cols{display:grid;gap:40px}
-  @media(min-width:860px){.cols{grid-template-columns:1.4fr 1fr}}
+  @media(min-width:880px){.cols{grid-template-columns:1.4fr 1fr}}
   ul.checks{list-style:none}
-  ul.checks li{padding:9px 0 9px 34px;position:relative;border-bottom:1px solid var(--line)}
+  ul.checks li{padding:10px 0 10px 34px;position:relative;border-bottom:1px solid var(--edge)}
   ul.checks li::before{content:"✓";position:absolute;left:6px;color:var(--ok);font-weight:700}
-  .not-box{border:1px solid var(--line);border-radius:14px;padding:26px;background:#fff;align-self:start}
+  .not-box{border:1px solid var(--edge);border-radius:16px;padding:28px;background:var(--bg-2);align-self:start}
   .not-box h3{font-size:1.15rem;margin-bottom:12px}
   ul.crosses{list-style:none}
-  ul.crosses li{padding:7px 0 7px 30px;position:relative;color:var(--ink-soft)}
-  ul.crosses li::before{content:"✕";position:absolute;left:4px;color:#B4442A;opacity:.55;font-weight:700}
+  ul.crosses li{padding:8px 0 8px 30px;position:relative;color:var(--txt-soft)}
+  ul.crosses li::before{content:"✕";position:absolute;left:4px;color:var(--red);opacity:.7;font-weight:700}
 
   /* PROGRAM */
-  .day{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .day{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0;border-bottom:1px solid var(--edge)}
   .day:last-of-type{border-bottom:none}
-  .day .no{font-family:var(--serif);font-weight:700;font-size:2.2rem;color:var(--accent);line-height:1;min-width:2.2em}
-  .day h3{font-size:1.25rem;margin-bottom:.35em}
-  .day p{color:var(--ink-soft);max-width:44em}
+  .day .no{font-family:var(--disp);font-weight:800;font-size:2.4rem;color:transparent;-webkit-text-stroke:1.5px var(--amber);line-height:1;min-width:2.1em}
+  .day h3{font-size:1.3rem;margin-bottom:.35em}
+  .day p{color:var(--txt-soft);max-width:44em}
   .day .fx{font-family:var(--mono);font-size:.74rem;color:var(--ok);margin-top:.7em;display:block}
-  .callout{font-family:var(--serif);font-size:clamp(1.25rem,3vw,1.7rem);font-weight:600;border-left:4px solid var(--accent);padding:.4em 0 .4em .8em;margin-top:44px}
+  .callout{font-family:var(--disp);font-size:clamp(1.3rem,3.2vw,1.9rem);font-weight:700;border-left:4px solid var(--amber);padding:.4em 0 .4em .8em;margin-top:48px;letter-spacing:-.01em}
 
   /* GET */
-  .cards{display:grid;gap:16px;grid-template-columns:1fr}
+  .cards{display:grid;gap:16px;grid-template-columns:1fr;margin-top:32px}
   @media(min-width:680px){.cards{grid-template-columns:repeat(2,1fr)}}
   @media(min-width:1000px){.cards{grid-template-columns:repeat(3,1fr)}}
-  .card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:26px;box-shadow:0 8px 24px rgba(22,19,14,.05)}
-  .card h3{font-size:1.1rem;margin-bottom:.4em}
-  .card p{font-size:.94rem;color:var(--ink-soft)}
-  .card .tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);display:block;margin-bottom:10px}
+  .card{border:1px solid var(--edge);border-radius:16px;background:linear-gradient(170deg,var(--surface),var(--bg-2));padding:28px;transition:border-color .2s,transform .2s}
+  .card:hover{border-color:rgba(255,194,75,.4);transform:translateY(-3px)}
+  .card h3{font-size:1.12rem;margin-bottom:.45em}
+  .card p{font-size:.94rem;color:var(--txt-soft)}
+  .card .tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:12px}
 
   /* WHO */
-  .who-grid{display:grid;gap:30px}
-  @media(min-width:860px){.who-grid{grid-template-columns:1fr 1fr}}
-  .bio{margin-top:56px;border-top:1px solid var(--line);padding-top:36px;display:grid;gap:24px}
+  .who-grid{display:grid;gap:30px;margin-top:28px}
+  @media(min-width:880px){.who-grid{grid-template-columns:1fr 1fr}}
+  .bio{margin-top:60px;border-top:1px solid var(--edge);padding-top:40px;display:grid;gap:24px}
   @media(min-width:768px){.bio{grid-template-columns:auto 1fr;align-items:center}}
-  .avatar{width:96px;height:96px;border-radius:50%;background:#E9E2D5 url('media/bartek.jpg') center/cover;border:2px solid var(--ink)}
+  .avatar{width:96px;height:96px;border-radius:50%;background:var(--surface) url('media/bartek.jpg') center/cover;border:2px solid var(--amber)}
+  .bio a{color:var(--amber)}
 
-  /* PRICE (inverted) */
-  .price{background:var(--ink);color:var(--paper);border-radius:22px;padding:clamp(30px,6vw,64px);margin:0 -4px}
-  .price h2{color:#fff}
-  .price .big{font-family:var(--serif);font-size:clamp(2.6rem,7vw,4rem);font-weight:700}
-  .price .quote{border-left:3px solid var(--accent);padding-left:1em;margin:1.1em 0;color:#D8D2C6;max-width:40em}
-  .price .quote strong{color:#fff}
-  .sched{display:grid;gap:0;margin:30px 0;border:1px solid #3A352C;border-radius:12px;overflow:hidden}
-  .sched div{display:flex;justify-content:space-between;gap:16px;padding:12px 18px;border-bottom:1px solid #3A352C;font-size:.92rem}
+  /* PRICE — jasny panel na ciemnej stronie (max kontrast konwersyjny) */
+  .price{background:var(--paper);color:var(--ink);border-radius:24px;padding:clamp(32px,6vw,68px);box-shadow:0 0 0 1px rgba(255,194,75,.25), 0 40px 120px rgba(0,0,0,.5)}
+  .price h2{color:var(--ink)}
+  .price .mono-label{font-family:var(--mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--amber-deep);margin-bottom:14px;display:block}
+  .price .big-price{font-family:var(--disp);font-weight:800;font-size:clamp(2.8rem,7.5vw,4.4rem);letter-spacing:-.02em;line-height:1}
+  .price .big-price small{font-family:var(--sans);font-weight:600;font-size:.34em;color:var(--ink-soft);letter-spacing:0}
+  .price .quote{border-left:3px solid var(--amber-deep);padding-left:1em;margin:1.2em 0;color:var(--ink-soft);max-width:42em}
+  .price .quote strong{color:var(--ink)}
+  .sched{display:grid;margin:32px 0;border:1px solid var(--paper-edge);border-radius:14px;overflow:hidden;background:#fff}
+  .sched div{display:flex;justify-content:space-between;gap:16px;padding:13px 18px;border-bottom:1px solid var(--paper-edge);font-size:.93rem}
   .sched div:last-child{border-bottom:none}
-  .sched span:first-child{color:#B7B0A2}
-  .sched span:last-child{font-family:var(--mono);font-size:.8rem;white-space:nowrap}
-  .price .legal-links{font-size:.8rem;color:#B7B0A2;margin-top:1.2em}
-  .price .legal-links a{color:#D8D2C6}
-  .seats{font-family:var(--mono);font-size:.8rem;color:#F0B9A5;margin-top:1.6em}
+  .sched span:first-child{color:var(--ink-soft)}
+  .sched span:last-child{font-family:var(--mono);font-size:.8rem;white-space:nowrap;color:var(--ink)}
+  .price .legal-links{font-size:.8rem;color:var(--ink-soft);margin-top:1.3em}
+  .price .legal-links a{color:var(--ink)}
+  .seats{font-family:var(--mono);font-size:.8rem;color:var(--amber-deep);margin-top:1.6em}
 
   /* FAQ */
-  details{border-bottom:1px solid var(--line)}
-  summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:700;font-size:1.02rem}
+  details{border-bottom:1px solid var(--edge)}
+  summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:21px 0;font-weight:600;font-size:1.03rem}
   summary::-webkit-details-marker{display:none}
-  summary::after{content:"+";font-family:var(--mono);font-size:1.4rem;color:var(--accent);transition:transform .2s}
+  summary::after{content:"+";font-family:var(--mono);font-size:1.5rem;color:var(--amber);transition:transform .2s;flex-shrink:0}
   details[open] summary::after{transform:rotate(45deg)}
-  details p{padding:0 0 20px;color:var(--ink-soft);max-width:46em}
+  details p{padding:0 0 22px;color:var(--txt-soft);max-width:46em}
 
   /* FINAL */
-  .final{text-align:center;border-top:1px solid var(--line)}
-  .final .lead{margin:0 auto 2em}
+  .final{text-align:center;border-top:1px solid var(--edge)}
+  .final .lead{margin:0 auto 2.2em}
 
-  footer{border-top:1px solid var(--line);padding:34px 0 110px;font-size:.82rem;color:var(--ink-soft)}
-  footer a{color:var(--ink-soft)}
+  footer{border-top:1px solid var(--edge);padding:36px 0 116px;font-size:.82rem;color:var(--txt-dim)}
+  footer a{color:var(--txt-soft)}
   footer .cols-f{display:flex;flex-wrap:wrap;gap:10px 26px;margin-bottom:14px}
-  @media(min-width:768px){footer{padding-bottom:34px}}
+  @media(min-width:768px){footer{padding-bottom:36px}}
 
   /* STICKY CTA mobile */
-  .sticky-cta{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:14px;align-items:center;justify-content:space-between;z-index:50;box-shadow:0 -8px 30px rgba(22,19,14,.08)}
-  .sticky-cta .p{font-family:var(--mono);font-size:.72rem;line-height:1.35}
-  .sticky-cta .btn{font-size:.9rem;padding:.75em 1.1em;white-space:nowrap}
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;background:rgba(21,24,30,.92);backdrop-filter:blur(10px);border-top:1px solid var(--edge);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:14px;align-items:center;justify-content:space-between;z-index:50}
+  .sticky-cta .p{font-family:var(--mono);font-size:.7rem;line-height:1.4;color:var(--txt-soft)}
+  .sticky-cta .btn{font-size:.9rem;padding:.8em 1.2em;white-space:nowrap}
   @media(min-width:768px){.sticky-cta{display:none}}
 
-  /* reveal */
   .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
   .rv.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
@@ -164,10 +174,10 @@
   <div class="wrap hero-grid">
     <div>
       <p class="mono eyebrow">5-dniowa mini-kohorta online · startujemy już od 3 osób · maksymalnie 8 miejsc</p>
-      <h1>Strona Firmowa w&nbsp;5&nbsp;Dni</h1>
+      <h1>Strona Firmowa<br>w <span class="accent">5 Dni</span></h1>
       <p class="sub">Zbuduj i opublikuj profesjonalną stronę firmową z AI — od briefu do działającej domeny.</p>
       <p class="lead">Dostajesz gotowy, produkcyjny starter oparty na Payload CMS, sprawdzone instrukcje dla agenta AI i moją pomoc na Discordzie. Nie zaczynasz od pustego projektu i nie kończysz z niedziałającym prototypem.</p>
-      <p style="margin-top:2em"><a class="btn" href="#cena">Rezerwuję miejsce i płacę 49 zł</a></p>
+      <p style="margin-top:2.1em"><a class="btn" href="#cena">Rezerwuję miejsce i płacę 49 zł</a></p>
       <p class="under-cta">Pełna cena pilota: 249 zł brutto. Dziś płacisz 49 zł opłaty rezerwacyjnej, pozostałe 200 zł dopłacasz dopiero po potwierdzeniu uruchomienia grupy. Jeśli grupa nie powstanie do 24.08.2026, automatycznie zwracam całe 49 zł.</p>
     </div>
     <dl class="specs rv">
@@ -180,16 +190,18 @@
   </div>
 </header>
 
-<!-- 2. DEMO -->
+<!-- 2. DEMO (sekcja dowodowa) -->
 <section id="demo">
   <div class="wrap">
     <p class="mono eyebrow">Rezultat, nie obietnica</p>
     <h2>Nie będziemy budować strony „na niby"</h2>
-    <p class="lead" style="margin-bottom:36px">W czasie sprintu dostosujesz produkcyjny starter do wybranej firmy. Efektem będzie kompletna, edytowalna strona opublikowana na prawdziwej domenie.</p>
-    <div class="browser rv">
-      <div class="browser-bar"><i></i><i></i><i></i><span class="url">movestudio.pl</span></div>
-      <!-- TODO Task 5: podmień na <video> z demo Move Studio -->
-      <div class="demo-slot"><span class="play"></span><span class="mono">demo 60 s: strona → CMS → edycja → publikacja</span></div>
+    <p class="lead" style="margin-bottom:38px">W czasie sprintu dostosujesz produkcyjny starter do wybranej firmy. Efektem będzie kompletna, edytowalna strona opublikowana na prawdziwej domenie.</p>
+    <div class="demo-wrap rv">
+      <div class="browser">
+        <div class="browser-bar"><i></i><i></i><i></i><span class="url">movestudio.pl</span></div>
+        <!-- TODO Task 5: podmień na <video> z demo Move Studio -->
+        <div class="demo-slot"><span class="play"></span><span class="mono">demo 60 s: strona → CMS → edycja → publikacja</span></div>
+      </div>
     </div>
     <div class="shots">
       <!-- TODO Task 5: podmień na screeny -->
@@ -203,7 +215,7 @@
 </section>
 
 <!-- 3. CO ZBUDUJESZ -->
-<section id="rezultat" style="border-top:1px solid var(--line)">
+<section id="rezultat" style="border-top:1px solid var(--edge)">
   <div class="wrap">
     <p class="mono eyebrow">Zakres</p>
     <h2>Jeden konkretny rezultat</h2>
@@ -239,11 +251,11 @@
 </section>
 
 <!-- 4. PROGRAM -->
-<section id="program" style="border-top:1px solid var(--line)">
+<section id="program" style="border-top:1px solid var(--edge)">
   <div class="wrap">
     <p class="mono eyebrow">Program</p>
     <h2>Pięć dni, pięć konkretnych efektów</h2>
-    <p class="lead" style="margin-bottom:26px">Każdego dnia dostajesz jedno główne zadanie z checklistą „zrobione znaczy zrobione". Pracujesz na własnym projekcie albo na dostarczonym briefie. Pytania i blokery wrzucasz na Discord. Zaplanuj około 60–90 minut dziennie — trudniejsze problemy rozwiązujemy wspólnie.</p>
+    <p class="lead" style="margin-bottom:28px">Każdego dnia dostajesz jedno główne zadanie z checklistą „zrobione znaczy zrobione". Pracujesz na własnym projekcie albo na dostarczonym briefie. Pytania i blokery wrzucasz na Discord. Zaplanuj około 60–90 minut dziennie — trudniejsze problemy rozwiązujemy wspólnie.</p>
 
     <div class="day rv"><div class="no">01</div><div>
       <h3>Brief i zakres</h3>
@@ -276,11 +288,11 @@
 </section>
 
 <!-- 5. CO OTRZYMUJESZ -->
-<section id="pakiet" style="border-top:1px solid var(--line)">
+<section id="pakiet" style="border-top:1px solid var(--edge)">
   <div class="wrap">
     <p class="mono eyebrow">W pakiecie</p>
     <h2>Co otrzymujesz</h2>
-    <div class="cards" style="margin-top:30px">
+    <div class="cards">
       <div class="card rv"><span class="tag">fundament</span><h3>Produkcyjny starter</h3><p>Gotowy frontend, Payload CMS, podstawowe podstrony, komponenty, SEO i konfiguracja projektu. Licencja bez limitu projektów — własnych i dla Twoich klientów.</p></div>
       <div class="card rv"><span class="tag">agent AI</span><h3>Instrukcje dla agenta AI</h3><p>Zasady opisujące architekturę startera, bezpieczne modyfikacje, stylowanie według wytycznych klienta i sposób weryfikacji zmian.</p></div>
       <div class="card rv"><span class="tag">proces</span><h3>Pięć zadań z checklistami</h3><p>Każdy dzień kończy się konkretnym rezultatem i Definition of Done.</p></div>
@@ -292,11 +304,11 @@
 </section>
 
 <!-- 6. DLA KOGO -->
-<section id="dla-kogo" style="border-top:1px solid var(--line)">
+<section id="dla-kogo" style="border-top:1px solid var(--edge)">
   <div class="wrap">
     <p class="mono eyebrow">Dopasowanie</p>
     <h2>Dla kogo jest ten sprint</h2>
-    <div class="who-grid" style="margin-top:26px">
+    <div class="who-grid">
       <div>
         <p style="font-weight:700;margin-bottom:8px">To jest dla Ciebie, jeśli:</p>
         <ul class="checks">
@@ -322,19 +334,19 @@
     <div class="bio rv">
       <div class="avatar" role="img" aria-label="Zdjęcie: Bartek Filipiuk"></div>
       <div>
-        <p class="mono" style="color:var(--accent-ink);margin-bottom:6px">Prowadzi Bartek Filipiuk</p>
-        <p style="color:var(--ink-soft);max-width:52em">Od kilkunastu lat zawodowo tworzę i wdrażam strony oraz aplikacje internetowe. Na co dzień łączę klasyczny development z agentami AI i buduję własne produkcyjne startery oraz narzędzia. W czasie sprintu pokażę Ci proces, którego sam używam — od briefu do działającej produkcji. <a href="https://devince.dev" style="color:var(--ink)">devince.dev</a></p>
+        <p class="mono" style="color:var(--amber);margin-bottom:6px">Prowadzi Bartek Filipiuk</p>
+        <p style="color:var(--txt-soft);max-width:52em">Od kilkunastu lat zawodowo tworzę i wdrażam strony oraz aplikacje internetowe. Na co dzień łączę klasyczny development z agentami AI i buduję własne produkcyjne startery oraz narzędzia. W czasie sprintu pokażę Ci proces, którego sam używam — od briefu do działającej produkcji. <a href="https://devince.dev">devince.dev</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 7. CENA -->
+<!-- 7. CENA (jasny panel = maksymalny kontrast) -->
 <section id="cena">
   <div class="wrap">
     <div class="price rv">
-      <p class="mono" style="color:#F0B9A5;margin-bottom:14px">Pierwsza edycja pilotażowa</p>
-      <h2>249 zł brutto <span style="font-size:.5em;color:#B7B0A2;font-family:var(--sans);font-weight:400">· dziś tylko 49 zł</span></h2>
+      <span class="mono-label">Pierwsza edycja pilotażowa</span>
+      <p class="big-price">249 zł <small>brutto · dziś tylko 49 zł</small></p>
       <p class="quote"><strong>Cena pilota: 249 zł brutto.</strong> Dziś płacisz <strong>49 zł za rezerwację miejsca</strong>, a pozostałe <strong>200 zł dopłacasz dopiero po potwierdzeniu uruchomienia grupy</strong>.</p>
       <p class="quote"><strong>Startujemy już od 3 osób</strong> (maksymalnie 8). Jeśli grupa nie powstanie do <strong>24.08.2026, godz. 20:00</strong>, zwrócę Ci <strong>49 zł automatycznie</strong> tą samą metodą płatności.</p>
       <p class="quote"><strong>Starter, Discord i materiały odblokowuję po dopłacie 200 zł</strong> (termin dopłaty: do 26.08.2026, godz. 20:00) i po otrzymaniu wymaganych zgód dotyczących rozpoczęcia usługi oraz dostarczenia treści cyfrowych.</p>
@@ -346,7 +358,7 @@
         <div><span>Publikacja Twojej strony</span><span>pt 4.09.2026</span></div>
       </div>
       <!-- TODO Task 6: podmień href na URL checkoutu na courses.devince.dev -->
-      <p><a class="btn" href="https://courses.devince.dev" data-checkout>Rezerwuję miejsce i płacę 49 zł</a></p>
+      <p><a class="btn on-paper" href="https://courses.devince.dev" data-checkout>Rezerwuję miejsce i płacę 49 zł</a></p>
       <p class="legal-links">Opłata rezerwacyjna nie ogranicza ustawowego prawa odstąpienia od umowy. Szczegóły w regulaminie. · <a href="regulamin.html">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="formularz-odstapienia.html">Formularz odstąpienia</a></p>
       <p class="seats">Pozostało 8 z 8 miejsc.</p>
     </div>
@@ -354,12 +366,12 @@
 </section>
 
 <!-- 8. FAQ -->
-<section id="faq" style="border-top:1px solid var(--line)">
+<section id="faq" style="border-top:1px solid var(--edge)">
   <div class="wrap">
     <p class="mono eyebrow">Pytania</p>
     <h2>FAQ</h2>
-    <div style="margin-top:20px">
-      <details><summary>Ile kosztuje udział?</summary><p>Pełna cena sprintu to 249 zł brutto. Dziś płacisz 49 zł za rezerwację miejsca, a pozostałe 200 zł dopłacasz dopiero wtedy, gdy potwierdzimy uruchomienie grupy.</p></details>
+    <div style="margin-top:22px">
+      <details open><summary>Ile kosztuje udział?</summary><p>Pełna cena sprintu to 249 zł brutto. Dziś płacisz 49 zł za rezerwację miejsca, a pozostałe 200 zł dopłacasz dopiero wtedy, gdy potwierdzimy uruchomienie grupy.</p></details>
       <details><summary>Czy 49 zł przepada?</summary><p>Nie automatycznie. Jeśli jesteś konsumentem, przysługuje Ci ustawowe prawo odstąpienia od umowy rezerwacji w ciągu 14 dni. Jeśli grupa nie powstanie — zwracam 49 zł automatycznie. Po upływie terminu na odstąpienie opłata rezerwacyjna co do zasady nie podlega zwrotowi, jeśli sam zrezygnujesz z miejsca.</p></details>
       <details><summary>Co jeśli grupa się nie zbierze?</summary><p>Jeśli do 24.08.2026 do godz. 20:00 nie zbierze się minimum 3 osób, anuluję edycję i automatycznie zwrócę Ci 49 zł tą samą metodą płatności.</p></details>
       <details><summary>Kiedy dopłacam 200 zł?</summary><p>Po potwierdzeniu uruchomienia grupy (24.08.2026) dostaniesz e-mail z linkiem do płatności. Termin dopłaty: 26.08.2026, godz. 20:00.</p></details>
@@ -383,7 +395,7 @@
     <h2>Piątego dnia Twoja strona ma być online</h2>
     <p class="lead">Nie potrzebujesz kolejnego wielogodzinnego kursu. Potrzebujesz sprawdzonego fundamentu, konkretnego zadania każdego dnia i pomocy w momentach, w których agent albo projekt zaczyna się wykolejać.</p>
     <p><a class="btn" href="#cena">Rezerwuję miejsce i płacę 49 zł</a></p>
-    <p class="under-cta" style="margin:1.2em auto 0">Pełna cena 249 zł · startujemy od 3 osób, maksymalnie 8 · pełny zwrot 49 zł, jeśli grupa nie powstanie.</p>
+    <p class="under-cta" style="margin:1.3em auto 0">Pełna cena 249 zł · startujemy od 3 osób, maksymalnie 8 · pełny zwrot 49 zł, jeśli grupa nie powstanie.</p>
   </div>
 </section>
 
