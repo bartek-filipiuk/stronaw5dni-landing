@@ -123,10 +123,10 @@
   /* WHO */
   .who-grid{display:grid;gap:30px;margin-top:28px}
   @media(min-width:880px){.who-grid{grid-template-columns:1fr 1fr}}
-  .bio{margin-top:60px;border-top:1px solid var(--edge);padding-top:40px;display:grid;gap:24px}
-  @media(min-width:768px){.bio{grid-template-columns:auto 1fr;align-items:center}}
-  .avatar{width:96px;height:96px;border-radius:50%;background:var(--surface) url('media/bartek.jpg') center/cover;border:2px solid var(--amber)}
-  .bio a{color:var(--amber)}
+  .host-card{display:grid;gap:26px;border:1px solid var(--edge);border-radius:20px;background:linear-gradient(170deg,var(--surface),var(--bg-2));padding:clamp(26px,4vw,42px);box-shadow:0 0 0 1px rgba(255,194,75,.10), 0 24px 70px rgba(0,0,0,.4)}
+  @media(min-width:768px){.host-card{grid-template-columns:auto 1fr;align-items:center;gap:36px}}
+  .avatar-lg{width:clamp(110px,14vw,150px);height:clamp(110px,14vw,150px);border-radius:50%;background:var(--surface) url('media/bartek.jpg') center/cover;border:3px solid var(--amber);box-shadow:0 0 40px rgba(255,194,75,.2)}
+  .host-card a{color:var(--amber)}
 
   /* PRICE — jasny panel na ciemnej stronie (max kontrast konwersyjny) */
   .price{background:var(--paper);color:var(--ink);border-radius:24px;padding:clamp(32px,6vw,68px);box-shadow:0 0 0 1px rgba(255,194,75,.25), 0 40px 120px rgba(0,0,0,.5)}
@@ -215,6 +215,20 @@
       <img class="shot rv" src="media/screen-live.png" alt="Strona live na movestudiopilates.pl" loading="lazy">
     </div>
     <p class="caption">Move Studio to przykład strony zbudowanej na tym samym starterze i w tym samym modelu pracy, na którym opiera się sprint.</p>
+  </div>
+</section>
+
+<!-- 2b. PROWADZĄCY -->
+<section id="prowadzacy" style="border-top:1px solid var(--edge)">
+  <div class="wrap">
+    <p class="mono eyebrow">Kto prowadzi sprint</p>
+    <div class="host-card rv">
+      <div class="avatar-lg" role="img" aria-label="Zdjęcie: Bartek Filipiuk"></div>
+      <div>
+        <h2 style="font-size:clamp(1.5rem,3.2vw,2.1rem);margin-bottom:.45em">Bartek Filipiuk</h2>
+        <p style="color:var(--txt-soft);max-width:52em">W IT pracuję zawodowo od 2008 roku, przez większość tej drogi w Drupalu i PHP. Od 2023 mocno siedzę w AI: programowanie z agentami, modele LLM, fine-tuning. Strony <a href="https://devince.dev">devince.dev</a>, <a href="https://skillgrade.dev">skillgrade.dev</a>, <a href="https://apps.devince.dev">apps.devince.dev</a> i <a href="https://courses.devince.dev">courses.devince.dev</a> zbudowałem przy pomocy AI i wszystkie działają na produkcji. Od lat uczę też ludzi na <a href="https://www.youtube.com/@bartfilipiuk">YouTube</a>. W czasie sprintu pokażę Ci proces, którego sam używam: od briefu do działającej produkcji.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -348,13 +362,6 @@
           <li>potrzebujesz pełnego indywidualnego mentoringu 1:1</li>
           <li>nie możesz przeznaczyć 60–90 minut dziennie przez tydzień</li>
         </ul>
-      </div>
-    </div>
-    <div class="bio rv">
-      <div class="avatar" role="img" aria-label="Zdjęcie: Bartek Filipiuk"></div>
-      <div>
-        <p class="mono" style="color:var(--amber);margin-bottom:6px">Prowadzi Bartek Filipiuk</p>
-        <p style="color:var(--txt-soft);max-width:52em">W IT pracuję zawodowo od 2008 roku, przez większość tej drogi w Drupalu i PHP. Od 2023 mocno siedzę w AI: programowanie z agentami, modele LLM, fine-tuning. Strony <a href="https://devince.dev">devince.dev</a>, <a href="https://skillgrade.dev">skillgrade.dev</a>, <a href="https://apps.devince.dev">apps.devince.dev</a> i <a href="https://courses.devince.dev">courses.devince.dev</a> zbudowałem przy pomocy AI i wszystkie działają na produkcji. Od lat uczę też ludzi na <a href="https://www.youtube.com/@bartfilipiuk">YouTube</a>. W czasie sprintu pokażę Ci proces, którego sam używam: od briefu do działającej produkcji.</p>
       </div>
     </div>
   </div>
