@@ -79,7 +79,12 @@
   .demo-slot .play::after{content:"";border-left:20px solid var(--ink);border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:6px}
   .shots{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin-top:16px}
   @media(min-width:768px){.shots{grid-template-columns:repeat(4,1fr)}}
-  .shot{aspect-ratio:4/3;border:1px solid var(--edge);border-radius:12px;background:var(--bg-2);width:100%;object-fit:cover;object-position:top;display:block}
+  .shot{aspect-ratio:4/3;border:1px solid var(--edge);border-radius:12px;background:var(--bg-2);width:100%;object-fit:cover;object-position:top;display:block;cursor:zoom-in;transition:border-color .2s,transform .2s}
+  .shot:hover{border-color:rgba(255,194,75,.5);transform:translateY(-2px)}
+  .lightbox{border:none;background:transparent;padding:0;max-width:min(94vw,1400px);max-height:92vh;overflow:visible}
+  .lightbox img{max-width:min(94vw,1400px);max-height:88vh;display:block;border-radius:12px;border:1px solid var(--edge)}
+  .lightbox::backdrop{background:rgba(10,12,16,.85);backdrop-filter:blur(6px)}
+  .lb-close{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:none;background:var(--amber);color:var(--ink);font-size:1.1rem;font-weight:700;cursor:pointer;line-height:1;box-shadow:0 4px 14px rgba(0,0,0,.4)}
   .demo-video{width:100%;aspect-ratio:16/9;display:block;background:#000}
   .caption{font-size:.85rem;color:var(--txt-dim);margin-top:16px}
 
@@ -254,7 +259,7 @@
   <div class="wrap">
     <p class="mono eyebrow">Program</p>
     <h2>Pięć dni, pięć konkretnych efektów</h2>
-    <p class="lead" style="margin-bottom:28px">Każdego dnia dostajesz jedno główne zadanie z checklistą „zrobione znaczy zrobione". Pracujesz na własnym projekcie albo na dostarczonym briefie. Pytania i blokery wrzucasz na Discord. Zaplanuj około 60–90 minut dziennie — trudniejsze problemy rozwiązujemy wspólnie.</p>
+    <p class="lead" style="margin-bottom:28px">Każdego dnia dostajesz jedno główne zadanie z checklistą „zrobione znaczy zrobione". Pracujesz na własnym projekcie albo na dostarczonym briefie. Pytania i blokery wrzucasz na Discord. Zaplanuj około 60–90 minut dziennie. Trudniejsze problemy rozwiązujemy wspólnie.</p>
 
     <div class="day rv"><div class="no">01</div><div>
       <h3>Brief i zakres</h3>
@@ -292,7 +297,7 @@
     <p class="mono eyebrow">W pakiecie</p>
     <h2>Co otrzymujesz</h2>
     <div class="cards">
-      <div class="card rv"><span class="tag">fundament</span><h3>Produkcyjny starter</h3><p>Gotowy frontend, Payload CMS, podstawowe podstrony, komponenty, SEO i konfiguracja projektu. Licencja bez limitu projektów — własnych i dla Twoich klientów.</p></div>
+      <div class="card rv"><span class="tag">fundament</span><h3>Produkcyjny starter</h3><p>Gotowy frontend, Payload CMS, podstawowe podstrony, komponenty, SEO i konfiguracja projektu. Licencja bez limitu projektów: własnych i dla Twoich klientów.</p></div>
       <div class="card rv"><span class="tag">agent AI</span><h3>Instrukcje dla agenta AI</h3><p>Zasady opisujące architekturę startera, bezpieczne modyfikacje, stylowanie według wytycznych klienta i sposób weryfikacji zmian.</p></div>
       <div class="card rv"><span class="tag">proces</span><h3>Pięć zadań z checklistami</h3><p>Każdy dzień kończy się konkretnym rezultatem i Definition of Done.</p></div>
       <div class="card rv"><span class="tag">wsparcie</span><h3>Pomoc na Discordzie</h3><p>Asynchronicznie w godz. 9:00–21:00 + codzienne okno live 19:00–20:00.</p></div>
@@ -334,7 +339,7 @@
       <div class="avatar" role="img" aria-label="Zdjęcie: Bartek Filipiuk"></div>
       <div>
         <p class="mono" style="color:var(--amber);margin-bottom:6px">Prowadzi Bartek Filipiuk</p>
-        <p style="color:var(--txt-soft);max-width:52em">Od kilkunastu lat zawodowo tworzę i wdrażam strony oraz aplikacje internetowe. Na co dzień łączę klasyczny development z agentami AI i buduję własne produkcyjne startery oraz narzędzia. W czasie sprintu pokażę Ci proces, którego sam używam — od briefu do działającej produkcji. <a href="https://devince.dev">devince.dev</a></p>
+        <p style="color:var(--txt-soft);max-width:52em">Od kilkunastu lat zawodowo tworzę i wdrażam strony oraz aplikacje internetowe. Na co dzień łączę klasyczny development z agentami AI i buduję własne produkcyjne startery oraz narzędzia. W czasie sprintu pokażę Ci proces, którego sam używam: od briefu do działającej produkcji. <a href="https://devince.dev">devince.dev</a></p>
       </div>
     </div>
   </div>
@@ -371,19 +376,19 @@
     <h2>FAQ</h2>
     <div style="margin-top:22px">
       <details open><summary>Ile kosztuje udział?</summary><p>Pełna cena sprintu to 249 zł brutto. Dziś płacisz 49 zł za rezerwację miejsca, a pozostałe 200 zł dopłacasz dopiero wtedy, gdy potwierdzimy uruchomienie grupy.</p></details>
-      <details><summary>Czy 49 zł przepada?</summary><p>Nie automatycznie. Jeśli jesteś konsumentem, przysługuje Ci ustawowe prawo odstąpienia od umowy rezerwacji w ciągu 14 dni. Jeśli grupa nie powstanie — zwracam 49 zł automatycznie. Po upływie terminu na odstąpienie opłata rezerwacyjna co do zasady nie podlega zwrotowi, jeśli sam zrezygnujesz z miejsca.</p></details>
+      <details><summary>Czy 49 zł przepada?</summary><p>Nie automatycznie. Jeśli jesteś konsumentem, przysługuje Ci ustawowe prawo odstąpienia od umowy rezerwacji w ciągu 14 dni. Jeśli grupa nie powstanie, zwracam 49 zł automatycznie. Po upływie terminu na odstąpienie opłata rezerwacyjna co do zasady nie podlega zwrotowi, jeśli sam zrezygnujesz z miejsca.</p></details>
       <details><summary>Co jeśli grupa się nie zbierze?</summary><p>Jeśli do 24.08.2026 do godz. 20:00 nie zbierze się minimum 3 osób, anuluję edycję i automatycznie zwrócę Ci 49 zł tą samą metodą płatności.</p></details>
       <details><summary>Kiedy dopłacam 200 zł?</summary><p>Po potwierdzeniu uruchomienia grupy (24.08.2026) dostaniesz e-mail z linkiem do płatności. Termin dopłaty: 26.08.2026, godz. 20:00.</p></details>
-      <details><summary>Czy muszę umieć programować?</summary><p>Nie musisz być programistą, ale musisz mieć podstawową swobodę techniczną: terminal, instalacja narzędzi, praca z plikami. Jeśli korzystasz już z Claude Code albo Codex — dasz radę.</p></details>
-      <details><summary>Czy narzędzia AI, hosting i domena są w cenie?</summary><p>Nie. Potrzebujesz własnej subskrypcji agenta AI (Claude Code lub Codex, ok. 100 zł/mies.), domeny (ok. 60 zł/rok) i hostingu — darmowy plan wystarcza na start. Łącznie licz się z ok. 160–200 zł kosztów poza ceną sprintu.</p></details>
+      <details><summary>Czy muszę umieć programować?</summary><p>Nie musisz być programistą, ale musisz mieć podstawową swobodę techniczną: terminal, instalacja narzędzi, praca z plikami. Jeśli korzystasz już z Claude Code albo Codex, dasz radę.</p></details>
+      <details><summary>Czy narzędzia AI, hosting i domena są w cenie?</summary><p>Nie. Potrzebujesz własnej subskrypcji agenta AI (Claude Code lub Codex, ok. 100 zł/mies.), domeny (ok. 60 zł/rok) i hostingu (darmowy plan wystarcza na start). Łącznie licz się z ok. 160–200 zł kosztów poza ceną sprintu.</p></details>
       <details><summary>Jakiego agenta AI mogę użyć?</summary><p>Instrukcje przygotowane są pod Claude Code; działają też z Codex i podobnymi narzędziami agentowymi. Ważne, żebyś miał agenta, który potrafi pracować na plikach projektu.</p></details>
-      <details><summary>Czy muszę mieć własnego klienta?</summary><p>Nie. Możesz zrealizować sprint na projekcie demo albo własnym case study. Jeśli masz klienta — tym lepiej.</p></details>
+      <details><summary>Czy muszę mieć własnego klienta?</summary><p>Nie. Możesz zrealizować sprint na projekcie demo albo własnym case study. Jeśli masz klienta, tym lepiej.</p></details>
       <details><summary>Czy mogę używać startera przy projektach klientów?</summary><p>Tak. Licencja obejmuje nieograniczoną liczbę projektów własnych i klienckich. Nie wolno jedynie odsprzedawać samego startera, publikować repo ani udzielać sublicencji.</p></details>
       <details><summary>Co jeśli nie skończę strony w pięć dni?</summary><p>Materiały i checklisty masz dostępne po sprincie, a najczęstsze blokery rozwiązujemy na bieżąco na Discordzie. Sprint jest zaprojektowany tak, żeby zakres był domykalny w 60–90 minut dziennie.</p></details>
       <details><summary>Jak działa pomoc na Discordzie?</summary><p>W tygodniu sprintu odpowiadam asynchronicznie w godz. 9:00–21:00, a codziennie 19:00–20:00 jest okno live na trudniejsze problemy.</p></details>
       <details><summary>Jak długo mam dostęp do materiałów?</summary><p>Starter i licencja zostają z Tobą bezterminowo. Dostęp do materiałów na platformie trwa 12 miesięcy.</p></details>
-      <details><summary>Czy gwarantujesz mi zlecenia albo zarobek po sprincie?</summary><p>Nie. Sprint jest produktem edukacyjnym i wdrożeniowym — pomaga dowieźć działający projekt, ale nie jest gwarancją wyniku biznesowego.</p></details>
-      <details><summary>Czy dostanę fakturę?</summary><p>Tak — podaj dane przy zakupie albo napisz po płatności.</p></details>
+      <details><summary>Czy gwarantujesz mi zlecenia albo zarobek po sprincie?</summary><p>Nie. Sprint jest produktem edukacyjnym i wdrożeniowym: pomaga dowieźć działający projekt, ale nie jest gwarancją wyniku biznesowego.</p></details>
+      <details><summary>Czy dostanę fakturę?</summary><p>Tak. Podaj dane przy zakupie albo napisz po płatności.</p></details>
     </div>
   </div>
 </section>
@@ -415,9 +420,20 @@
   <a class="btn" href="#cena">Rezerwuję miejsce</a>
 </div>
 
+<dialog id="lb" class="lightbox">
+  <button class="lb-close" aria-label="Zamknij podgląd">✕</button>
+  <img id="lb-img" alt="">
+</dialog>
+
 <script>
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  const lb=document.getElementById('lb'),lbi=document.getElementById('lb-img');
+  document.querySelectorAll('.shot').forEach(img=>img.addEventListener('click',()=>{
+    lbi.src=img.src;lbi.alt=img.alt;lb.showModal();
+  }));
+  lb.addEventListener('click',e=>{if(e.target!==lbi)lb.close()});
 </script>
 </body>
 </html>
