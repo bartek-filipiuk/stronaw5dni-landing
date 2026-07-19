@@ -79,7 +79,8 @@
   .demo-slot .play::after{content:"";border-left:20px solid var(--ink);border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:6px}
   .shots{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin-top:16px}
   @media(min-width:768px){.shots{grid-template-columns:repeat(4,1fr)}}
-  .shot{aspect-ratio:4/3;border:1px solid var(--edge);border-radius:12px;background:var(--bg-2);display:flex;align-items:center;justify-content:center;color:var(--txt-dim);font-family:var(--mono);font-size:.7rem;text-align:center;padding:8px}
+  .shot{aspect-ratio:4/3;border:1px solid var(--edge);border-radius:12px;background:var(--bg-2);width:100%;object-fit:cover;object-position:top;display:block}
+  .demo-video{width:100%;aspect-ratio:16/9;display:block;background:#000}
   .caption{font-size:.85rem;color:var(--txt-dim);margin-top:16px}
 
   /* RESULT */
@@ -198,17 +199,15 @@
     <p class="lead" style="margin-bottom:38px">W czasie sprintu dostosujesz produkcyjny starter do wybranej firmy. Efektem będzie kompletna, edytowalna strona opublikowana na prawdziwej domenie.</p>
     <div class="demo-wrap rv">
       <div class="browser">
-        <div class="browser-bar"><i></i><i></i><i></i><span class="url">movestudio.pl</span></div>
-        <!-- TODO Task 5: podmień na <video> z demo Move Studio -->
-        <div class="demo-slot"><span class="play"></span><span class="mono">demo 60 s: strona → CMS → edycja → publikacja</span></div>
+        <div class="browser-bar"><i></i><i></i><i></i><span class="url">movestudiopilates.pl</span></div>
+        <video class="demo-video" src="media/demo-move-studio.mp4" poster="media/demo-poster.jpg" autoplay muted loop playsinline controls preload="metadata" aria-label="Demo 49 s: strona → CMS → edycja → publikacja"></video>
       </div>
     </div>
     <div class="shots">
-      <!-- TODO Task 5: podmień na screeny -->
-      <div class="shot rv">desktop</div>
-      <div class="shot rv">mobile</div>
-      <div class="shot rv">panel Payload CMS</div>
-      <div class="shot rv">strona live</div>
+      <img class="shot rv" src="media/screen-desktop.png" alt="Move Studio — strona główna, desktop" loading="lazy">
+      <img class="shot rv" src="media/screen-mobile.png" alt="Move Studio — wersja mobilna" loading="lazy">
+      <img class="shot rv" src="media/screen-cms.png" alt="Panel Payload CMS — edycja treści" loading="lazy">
+      <img class="shot rv" src="media/screen-live.png" alt="Strona live na movestudiopilates.pl" loading="lazy">
     </div>
     <p class="caption">Move Studio to przykład strony zbudowanej na tym samym starterze i w tym samym modelu pracy, na którym opiera się sprint.</p>
   </div>
