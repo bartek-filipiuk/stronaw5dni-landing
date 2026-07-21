@@ -142,6 +142,11 @@
   .sched div:last-child{border-bottom:none}
   .sched span:first-child{color:var(--ink-soft)}
   .sched span:last-child{font-family:var(--mono);font-size:.8rem;white-space:nowrap;color:var(--ink)}
+  .checkout-form{margin-top:6px}
+  .checkout-form .consent{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--ink-soft);max-width:38em;margin-bottom:16px;cursor:pointer}
+  .checkout-form .consent input{margin-top:3px;width:17px;height:17px;accent-color:var(--amber-deep);flex-shrink:0;cursor:pointer}
+  .checkout-form .consent a{color:var(--ink)}
+  .checkout-form .btn{border:none;cursor:pointer;font-family:var(--sans)}
   .price .legal-links{font-size:.8rem;color:var(--ink-soft);margin-top:1.3em}
   .price .legal-links a{color:var(--ink)}
   .seats{font-family:var(--mono);font-size:.8rem;color:var(--amber-deep);margin-top:1.6em}
@@ -384,9 +389,16 @@
         <div><span>Start sprintu</span><span>pon 31.08.2026</span></div>
         <div><span>Publikacja Twojej strony</span><span>pt 4.09.2026</span></div>
       </div>
-      <!-- TODO Task 6: podmień href na URL checkoutu na courses.devince.dev -->
-      <p><a class="btn on-paper" href="https://courses.devince.dev/strona-firmowa-w-5-dni" data-checkout data-umami-event="cta-checkout">Rezerwuję miejsce i płacę 49 zł</a></p>
-      <p class="legal-links">Opłata rezerwacyjna nie ogranicza ustawowego prawa odstąpienia od umowy. Szczegóły w regulaminie. · <a href="regulamin.html">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="formularz-odstapienia.html">Formularz odstąpienia</a></p>
+      <form class="checkout-form" method="POST" action="https://courses.devince.dev/api/courses/checkout">
+        <input type="hidden" name="slug" value="strona-firmowa-w-5-dni">
+        <input type="hidden" name="locale" value="pl">
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>Akceptuję <a href="regulamin.html">Regulamin</a> i <a href="polityka-prywatnosci.html">Politykę Prywatności</a>. Rezerwacja nie ogranicza ustawowego prawa odstąpienia od umowy.</span>
+        </label>
+        <button class="btn on-paper" type="submit" data-checkout data-umami-event="cta-checkout">Rezerwuję miejsce i płacę 49 zł</button>
+      </form>
+      <p class="legal-links">Płatność obsługuje Stripe. · <a href="regulamin.html">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="formularz-odstapienia.html">Formularz odstąpienia</a></p>
       <p class="seats">Pozostało 8 z 8 miejsc.</p>
     </div>
   </div>
