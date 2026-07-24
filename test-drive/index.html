@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test Drive — przetestuj starter ze sprintu Strona Firmowa w 5 Dni</title>
+<meta name="description" content="Pełny starter Payload CMS + Next.js z systemem promptów dla agenta AI. Za darmo, za maila i szczery feedback. Ten sam silnik, na którym pracuje sprint.">
+<meta property="og:title" content="Test Drive — starter ze sprintu Strona Firmowa w 5 Dni">
+<meta property="og:description" content="Pobierz pełny starter z instrukcjami dla agenta AI (Claude Code / Codex) i zbuduj stronę firmową. Za maila i feedback.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script defer src="https://stats.67projects.app/script.js" data-website-id="8e5e06a0-a30c-4d65-846d-87bd01b04a56"></script>
+<style>
+  :root{
+    --bg:#15181E; --bg-2:#1B1F27; --surface:#20252E; --edge:#2C323D;
+    --txt:#F0EDE5; --txt-soft:#A8A395; --txt-dim:#6E6A5F;
+    --amber:#FFC24B; --amber-deep:#E8A72A; --ok:#5FD68C; --red:#E8745A;
+    --ink:#16130E;
+    --mono:'JetBrains Mono',monospace; --disp:'Bricolage Grotesque',sans-serif; --sans:'Instrument Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);color:var(--txt);background:var(--bg);
+    line-height:1.65;font-size:17px;
+    background-image:
+      radial-gradient(ellipse 90% 50% at 50% -10%, rgba(255,194,75,.07), transparent),
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:100% 100%, 64px 64px, 64px 64px;
+  }
+  ::selection{background:var(--amber);color:var(--ink)}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px}
+  section{padding:64px 0}
+  .mono{font-family:var(--mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase}
+  .eyebrow{color:var(--amber);display:flex;align-items:center;gap:.6em;margin-bottom:1.3em}
+  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 12px var(--ok)}
+  h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+  h1{font-size:clamp(2.3rem,7vw,4.2rem);font-weight:800}
+  h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.5em}
+  .lead{font-size:clamp(1.05rem,2vw,1.22rem);color:var(--txt-soft);max-width:37em}
+  .accent{color:var(--amber)}
+
+  .btn{
+    display:inline-block;background:var(--amber);color:var(--ink);text-decoration:none;
+    font-weight:700;font-size:1.05rem;padding:1.05em 1.8em;border-radius:12px;
+    box-shadow:0 3px 0 var(--amber-deep), 0 12px 40px rgba(255,194,75,.22);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--amber-deep), 0 18px 48px rgba(255,194,75,.3)}
+  .btn:active{transform:translateY(1px)}
+  .under-cta{font-size:.86rem;color:var(--txt-soft);max-width:34em;margin-top:1.1em}
+
+  .hero{padding:88px 0 64px;border-bottom:1px solid var(--edge)}
+  .hero .sub{font-family:var(--disp);font-weight:500;font-size:clamp(1.15rem,2.8vw,1.5rem);color:var(--txt-soft);margin:.5em 0 1.2em;max-width:26em;letter-spacing:-.01em}
+
+  ul.checks{list-style:none;max-width:44em}
+  ul.checks li{padding:10px 0 10px 34px;position:relative;border-bottom:1px solid var(--edge)}
+  ul.checks li::before{content:"✓";position:absolute;left:6px;color:var(--ok);font-weight:700}
+  ul.checks li strong{color:var(--txt)}
+  ul.checks li{color:var(--txt-soft)}
+
+  .steps{counter-reset:s;display:grid;gap:16px;margin-top:28px}
+  .step{border:1px solid var(--edge);border-radius:16px;background:linear-gradient(170deg,var(--surface),var(--bg-2));padding:24px 24px 24px 74px;position:relative}
+  .step::before{
+    counter-increment:s;content:counter(s);
+    position:absolute;left:22px;top:22px;
+    font-family:var(--disp);font-weight:800;font-size:1.9rem;line-height:1;
+    color:transparent;-webkit-text-stroke:1.5px var(--amber);
+  }
+  .step h3{font-size:1.1rem;margin-bottom:.3em}
+  .step p{font-size:.95rem;color:var(--txt-soft)}
+  .step code{font-family:var(--mono);font-size:.82em;background:var(--bg);border:1px solid var(--edge);border-radius:6px;padding:1px 7px;color:var(--amber)}
+
+  .req{font-family:var(--mono);font-size:.78rem;color:var(--txt-dim);margin-top:26px;letter-spacing:.03em}
+  .req b{color:var(--txt-soft);font-weight:500}
+
+  .deal{border:1.5px dashed var(--amber);border-radius:16px;background:rgba(255,194,75,.06);padding:28px;max-width:44em}
+  .deal h3{color:var(--amber);font-size:1.15rem;margin-bottom:.5em}
+  .deal p{color:var(--txt-soft)}
+  .deal ol{margin:14px 0 0 1.2em;color:var(--txt)}
+  .deal ol li{padding:3px 0}
+
+  .bridge{border:1px solid var(--edge);border-radius:20px;background:linear-gradient(170deg,var(--surface),var(--bg-2));padding:clamp(26px,4vw,42px);box-shadow:0 0 0 1px rgba(255,194,75,.10), 0 24px 70px rgba(0,0,0,.4)}
+  .bridge p{color:var(--txt-soft);max-width:40em;margin-bottom:1.2em}
+  .bridge a.link{color:var(--amber)}
+
+  footer{border-top:1px solid var(--edge);padding:36px 0;font-size:.82rem;color:var(--txt-dim)}
+  footer a{color:var(--txt-soft)}
+  footer .cols-f{display:flex;flex-wrap:wrap;gap:10px 26px;margin-bottom:14px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="mono eyebrow">test drive · bez płacenia</p>
+    <h1>Przetestuj <span class="accent">silnik sprintu</span></h1>
+    <p class="sub">Pełny starter, na którym uczestnicy sprintu „Strona Firmowa w 5 Dni" budują strony firmowe. Za maila i szczery feedback.</p>
+    <a class="btn" href="https://apps.devince.dev/starter-test-drive" data-umami-event="cta-testdrive">Biorę paczkę</a>
+    <p class="under-cta">Zostawiasz maila, potwierdzasz zapis, pobierasz zip. Zero karty, zero haczyka — chcę feedbacku, nie transakcji.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Co jest w paczce</h2>
+    <p class="lead" style="margin-bottom:22px">Wersja bez okrojeń — dokładnie te pliki dostają uczestnicy sprintu.</p>
+    <ul class="checks">
+      <li><strong>Produkcyjny starter</strong> — Payload CMS 3 + Next.js 15, gotowe bloki stron, formularz kontaktowy, panel do edycji treści</li>
+      <li><strong>INIT_PROMPT</strong> — jeden prompt, który prowadzi agenta od briefu przez design po działającą stronę</li>
+      <li><strong>Prompty researchu i designu</strong> — brief z klientem, kierunek wizualny z dwiema paletami, treści stron, audyt</li>
+      <li><strong>DESIGNTIPS, DEPLOYTIPS i Field Notes</strong> — wnioski z realnych wdrożeń, w tym te bolesne</li>
+      <li><strong>TEST-DRIVE.md</strong> — instrukcja startu, od zipa do działającego projektu w około 5 minut</li>
+    </ul>
+    <p class="req">wymagania: <b>Docker</b> · <b>Node 20+ i pnpm</b> · <b>Claude Code lub Codex</b></p>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--edge)">
+  <div class="wrap">
+    <h2>Jak to działa</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>Zostaw maila i potwierdź</h3>
+        <p>Klikasz przycisk, podajesz adres, potwierdzasz zapis mailem. Po potwierdzeniu paczka jest do pobrania od razu.</p>
+      </div>
+      <div class="step">
+        <h3>Odpal projekt</h3>
+        <p>Rozpakuj zip i przejdź kroki z <code>TEST-DRIVE.md</code>: baza w Dockerze, <code>pnpm install</code>, migracja, start. Pięć minut.</p>
+      </div>
+      <div class="step">
+        <h3>Wklej agentowi INIT_PROMPT</h3>
+        <p>Otwierasz projekt w Claude Code, wklejasz zawartość <code>INIT_PROMPT.md</code> i agent prowadzi Cię od briefu do gotowej strony.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--edge)">
+  <div class="wrap">
+    <div class="deal">
+      <h3>Umowa jest prosta: paczka za feedback</h3>
+      <p>Po kilku dniach dostaniesz ode mnie maila z trzema pytaniami:</p>
+      <ol>
+        <li>Co próbowałeś zbudować?</li>
+        <li>Gdzie się wysypało albo zacięło?</li>
+        <li>Czego zabrakło?</li>
+      </ol>
+      <p style="margin-top:14px">Odpisujesz wprost na maila. Każda odpowiedź realnie zmienia ten system — tak powstały Field Notes, które znajdziesz w paczce.</p>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--edge)">
+  <div class="wrap">
+    <div class="bridge">
+      <h2>Chcesz dowieźć stronę do publikacji w 5 dni?</h2>
+      <p>Starter to silnik. Sprint dokłada resztę: proces dzień po dniu, moją pomoc na Discordzie, live'y i hosting na czas sprintu. Start 31.08, maksymalnie 8 osób.</p>
+      <a class="btn" href="/" data-umami-event="cta-testdrive-sprint">Zobacz sprint</a>
+      <p class="under-cta">Rezerwacja 49 zł (całość 249 zł). Jeśli grupa się nie zbierze — automatyczny zwrot.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols-f">
+      <a href="/regulamin.html">Regulamin</a>
+      <a href="/polityka-prywatnosci.html">Polityka prywatności</a>
+      <a href="https://devince.dev">devince.dev</a>
+    </div>
+    <p>Bartłomiej Filipiuk Devins · NIP 596 158 99 01 · ul. Stacyjna 1, 53-613 Wrocław · bartek@devince.dev</p>
+  </div>
+</footer>
+
+</body>
+</html>
