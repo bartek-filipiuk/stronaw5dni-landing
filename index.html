@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Strona Firmowa w 5 Dni — zbuduj i opublikuj stronę firmową z AI</title>
-<meta name="description" content="5-dniowa mini-kohorta online. Produkcyjny starter Payload CMS, instrukcje dla agenta AI i pomoc na Discordzie. Piątego dnia Twoja strona jest online.">
+<meta name="description" content="Starter za 49 zł: produkcyjny boilerplate Payload CMS, komplet promptów dla agenta AI i plan pracy dzień po dniu. Pobierasz od razu po zakupie. Sprint z grupą (31.08–4.09.2026) dokładasz za 200 zł, jeśli chcesz.">
 <meta property="og:title" content="Strona Firmowa w 5 Dni">
-<meta property="og:description" content="Zbuduj i opublikuj profesjonalną stronę firmową z AI — od briefu do działającej domeny. Start 31.08.2026.">
+<meta property="og:description" content="Kupujesz starter za 49 zł i masz go w 5 minut. Sprint za 200 zł dokładasz tylko wtedy, gdy chcesz dowieźć stronę do publikacji z grupą.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -112,16 +112,6 @@
   .day .fx{font-family:var(--mono);font-size:.74rem;color:var(--ok);margin-top:.7em;display:block}
   .callout{font-family:var(--disp);font-size:clamp(1.3rem,3.2vw,1.9rem);font-weight:700;border-left:4px solid var(--amber);padding:.4em 0 .4em .8em;margin-top:48px;letter-spacing:-.01em}
 
-  /* GET */
-  .cards{display:grid;gap:16px;grid-template-columns:1fr;margin-top:32px}
-  @media(min-width:680px){.cards{grid-template-columns:repeat(2,1fr)}}
-  @media(min-width:1000px){.cards{grid-template-columns:repeat(3,1fr)}}
-  .card{border:1px solid var(--edge);border-radius:16px;background:linear-gradient(170deg,var(--surface),var(--bg-2));padding:28px;transition:border-color .2s,transform .2s}
-  .card:hover{border-color:rgba(255,194,75,.4);transform:translateY(-3px)}
-  .card h3{font-size:1.12rem;margin-bottom:.45em}
-  .card p{font-size:.94rem;color:var(--txt-soft)}
-  .card .tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:12px}
-
   /* WHO */
   .who-grid{display:grid;gap:30px;margin-top:28px}
   @media(min-width:880px){.who-grid{grid-template-columns:1fr 1fr}}
@@ -143,11 +133,6 @@
   .sched div:last-child{border-bottom:none}
   .sched span:first-child{color:var(--ink-soft)}
   .sched span:last-child{font-family:var(--mono);font-size:.8rem;white-space:nowrap;color:var(--ink)}
-  .checkout-form{margin-top:6px}
-  .checkout-form .consent{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--ink-soft);max-width:38em;margin-bottom:16px;cursor:pointer}
-  .checkout-form .consent input{margin-top:3px;width:17px;height:17px;accent-color:var(--amber-deep);flex-shrink:0;cursor:pointer}
-  .checkout-form .consent a{color:var(--ink)}
-  .checkout-form .btn{border:none;cursor:pointer;font-family:var(--sans)}
   .price .legal-links{font-size:.8rem;color:var(--ink-soft);margin-top:1.3em}
   .price .legal-links a{color:var(--ink)}
   .seats{font-family:var(--mono);font-size:.8rem;color:var(--amber-deep);margin-top:1.6em}
@@ -186,18 +171,19 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <p class="mono eyebrow">5-dniowa mini-kohorta online · startujemy już od 3 osób · maksymalnie 8 miejsc</p>
+      <p class="mono eyebrow">Starter za 49 zł · paczka mailem od razu po płatności · sprint opcjonalnie</p>
       <h1>Strona Firmowa<br>w <span class="accent">5 Dni</span></h1>
       <p class="sub">Zbuduj i opublikuj profesjonalną stronę firmową z AI — od briefu do działającej domeny.</p>
-      <p class="lead">Dostajesz gotowy, produkcyjny starter oparty na Payload CMS, sprawdzone instrukcje dla agenta AI i moją pomoc na Discordzie. Nie zaczynasz od pustego projektu i nie kończysz z niedziałającym prototypem.</p>
-      <p style="margin-top:2.1em"><a class="btn" href="#cena" data-umami-event="cta-hero">Rezerwuję miejsce i płacę 49 zł</a></p>
-      <p class="under-cta">Pełna cena pilota: 249 zł brutto. Dziś płacisz 49 zł opłaty rezerwacyjnej, pozostałe 200 zł dopłacasz dopiero po potwierdzeniu uruchomienia grupy. Jeśli grupa nie powstanie do 24.08.2026, automatycznie zwracam całe 49 zł.</p>
+      <p class="lead">Kupujesz starter za 49 zł i masz go w 5 minut: produkcyjny boilerplate na Payload CMS, komplet promptów dla agenta AI i plan pracy dzień po dniu. Nie zaczynasz od pustego projektu. Sprint za 200 zł dokładasz tylko wtedy, gdy chcesz dowieźć stronę do publikacji razem z grupą.</p>
+      <p style="margin-top:2.1em"><a class="btn" href="#cena" data-umami-event="cta-hero">Kupuję starter za 49 zł</a></p>
+      <p class="under-cta">49 zł brutto, płatność jednorazowa. Link do pobrania paczki dostajesz mailem zaraz po płatności. Sprint (31.08–4.09.2026, 200 zł) to osobna, dobrowolna decyzja — starter zostaje Twój niezależnie od niej.</p>
     </div>
     <dl class="specs rv">
-      <dt>Start</dt><dd>poniedziałek 31 sierpnia 2026</dd>
-      <dt>Format</dt><dd>5 dni · ok. 60–90 minut dziennie</dd>
-      <dt>Grupa</dt><dd>3–8 osób</dd>
-      <dt>Wsparcie</dt><dd>Discord: async 9:00–21:00 + live 19:00–20:00</dd>
+      <dt>Starter</dt><dd>49 zł brutto · pobierasz od razu po zakupie</dd>
+      <dt>W paczce</dt><dd>boilerplate Payload CMS 3 + Next.js 15, prompty, PLAN.md</dd>
+      <dt>Licencja</dt><dd>bez limitu projektów, także komercyjnych</dd>
+      <dt>Discord</dt><dd>ogólny kanał, dostęp bezterminowy</dd>
+      <dt>Sprint (opcjonalnie)</dt><dd>+200 zł · 31.08–4.09.2026 · od 3 do 8 osób</dd>
       <dt>Poziom</dt><dd>początkujący z podstawową swobodą techniczną</dd>
     </dl>
   </div>
@@ -207,8 +193,8 @@
 <section id="demo">
   <div class="wrap">
     <p class="mono eyebrow">Rezultat, nie obietnica</p>
-    <h2>Nie będziemy budować strony „na niby"</h2>
-    <p class="lead" style="margin-bottom:38px">W czasie sprintu dostosujesz produkcyjny starter do wybranej firmy. Efektem będzie kompletna, edytowalna strona opublikowana na prawdziwej domenie.</p>
+    <h2>To nie jest strona „na niby"</h2>
+    <p class="lead" style="margin-bottom:38px">Starter to ten sam fundament, na którym powstała strona poniżej: kompletna, edytowalna w CMS i opublikowana na prawdziwej domenie. Dostosowujesz go do wybranej firmy — sam albo z grupą w sprincie.</p>
     <div class="demo-wrap rv">
       <div class="browser">
         <div class="browser-bar"><i></i><i></i><i></i><span class="url">movestudiopilates.pl</span></div>
@@ -221,19 +207,19 @@
       <img class="shot rv" src="media/screen-cms.png" alt="Panel Payload CMS — edycja treści" loading="lazy">
       <img class="shot rv" src="media/screen-live.png" alt="Strona live na movestudiopilates.pl" loading="lazy">
     </div>
-    <p class="caption">Move Studio to przykład strony zbudowanej na tym samym starterze i w tym samym modelu pracy, na którym opiera się sprint.</p>
+    <p class="caption">Move Studio to przykład strony zbudowanej na tym samym starterze i w tym samym modelu pracy, który dostajesz w paczce.</p>
   </div>
 </section>
 
 <!-- 2b. PROWADZĄCY -->
 <section id="prowadzacy" style="border-top:1px solid var(--edge)">
   <div class="wrap">
-    <p class="mono eyebrow">Kto prowadzi sprint</p>
+    <p class="mono eyebrow">Kto za tym stoi</p>
     <div class="host-card rv">
       <div class="avatar-lg" role="img" aria-label="Zdjęcie: Bartek Filipiuk"></div>
       <div>
         <h2 style="font-size:clamp(1.5rem,3.2vw,2.1rem);margin-bottom:.45em">Bartek Filipiuk</h2>
-        <p style="color:var(--txt-soft);max-width:52em">W IT pracuję zawodowo od 2008 roku, przez większość tej drogi w Drupalu i PHP. Od 2023 mocno siedzę w AI: programowanie z agentami, modele LLM, fine-tuning. Strony <a href="https://devince.dev">devince.dev</a>, <a href="https://skillgrade.dev">skillgrade.dev</a>, <a href="https://apps.devince.dev">apps.devince.dev</a> i <a href="https://courses.devince.dev">courses.devince.dev</a> zbudowałem przy pomocy AI i wszystkie działają na produkcji. Od lat uczę też ludzi na <a href="https://www.youtube.com/@bartfilipiuk">YouTube</a>. W czasie sprintu pokażę Ci proces, którego sam używam: od briefu do działającej produkcji.</p>
+        <p style="color:var(--txt-soft);max-width:52em">W IT pracuję zawodowo od 2008 roku, przez większość tej drogi w Drupalu i PHP. Od 2023 mocno siedzę w AI: programowanie z agentami, modele LLM, fine-tuning. Strony <a href="https://devince.dev">devince.dev</a>, <a href="https://skillgrade.dev">skillgrade.dev</a>, <a href="https://apps.devince.dev">apps.devince.dev</a> i <a href="https://courses.devince.dev">courses.devince.dev</a> zbudowałem przy pomocy AI i wszystkie działają na produkcji. Od lat uczę też ludzi na <a href="https://www.youtube.com/@bartfilipiuk">YouTube</a>. W starterze zapakowałem proces, którego sam używam: od briefu do działającej produkcji.</p>
       </div>
     </div>
   </div>
@@ -247,7 +233,7 @@
     <div class="formula">5 podstron + 1 główne CTA + 1 integracja + CMS + publikacja</div>
     <div class="cols">
       <div>
-        <p style="font-weight:700;margin-bottom:10px">Na koniec sprintu masz:</p>
+        <p style="font-weight:700;margin-bottom:10px">Zakres, który dowozisz:</p>
         <ul class="checks">
           <li>stronę główną</li>
           <li>ofertę lub usługi</li>
@@ -280,7 +266,7 @@
   <div class="wrap">
     <p class="mono eyebrow">Program</p>
     <h2>Pięć dni, pięć konkretnych efektów</h2>
-    <p class="lead" style="margin-bottom:28px">Każdego dnia dostajesz jedno główne zadanie z checklistą „zrobione znaczy zrobione". Pracujesz na własnym projekcie albo na dostarczonym briefie. Pytania i blokery wrzucasz na Discord. Zaplanuj około 60–90 minut dziennie. Trudniejsze problemy rozwiązujemy wspólnie.</p>
+    <p class="lead" style="margin-bottom:28px">Ten plan jest w starterze — jako PLAN.md, kręgosłup pracy z agentem AI. Każdy dzień to jedno główne zadanie z checklistą „zrobione znaczy zrobione". Zaplanuj około 60–90 minut dziennie. Możesz przejść go sam, we własnym tempie. W sprincie przechodzimy go razem w jednym tygodniu, z odblokowaniami dzień po dniu i wsparciem na żywo.</p>
 
     <div class="day rv"><div class="no">01</div><div>
       <h3>Brief i zakres</h3>
@@ -317,29 +303,48 @@
   <div class="wrap">
     <p class="mono eyebrow">Praca z agentem AI</p>
     <h2>AI robi tutaj dużą część roboty</h2>
-    <p class="lead" style="margin-bottom:26px">Sprint jest zbudowany wokół pracy z agentem. Ty decydujesz i pilnujesz jakości, agent wykonuje.</p>
+    <p class="lead" style="margin-bottom:26px">Cała paczka jest zbudowana wokół pracy z agentem. Ty decydujesz i pilnujesz jakości, agent wykonuje.</p>
     <ul class="checks" style="max-width:44em">
       <li>dostajesz gotowe prompty na każdy etap: brief, treści, zmiana designu startera pod konkretną firmę</li>
       <li>starter jest przygotowany pod agenta, więc zmiana kolorów, fontów i całego kierunku wizualnego to instrukcja, a nie przepisywanie kodu</li>
       <li>uczysz się procesu, który powtórzysz przy każdym kolejnym kliencie</li>
-      <li>zestaw promptów i instrukcji rozwijamy z każdą edycją, a Ty masz dostęp do aktualizacji przez 12 miesięcy</li>
+      <li>potrzebujesz własnej subskrypcji agenta (Claude Code albo Codex) oraz Dockera, Node 20+ i pnpm na swoim komputerze</li>
     </ul>
   </div>
 </section>
 
-<!-- 5. CO OTRZYMUJESZ -->
+<!-- 5. STARTER VS SPRINT -->
 <section id="pakiet" style="border-top:1px solid var(--edge)">
   <div class="wrap">
-    <p class="mono eyebrow">W pakiecie</p>
-    <h2>Co otrzymujesz</h2>
-    <div class="cards">
-      <div class="card rv"><span class="tag">fundament</span><h3>Produkcyjny starter</h3><p>Gotowy frontend, Payload CMS, podstawowe podstrony, komponenty, SEO i konfiguracja projektu. Licencja bez limitu projektów: własnych i dla Twoich klientów.</p></div>
-      <div class="card rv"><span class="tag">agent AI</span><h3>Prompty i instrukcje dla agenta AI</h3><p>Gotowe prompty na kolejne etapy pracy oraz zasady opisujące architekturę startera, bezpieczne modyfikacje, stylowanie według wytycznych klienta i sposób weryfikacji zmian.</p></div>
-      <div class="card rv"><span class="tag">proces</span><h3>Pięć zadań z checklistami</h3><p>Każdy dzień kończy się konkretnym rezultatem i Definition of Done.</p></div>
-      <div class="card rv"><span class="tag">wsparcie</span><h3>Pomoc na Discordzie</h3><p>Asynchronicznie w godz. 9:00–21:00 + codzienne okno live 19:00–20:00.</p></div>
-      <div class="card rv"><span class="tag">dostęp</span><h3>Materiały na platformie</h3><p>Instrukcje, prompty i checklisty z dostępem przez 12 miesięcy; starter zostaje z Tobą bezterminowo. Nie masz serwera? Hosting Twojej strony na naszej platformie przez sprint i miesiąc po nim — w cenie.</p></div>
-      <div class="card rv"><span class="tag">bonus · beta</span><h3>Bonus eksperymentalny</h3><p>Testowy dostęp do narzędzia generującego kierunek wizualny strony.</p></div>
+    <p class="mono eyebrow">Dwie osobne decyzje</p>
+    <h2>Co masz w 5 minut, a co dokłada sprint</h2>
+    <p class="lead" style="margin-bottom:6px">Starter kupujesz dziś i jest Twój. Sprint to dowiezienie strony do publikacji razem z grupą — dokładasz go tylko wtedy, gdy tego chcesz.</p>
+    <div class="who-grid">
+      <div class="not-box rv">
+        <h3>Starter — 49 zł, masz go od razu</h3>
+        <ul class="checks">
+          <li>boilerplate Payload CMS 3 + Next.js 15, gotowy do uruchomienia</li>
+          <li>INIT_PROMPT.md i komplet promptów dla agenta AI</li>
+          <li>DESIGNTIPS.md i PAGE_DEVTIPS.md</li>
+          <li>PLAN.md — plan pracy dzień po dniu</li>
+          <li>licencja bez limitu projektów, także komercyjnych</li>
+          <li>bezterminowy dostęp do ogólnego kanału na Discordzie</li>
+          <li>link do pobrania paczki mailem zaraz po płatności</li>
+        </ul>
+      </div>
+      <div class="not-box rv">
+        <h3>Sprint — +200 zł, tylko jeśli chcesz</h3>
+        <ul class="checks">
+          <li>31.08–4.09.2026, grupa od 3 do 8 osób</li>
+          <li>proces dzień po dniu z odblokowaniami</li>
+          <li>wsparcie na żywo na Discordzie w tygodniu sprintu: async 9:00–21:00</li>
+          <li>codzienne okno live 19:00–20:00</li>
+          <li>hosting Twojej strony na czas sprintu i miesiąc po nim</li>
+          <li>materiały sprintu na platformie przez 12 miesięcy</li>
+        </ul>
+      </div>
     </div>
+    <p class="caption">Nie dokładasz sprintu? Starter, licencja i Discord zostają z Tobą bezterminowo. Nic z tego nie tracisz.</p>
   </div>
 </section>
 
@@ -347,7 +352,7 @@
 <section id="dla-kogo" style="border-top:1px solid var(--edge)">
   <div class="wrap">
     <p class="mono eyebrow">Dopasowanie</p>
-    <h2>Dla kogo jest ten sprint</h2>
+    <h2>Dla kogo to jest</h2>
     <div class="who-grid">
       <div>
         <p style="font-weight:700;margin-bottom:8px">To jest dla Ciebie, jeśli:</p>
@@ -367,7 +372,7 @@
           <li>oczekujesz wykonania strony za Ciebie</li>
           <li>chcesz zbudować sklep albo rozbudowaną aplikację</li>
           <li>potrzebujesz pełnego indywidualnego mentoringu 1:1</li>
-          <li>nie możesz przeznaczyć 60–90 minut dziennie przez tydzień</li>
+          <li>nie chcesz poświęcić na to około 60–90 minut dziennie przez tydzień</li>
         </ul>
       </div>
     </div>
@@ -378,29 +383,21 @@
 <section id="cena">
   <div class="wrap">
     <div class="price rv">
-      <span class="mono-label">Pierwsza edycja pilotażowa</span>
-      <p class="big-price">249 zł <small>brutto · dziś tylko 49 zł</small></p>
-      <p class="quote"><strong>Cena pilota: 249 zł brutto.</strong> Dziś płacisz <strong>49 zł za rezerwację miejsca</strong>, a pozostałe <strong>200 zł dopłacasz dopiero po potwierdzeniu uruchomienia grupy</strong>.</p>
-      <p class="quote"><strong>Startujemy już od 3 osób</strong> (maksymalnie 8). Jeśli grupa nie powstanie do <strong>24.08.2026, godz. 20:00</strong>, zwrócę Ci <strong>49 zł automatycznie</strong> tą samą metodą płatności.</p>
-      <p class="quote"><strong>Starter, Discord i materiały odblokowuję po dopłacie 200 zł</strong> (termin dopłaty: do 26.08.2026, godz. 20:00) i po otrzymaniu wymaganych zgód dotyczących rozpoczęcia usługi oraz dostarczenia treści cyfrowych.</p>
+      <span class="mono-label">Dwie ceny, dwie osobne decyzje</span>
+      <p class="big-price">49 zł <small>brutto · starter, pobierasz od razu</small></p>
+      <p class="quote"><strong>Starter — 49 zł brutto, płatne jednorazowo.</strong> Zaraz po zapłacie dostajesz mail z linkiem do pobrania paczki (link ważny 7 dni, do 5 pobrań — zgraj ją u siebie). W środku: boilerplate, komplet promptów, PLAN.md, licencja bez limitu projektów i bezterminowy dostęp do ogólnego kanału na Discordzie.</p>
+      <p class="quote"><strong>Sprint — 200 zł brutto, opcjonalnie.</strong> To osobna cena i osobna umowa: <strong>cena startera nie jest zaliczana na poczet sprintu</strong>. Zapisy do <strong>24.08.2026, godz. 20:00</strong>, start 31.08, grupa od 3 do 8 osób. Nie dokładasz — zostajesz ze starterem, licencją i Discordem, i nic nie tracisz.</p>
+      <p class="quote"><strong>Paczkę dostajesz od razu, więc prawo odstąpienia od zakupu startera nie przysługuje.</strong> Zgodę na natychmiastowe dostarczenie i świadomość utraty tego prawa potwierdzasz przy zakupie (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Przy sprincie prawo odstąpienia zostaje: 14 dni od zawarcia umowy udziału.</p>
       <div class="sched">
-        <div><span>Rezerwacje</span><span>do 24.08.2026, 20:00</span></div>
+        <div><span>Zakup startera</span><span>od razu, dowolnego dnia</span></div>
+        <div><span>Zapisy na sprint</span><span>do 24.08.2026, 20:00</span></div>
         <div><span>Decyzja o uruchomieniu grupy</span><span>24.08.2026</span></div>
-        <div><span>Dopłata 200 zł</span><span>do 26.08.2026, 20:00</span></div>
         <div><span>Start sprintu</span><span>pon 31.08.2026</span></div>
         <div><span>Publikacja Twojej strony</span><span>pt 4.09.2026</span></div>
       </div>
-      <form class="checkout-form" method="POST" action="https://courses.devince.dev/api/courses/checkout">
-        <input type="hidden" name="slug" value="strona-firmowa-w-5-dni">
-        <input type="hidden" name="locale" value="pl">
-        <label class="consent">
-          <input type="checkbox" name="consent" required>
-          <span>Akceptuję <a href="regulamin.html">Regulamin</a> i <a href="polityka-prywatnosci.html">Politykę Prywatności</a>. Rezerwacja nie ogranicza ustawowego prawa odstąpienia od umowy.</span>
-        </label>
-        <button class="btn on-paper" type="submit" data-checkout data-umami-event="cta-checkout">Rezerwuję miejsce i płacę 49 zł</button>
-      </form>
-      <p class="legal-links">Płatność obsługuje Stripe. · <a href="regulamin.html">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="formularz-odstapienia.html">Formularz odstąpienia</a></p>
-      <p class="seats">Pozostało 8 z 8 miejsc.</p>
+      <p style="margin-top:6px"><a class="btn on-paper" href="https://apps.devince.dev/PLACEHOLDER-SLUG-STARTERA" data-checkout data-umami-event="cta-checkout">Kupuję starter za 49 zł</a></p>
+      <p class="legal-links">Płatność obsługuje Stripe. Sprzedaż startera prowadzę w sklepie apps.devince.dev — tam potwierdzasz regulamin i zgody. · <a href="regulamin.html">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="formularz-odstapienia.html">Formularz odstąpienia</a></p>
+      <p class="seats">Sprint: minimum 3 osoby, maksymalnie 8 miejsc. O zapisach informuję mailem osoby, które kupiły starter i zaznaczyły przy zakupie zgodę na wiadomości.</p>
     </div>
   </div>
 </section>
@@ -411,20 +408,22 @@
     <p class="mono eyebrow">Pytania</p>
     <h2>FAQ</h2>
     <div style="margin-top:22px">
-      <details open><summary>Ile kosztuje udział?</summary><p>Pełna cena sprintu to 249 zł brutto. Dziś płacisz 49 zł za rezerwację miejsca, a pozostałe 200 zł dopłacasz dopiero wtedy, gdy potwierdzimy uruchomienie grupy.</p></details>
-      <details><summary>Czy 49 zł przepada?</summary><p>Nie automatycznie. Jeśli jesteś konsumentem, przysługuje Ci ustawowe prawo odstąpienia od umowy rezerwacji w ciągu 14 dni. Jeśli grupa nie powstanie, zwracam 49 zł automatycznie. Po upływie terminu na odstąpienie opłata rezerwacyjna co do zasady nie podlega zwrotowi, jeśli sam zrezygnujesz z miejsca.</p></details>
-      <details><summary>Co jeśli grupa się nie zbierze?</summary><p>Jeśli do 24.08.2026 do godz. 20:00 nie zbierze się minimum 3 osób, anuluję edycję i automatycznie zwrócę Ci 49 zł tą samą metodą płatności.</p></details>
-      <details><summary>Kiedy dopłacam 200 zł?</summary><p>Po potwierdzeniu uruchomienia grupy (24.08.2026) dostaniesz e-mail z linkiem do płatności. Termin dopłaty: 26.08.2026, godz. 20:00.</p></details>
+      <details open><summary>Ile to kosztuje?</summary><p>Starter: 49 zł brutto, płatne raz. Sprint: 200 zł brutto, osobna i dobrowolna decyzja. To dwie niezależne ceny — cena startera nie jest zaliczana na poczet ceny sprintu.</p></details>
+      <details><summary>Muszę dopłacać te 200 zł?</summary><p>Nie. Starter jest kompletnym produktem: paczka, licencja bez limitu projektów i bezterminowy Discord zostają Twoje, nawet jeśli nigdy nie kupisz sprintu. Sprint dokłada do tego prowadzenie przez proces w konkretnym tygodniu, wsparcie na żywo i hosting — kupujesz go tylko wtedy, gdy chcesz przejść przez to z grupą.</p></details>
+      <details><summary>Czy mogę zwrócić starter?</summary><p>Nie. Paczkę dostajesz natychmiast po płatności, a przy zakupie potwierdzasz zgodę na jej natychmiastowe dostarczenie i przyjmujesz do wiadomości, że tracisz przez to prawo odstąpienia (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Krótko: kto pobrał paczkę, ten za nią płaci. To osobna sprawa niż reklamacja — jeśli starter nie działa zgodnie z opisem, napisz na bartek@devince.dev, reklamacje rozpatruję zgodnie z regulaminem.</p></details>
+      <details><summary>A zwrot za sprint?</summary><p>Przy sprincie prawo odstąpienia przysługuje: 14 dni od zawarcia umowy udziału. Odstąpienie przed startem sprintu oznacza zwrot całych 200 zł. Odstąpienie po starcie, ale w tym terminie, jest skuteczne — płacisz wtedy proporcjonalnie za tę część sprintu, która już się odbyła. Udostępnienie materiałów sprintu nie skraca tego terminu. Cena startera nie podlega zwrotowi w żadnym z tych przypadków.</p></details>
+      <details><summary>Co jeśli grupa się nie zbierze?</summary><p>Jeśli do 24.08.2026 do godz. 20:00 nie zbierze się minimum 3 osób, sprint się nie odbywa, a zapłacone 200 zł zwracam w całości tą samą metodą płatności. Startera to nie dotyczy — został dostarczony i zostaje Twój, jego cena nie podlega zwrotowi.</p></details>
+      <details><summary>Jak zapisać się na sprint?</summary><p>Zapisy trwają do 24.08.2026, godz. 20:00 i prowadzę je na courses.devince.dev. Informację z linkiem wysyłam mailem osobom, które kupiły starter i zaznaczyły przy zakupie zgodę na wiadomości — to jedyny kanał, którym o sprincie informuję.</p></details>
       <details><summary>Czy muszę umieć programować?</summary><p>Nie musisz być programistą, ale musisz mieć podstawową swobodę techniczną: terminal, instalacja narzędzi, praca z plikami. Jeśli korzystasz już z Claude Code albo Codex, dasz radę.</p></details>
-      <details><summary>Czy narzędzia AI, hosting i domena są w cenie?</summary><p>Potrzebujesz własnej subskrypcji agenta AI (Claude Code lub Codex, ok. 100 zł/mies.) — to jedyny koszt obowiązkowy. Domena (ok. 60 zł/rok) jest opcjonalna: możesz opublikować stronę na subdomenie. Serwer: przyda się VPS (np. Hetzner, DigitalOcean lub analogiczny, ok. 20–30 zł/mies.), ale jeśli go nie masz — <strong>na czas sprintu i miesiąc po nim dostajesz miejsce na naszej platformie hostingowej w cenie</strong>, a w materiałach pokazujemy, jak później przenieść stronę na własny serwer.</p></details>
-      <details><summary>Czy muszę mieć własny serwer?</summary><p>Nie. Jeśli masz VPS (Hetzner, DigitalOcean itp.) — wdrożysz stronę u siebie, z naszą pomocą. Jeśli nie masz — publikujesz na naszej platformie (dostęp na sprint + miesiąc po nim w cenie) i uczysz się przenosin na własny serwer, kiedy będziesz gotowy.</p></details>
+      <details><summary>Czego potrzebuję poza starterem?</summary><p>Na komputerze: Docker, Node 20 lub nowszy i pnpm. Do tego własna subskrypcja agenta AI (Claude Code lub Codex, ok. 100 zł/mies.) — to jedyny koszt obowiązkowy poza ceną startera. Domena (ok. 60 zł/rok) jest opcjonalna: możesz opublikować stronę na subdomenie.</p></details>
+      <details><summary>Czy muszę mieć własny serwer?</summary><p>Do pracy nad stroną nie — pracujesz lokalnie. Do publikacji przyda się VPS (Hetzner, DigitalOcean lub podobny, ok. 20–30 zł/mies.). Jeśli go nie masz i kupisz sprint, na czas sprintu i miesiąc po nim dostajesz miejsce na mojej platformie hostingowej w cenie sprintu.</p></details>
       <details><summary>Jakiego agenta AI mogę użyć?</summary><p>Instrukcje przygotowane są pod Claude Code; działają też z Codex i podobnymi narzędziami agentowymi. Ważne, żebyś miał agenta, który potrafi pracować na plikach projektu.</p></details>
-      <details><summary>Czy muszę mieć własnego klienta?</summary><p>Nie. Możesz zrealizować sprint na projekcie demo albo własnym case study. Jeśli masz klienta, tym lepiej.</p></details>
+      <details><summary>Czy muszę mieć własnego klienta?</summary><p>Nie. Możesz zbudować stronę na projekcie demo albo własnym case study. Jeśli masz klienta, tym lepiej.</p></details>
       <details><summary>Czy mogę używać startera przy projektach klientów?</summary><p>Tak. Licencja obejmuje nieograniczoną liczbę projektów własnych i klienckich. Nie wolno jedynie odsprzedawać samego startera, publikować repo ani udzielać sublicencji.</p></details>
-      <details><summary>Co jeśli nie skończę strony w pięć dni?</summary><p>Materiały i checklisty masz dostępne po sprincie, a najczęstsze blokery rozwiązujemy na bieżąco na Discordzie. Sprint jest zaprojektowany tak, żeby zakres był domykalny w 60–90 minut dziennie.</p></details>
-      <details><summary>Jak działa pomoc na Discordzie?</summary><p>W tygodniu sprintu odpowiadam asynchronicznie w godz. 9:00–21:00, a codziennie 19:00–20:00 jest okno live na trudniejsze problemy.</p></details>
-      <details><summary>Jak długo mam dostęp do materiałów?</summary><p>Starter i licencja zostają z Tobą bezterminowo. Dostęp do materiałów na platformie trwa 12 miesięcy.</p></details>
-      <details><summary>Czy gwarantujesz mi zlecenia albo zarobek po sprincie?</summary><p>Nie. Sprint jest produktem edukacyjnym i wdrożeniowym: pomaga dowieźć działający projekt, ale nie jest gwarancją wyniku biznesowego.</p></details>
+      <details><summary>Co jeśli nie skończę strony w pięć dni?</summary><p>Starter zostaje Twój bezterminowo, więc możesz wrócić do niego w dowolnym momencie i pracować we własnym tempie. Jeśli jesteś w sprincie, materiały masz na platformie także po jego zakończeniu, a najczęstsze blokery rozwiązujemy na bieżąco w tygodniu sprintu.</p></details>
+      <details><summary>Jak działa pomoc na Discordzie?</summary><p>Każdy, kto kupi starter, dostaje bezterminowy dostęp do ogólnego kanału — to miejsce na wymianę doświadczeń, bez gwarantowanego czasu odpowiedzi. Wsparcie na żywo przysługuje uczestnikom sprintu i tylko w jego tygodniu: asynchronicznie w godz. 9:00–21:00 plus codzienne okno live 19:00–20:00.</p></details>
+      <details><summary>Jak długo mam dostęp do materiałów?</summary><p>Starter i licencja zostają z Tobą bezterminowo — link do pobrania jest ważny 7 dni i pozwala na 5 pobrań, więc od razu zgraj paczkę u siebie. Dostęp do materiałów sprintu na platformie trwa 12 miesięcy.</p></details>
+      <details><summary>Czy gwarantujesz mi zlecenia albo zarobek?</summary><p>Nie. Starter i sprint są produktami edukacyjnymi i wdrożeniowymi: pomagają dowieźć działający projekt, ale nie są gwarancją wyniku biznesowego.</p></details>
       <details><summary>Czy dostanę fakturę?</summary><p>Tak. Podaj dane przy zakupie albo napisz po płatności.</p></details>
     </div>
   </div>
@@ -433,10 +432,10 @@
 <!-- 9. FINAL CTA -->
 <section class="final">
   <div class="wrap">
-    <h2>Piątego dnia Twoja strona ma być online</h2>
-    <p class="lead">Nie potrzebujesz kolejnego wielogodzinnego kursu. Potrzebujesz sprawdzonego fundamentu, konkretnego zadania każdego dnia i pomocy w momentach, w których agent albo projekt zaczyna się wykolejać.</p>
-    <p><a class="btn" href="#cena" data-umami-event="cta-final">Rezerwuję miejsce i płacę 49 zł</a></p>
-    <p class="under-cta" style="margin:1.3em auto 0">Pełna cena 249 zł · startujemy od 3 osób, maksymalnie 8 · pełny zwrot 49 zł, jeśli grupa nie powstanie.</p>
+    <h2>Zaczynasz od fundamentu, nie od pustego katalogu</h2>
+    <p class="lead">Nie potrzebujesz kolejnego wielogodzinnego kursu. Potrzebujesz sprawdzonego startera, konkretnego zadania na każdy dzień i promptów, które nie każą Ci przepisywać kodu ręcznie. To wszystko jest w paczce za 49 zł.</p>
+    <p><a class="btn" href="#cena" data-umami-event="cta-final">Kupuję starter za 49 zł</a></p>
+    <p class="under-cta" style="margin:1.3em auto 0">49 zł brutto · paczka mailem od razu po płatności · licencja bez limitu projektów. Sprint 200 zł opcjonalnie, zapisy do 24.08.2026, 20:00.</p>
   </div>
 </section>
 
@@ -453,8 +452,8 @@
 </footer>
 
 <div class="sticky-cta">
-  <span class="p">249 zł · dziś 49 zł<br>start 31.08</span>
-  <a class="btn" href="#cena" data-umami-event="cta-sticky">Rezerwuję miejsce</a>
+  <span class="p">Starter 49 zł<br>paczka od razu</span>
+  <a class="btn" href="#cena" data-umami-event="cta-sticky">Kupuję starter</a>
 </div>
 
 <dialog id="lb" class="lightbox">
