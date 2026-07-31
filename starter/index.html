@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Starter „Strona Firmowa w 5 Dni" — kompletna strona firmowa z CMS, zbudowana z agentem AI</title>
+<meta name="description" content="49 zł: boilerplate Payload CMS 3 + Next.js 15, INIT_PROMPT dla agenta AI, komplet promptów i jedno wejście — START.md. Budujesz kompletną stronę firmową z CMS na swoim komputerze. Paczkę pobierasz od razu po płatności.">
+<meta property="og:title" content="Starter „Strona Firmowa w 5 Dni" — 49 zł">
+<meta property="og:description" content="Kompletna strona firmowa z CMS, którą agent AI przerabia pod konkretną firmę. Paczka do pobrania od razu po płatności, licencja bez limitu projektów.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script defer src="https://stats.67projects.app/script.js" data-website-id="8e5e06a0-a30c-4d65-846d-87bd01b04a56"></script>
+<style>
+  :root{
+    --bg:#15181E; --bg-2:#1B1F27; --surface:#20252E; --edge:#2C323D;
+    --txt:#F0EDE5; --txt-soft:#A8A395; --txt-dim:#6E6A5F;
+    --amber:#FFC24B; --amber-deep:#E8A72A; --ok:#5FD68C; --red:#E8745A;
+    --paper:#F5EFE2; --ink:#16130E; --ink-soft:#4A443A; --paper-edge:#E0D7C4;
+    --mono:'JetBrains Mono',monospace; --disp:'Bricolage Grotesque',sans-serif; --sans:'Instrument Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);color:var(--txt);background:var(--bg);
+    line-height:1.65;font-size:17px;
+    background-image:
+      radial-gradient(ellipse 90% 50% at 50% -10%, rgba(255,194,75,.07), transparent),
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:100% 100%, 64px 64px, 64px 64px;
+  }
+  ::selection{background:var(--amber);color:var(--ink)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  section{padding:76px 0}
+  @media(min-width:768px){section{padding:110px 0}}
+
+  .mono{font-family:var(--mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase}
+  .eyebrow{color:var(--amber);display:flex;align-items:center;gap:.6em;margin-bottom:1.3em}
+  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 12px var(--ok)}
+  h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+  h1{font-size:clamp(2.4rem,7vw,4.8rem);font-weight:800}
+  h2{font-size:clamp(1.8rem,4.4vw,2.9rem);margin-bottom:.5em}
+  .lead{font-size:clamp(1.05rem,2vw,1.22rem);color:var(--txt-soft);max-width:37em}
+  code{font-family:var(--mono);font-size:.86em;color:var(--txt);background:rgba(255,194,75,.08);border:1px solid var(--edge);border-radius:5px;padding:.1em .4em}
+  .price code{color:var(--ink);background:rgba(232,167,42,.14);border-color:var(--paper-edge)}
+
+  .btn{
+    display:inline-block;background:var(--amber);color:var(--ink);text-decoration:none;
+    font-weight:700;font-size:1.05rem;padding:1.05em 1.8em;border-radius:12px;
+    box-shadow:0 3px 0 var(--amber-deep), 0 12px 40px rgba(255,194,75,.22);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--amber-deep), 0 18px 48px rgba(255,194,75,.3)}
+  .btn:active{transform:translateY(1px)}
+  .btn.on-paper{background:var(--ink);color:var(--amber);box-shadow:0 3px 0 #000, 0 12px 34px rgba(22,19,14,.35)}
+  .btn.on-paper:hover{box-shadow:0 5px 0 #000, 0 16px 40px rgba(22,19,14,.4)}
+  .under-cta{font-size:.86rem;color:var(--txt-soft);max-width:34em;margin-top:1.1em}
+
+  /* HERO */
+  .hero{padding:96px 0 80px;border-bottom:1px solid var(--edge);position:relative;overflow:hidden}
+  .hero .sub{font-family:var(--disp);font-weight:500;font-size:clamp(1.2rem,3vw,1.65rem);color:var(--txt-soft);margin:.5em 0 1em;max-width:24em;letter-spacing:-.01em}
+  .hero-grid{display:grid;gap:48px}
+  @media(min-width:920px){.hero-grid{grid-template-columns:1.55fr 1fr;align-items:end}}
+  .specs{border:1px solid var(--edge);border-radius:16px;background:linear-gradient(160deg,var(--surface),var(--bg-2));padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+  .specs dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--txt-dim);margin-top:15px}
+  .specs dt:first-child{margin-top:0}
+  .specs dd{font-weight:600;color:var(--txt)}
+  .accent{color:var(--amber)}
+
+  /* DEMO */
+  .demo-wrap{position:relative}
+  .browser{border:1px solid var(--edge);border-radius:16px;overflow:hidden;background:var(--bg-2);box-shadow:0 0 0 1px rgba(255,194,75,.12), 0 30px 90px rgba(0,0,0,.5), 0 0 80px rgba(255,194,75,.06)}
+  .browser-bar{display:flex;align-items:center;gap:6px;padding:11px 15px;border-bottom:1px solid var(--edge);background:var(--surface)}
+  .browser-bar i{width:10px;height:10px;border-radius:50%;background:var(--edge)}
+  .browser-bar i:nth-child(1){background:#D26A5A}.browser-bar i:nth-child(2){background:#D8B45A}.browser-bar i:nth-child(3){background:#6BBF80}
+  .browser-bar .url{font-family:var(--mono);font-size:.72rem;color:var(--txt-soft);margin-left:10px;background:var(--bg);border:1px solid var(--edge);border-radius:6px;padding:2px 12px}
+  .shots{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin-top:16px}
+  @media(min-width:768px){.shots{grid-template-columns:repeat(4,1fr)}}
+  .shot{aspect-ratio:4/3;border:1px solid var(--edge);border-radius:12px;background:var(--bg-2);width:100%;object-fit:cover;object-position:top;display:block;cursor:zoom-in;transition:border-color .2s,transform .2s}
+  .shot:hover{border-color:rgba(255,194,75,.5);transform:translateY(-2px)}
+  .lightbox{border:none;background:transparent;padding:0;position:fixed;inset:0;margin:auto;width:fit-content;height:fit-content;max-width:min(94vw,1400px);max-height:92vh;overflow:visible}
+  .lightbox img{max-width:min(94vw,1400px);max-height:88vh;display:block;border-radius:12px;border:1px solid var(--edge)}
+  .lightbox::backdrop{background:rgba(10,12,16,.85);backdrop-filter:blur(6px)}
+  .lb-close{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:none;background:var(--amber);color:var(--ink);font-size:1.1rem;font-weight:700;cursor:pointer;line-height:1;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+  .demo-video{width:100%;aspect-ratio:16/9;display:block;background:#000}
+  .caption{font-size:.85rem;color:var(--txt-dim);margin-top:16px}
+
+  /* LISTY */
+  .formula{font-family:var(--mono);font-size:clamp(.85rem,2.4vw,1.05rem);border:1.5px dashed var(--amber);color:var(--amber);border-radius:12px;padding:15px 20px;display:inline-block;margin:20px 0 34px;background:rgba(255,194,75,.06)}
+  .cols{display:grid;gap:40px}
+  @media(min-width:880px){.cols{grid-template-columns:1.4fr 1fr}}
+  ul.checks{list-style:none}
+  ul.checks li{padding:10px 0 10px 34px;position:relative;border-bottom:1px solid var(--edge)}
+  ul.checks li::before{content:"✓";position:absolute;left:6px;color:var(--ok);font-weight:700}
+  .not-box{border:1px solid var(--edge);border-radius:16px;padding:28px;background:var(--bg-2);align-self:start}
+  .not-box h3{font-size:1.15rem;margin-bottom:12px}
+  .not-box ul.checks li:last-child{border-bottom:none;padding-bottom:0}
+  ul.crosses{list-style:none}
+  ul.crosses li{padding:8px 0 8px 30px;position:relative;color:var(--txt-soft)}
+  ul.crosses li::before{content:"✕";position:absolute;left:4px;color:var(--red);opacity:.7;font-weight:700}
+  .who-grid{display:grid;gap:30px;margin-top:28px}
+  @media(min-width:880px){.who-grid{grid-template-columns:1fr 1fr}}
+
+  /* KROKI */
+  .day{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0;border-bottom:1px solid var(--edge)}
+  .day:last-of-type{border-bottom:none}
+  .day .no{font-family:var(--disp);font-weight:800;font-size:2.4rem;color:transparent;-webkit-text-stroke:1.5px var(--amber);line-height:1;min-width:2.1em}
+  .day h3{font-size:1.3rem;margin-bottom:.35em}
+  .day p{color:var(--txt-soft);max-width:44em}
+  .day .fx{font-family:var(--mono);font-size:.74rem;color:var(--ok);margin-top:.7em;display:block}
+  .callout{font-family:var(--disp);font-size:clamp(1.3rem,3.2vw,1.9rem);font-weight:700;border-left:4px solid var(--amber);padding:.4em 0 .4em .8em;margin-top:48px;letter-spacing:-.01em}
+
+  /* CYTATY Z BADANIA */
+  .voices{display:grid;gap:16px;margin:26px 0 34px}
+  @media(min-width:880px){.voices{grid-template-columns:repeat(3,1fr)}}
+  .voice{border:1px solid var(--edge);border-radius:14px;background:var(--bg-2);padding:20px}
+  .voice p{color:var(--txt-soft);font-size:.98rem}
+  .voice .src{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--txt-dim);margin-top:12px;display:block}
+
+  /* CENA */
+  .price{background:var(--paper);color:var(--ink);border-radius:24px;padding:clamp(32px,6vw,68px);box-shadow:0 0 0 1px rgba(255,194,75,.25), 0 40px 120px rgba(0,0,0,.5)}
+  .price h2{color:var(--ink)}
+  .price .mono-label{font-family:var(--mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--amber-deep);margin-bottom:14px;display:block}
+  .price .big-price{font-family:var(--disp);font-weight:800;font-size:clamp(2.8rem,7.5vw,4.4rem);letter-spacing:-.02em;line-height:1}
+  .price .big-price small{font-family:var(--sans);font-weight:600;font-size:.34em;color:var(--ink-soft);letter-spacing:0}
+  .price .quote{border-left:3px solid var(--amber-deep);padding-left:1em;margin:1.2em 0;color:var(--ink-soft);max-width:42em}
+  .price .quote strong{color:var(--ink)}
+  .sched{display:grid;margin:32px 0;border:1px solid var(--paper-edge);border-radius:14px;overflow:hidden;background:#fff}
+  .sched div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding:13px 18px;border-bottom:1px solid var(--paper-edge);font-size:.93rem}
+  .sched div:last-child{border-bottom:none}
+  .sched span:first-child{color:var(--ink-soft)}
+  .sched span:last-child{font-family:var(--mono);font-size:.8rem;white-space:nowrap;color:var(--ink)}
+  .price .legal-links{font-size:.8rem;color:var(--ink-soft);margin-top:1.3em}
+  .price a{color:var(--ink)}
+
+  /* FAQ */
+  details{border-bottom:1px solid var(--edge)}
+  summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:21px 0;font-weight:600;font-size:1.03rem}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-family:var(--mono);font-size:1.5rem;color:var(--amber);transition:transform .2s;flex-shrink:0}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{padding:0 0 22px;color:var(--txt-soft);max-width:46em}
+  details p a{color:var(--amber)}
+
+  /* FINAL */
+  .final{text-align:center;border-top:1px solid var(--edge)}
+  .final .lead{margin:0 auto 2.2em}
+
+  footer{border-top:1px solid var(--edge);padding:36px 0 116px;font-size:.82rem;color:var(--txt-dim)}
+  footer a{color:var(--txt-soft)}
+  footer .cols-f{display:flex;flex-wrap:wrap;gap:10px 26px;margin-bottom:14px}
+  @media(min-width:768px){footer{padding-bottom:36px}}
+
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;background:rgba(21,24,30,.92);backdrop-filter:blur(10px);border-top:1px solid var(--edge);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:14px;align-items:center;justify-content:space-between;z-index:50}
+  .sticky-cta .p{font-family:var(--mono);font-size:.7rem;line-height:1.4;color:var(--txt-soft)}
+  .sticky-cta .btn{font-size:.9rem;padding:.8em 1.2em;white-space:nowrap}
+  @media(min-width:768px){.sticky-cta{display:none}}
+
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<!-- 1. HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="mono eyebrow">Starter za 49 zł · paczka do pobrania od razu po płatności</p>
+      <h1>Masz agenta AI.<br>Zbuduj z nim <span class="accent">stronę firmową</span>, a nie kolejne demo.</h1>
+      <p class="sub">Kompletna strona firmowa z CMS-em, którą agent przerabia pod konkretną firmę — u Ciebie na komputerze.</p>
+      <p class="lead">W paczce jest gotowy projekt na Payload CMS 3 i Next.js 15, instrukcja startowa dla agenta i komplet promptów. Nie zaczynasz od pustego katalogu i nie zaczynasz od czytania kilkunastu plików: otwierasz <code>START.md</code> i idziesz krok po kroku, aż strona chodzi lokalnie.</p>
+      <p style="margin-top:2.1em"><a class="btn" href="https://apps.devince.dev/starter-strona-firmowa" data-umami-event="cta-starter-checkout">Kupuję starter za 49 zł</a></p>
+      <p class="under-cta">49 zł brutto, płatność jednorazowa, sprzedaż w sklepie apps.devince.dev. Link do pobrania paczki dostajesz mailem zaraz po płatności. Paczkę dostajesz natychmiast, więc prawo odstąpienia nie przysługuje — zwrotów nie ma.</p>
+    </div>
+    <dl class="specs rv">
+      <dt>Cena</dt><dd>49 zł brutto · pobierasz od razu</dd>
+      <dt>Co budujesz</dt><dd>kompletną stronę firmową z CMS, lokalnie na swoim komputerze</dd>
+      <dt>W paczce</dt><dd>boilerplate Payload CMS 3 + Next.js 15, prompty, START.md</dd>
+      <dt>Publikacja</dt><dd>osobny krok: własny serwer wg DEPLOYTIPS.md albo sprint, w którym hosting jest na czas sprintu i miesiąc po nim</dd>
+      <dt>Potrzebujesz</dt><dd>Docker, Node 20+, pnpm, subskrypcja agenta AI</dd>
+      <dt>Licencja</dt><dd>bez limitu projektów, także komercyjnych</dd>
+      <dt>Discord</dt><dd>kanał ogólny, dostęp bezterminowy</dd>
+    </dl>
+  </div>
+</header>
+
+<!-- 2. DEMO -->
+<section id="demo">
+  <div class="wrap">
+    <p class="mono eyebrow">Rezultat, nie obietnica</p>
+    <h2>To nie jest strona „na niby"</h2>
+    <p class="lead" style="margin-bottom:38px">Starter to ten sam fundament, na którym powstała strona poniżej: pięć podstron, treści edytowalne w panelu CMS, wersja mobilna, formularz. Poniżej działająca strona zbudowana w tym modelu pracy i opublikowana na prawdziwej domenie.</p>
+    <div class="demo-wrap rv">
+      <div class="browser">
+        <div class="browser-bar"><i></i><i></i><i></i><span class="url">movestudiopilates.pl</span></div>
+        <video class="demo-video" src="../media/demo-move-studio.mp4" poster="../media/demo-poster.jpg" autoplay muted loop playsinline controls preload="metadata" aria-label="Demo 49 s: strona → CMS → edycja → publikacja"></video>
+      </div>
+    </div>
+    <div class="shots">
+      <img class="shot rv" src="../media/screen-desktop.png" alt="Move Studio — strona główna, desktop" loading="lazy">
+      <img class="shot rv" src="../media/screen-mobile.png" alt="Move Studio — wersja mobilna" loading="lazy">
+      <img class="shot rv" src="../media/screen-cms.png" alt="Panel Payload CMS — edycja treści" loading="lazy">
+      <img class="shot rv" src="../media/screen-live.png" alt="Strona live na movestudiopilates.pl" loading="lazy">
+    </div>
+    <p class="caption">Move Studio powstało na tym samym starterze i w tym samym modelu pracy, który dostajesz w paczce. Publikacja na własnej domenie to osobny krok — opisuję go niżej uczciwie.</p>
+  </div>
+</section>
+
+<!-- 3. CO ZBUDUJESZ -->
+<section id="rezultat" style="border-top:1px solid var(--edge)">
+  <div class="wrap">
+    <p class="mono eyebrow">Zakres</p>
+    <h2>Kompletna strona, nie szkielet</h2>
+    <div class="formula">5 podstron + CTA + formularz + CMS + wersja mobilna</div>
+    <div class="cols">
+      <div>
+        <p style="font-weight:700;margin-bottom:10px">Co masz po pracy z agentem:</p>
+        <ul class="checks">
+          <li>stronę główną</li>
+          <li>ofertę lub usługi</li>
+          <li>cennik</li>
+          <li>stronę o firmie</li>
+          <li>kontakt z formularzem</li>
+          <li>treści edytowalne w panelu Payload CMS</li>
+          <li>podstawowe SEO i podgląd w mediach społecznościowych</li>
+          <li>responsywną wersję mobilną</li>
+          <li>projekt graficzny dopasowany do branży, a nie domyślny szablon</li>
+        </ul>
+      </div>
+      <div class="not-box rv">
+        <h3>Czego z tego nie zbudujesz</h3>
+        <ul class="crosses">
+          <li>sklepu internetowego</li>
+          <li>systemu rezerwacji w stylu Booksy</li>
+          <li>aplikacji z logowaniem użytkowników</li>
+          <li>rozbudowanego SaaS</li>
+          <li>dowolnego projektu od zera</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. CO JEST W PACZCE -->
+<section id="paczka" style="border-top:1px solid var(--edge)">
+  <div class="wrap">
+    <p class="mono eyebrow">Zawartość</p>
+    <h2>Co dokładnie kupujesz za 49 zł</h2>
+    <div class="who-grid">
+      <div class="not-box rv">
+        <h3>W paczce</h3>
+        <ul class="checks">
+          <li><strong>boilerplate Payload CMS 3 + Next.js 15</strong> — działający projekt strony firmowej, nie pusty szablon</li>
+          <li><strong>START.md</strong> — jedno wejście: wymagania, uruchomienie krok po kroku, mapa paczki i sekcja „gdy coś pójdzie nie tak"</li>
+          <li><strong>INIT_PROMPT.md</strong> — instrukcja, którą wskazujesz agentowi (Claude Code albo Codex); od tego momentu robotę wykonuje on</li>
+          <li><strong>komplet promptów</strong> w katalogu <code>prompty/</code> — research branży, katalog stylów, audyt gotowej strony</li>
+          <li><strong>DESIGNTIPS.md i PAGE_DEVTIPS.md</strong> — reguły, po których agent robi design i podstrony spójnie, zamiast improwizować</li>
+          <li><strong>DEPLOYTIPS.md</strong> — pułapki publikacji i checklista wdrożenia na własny serwer</li>
+          <li><strong>licencja bez limitu projektów</strong>, także komercyjnych — własnych i klienckich</li>
+          <li><strong>bezterminowy dostęp do ogólnego kanału na Discordzie</strong></li>
+        </ul>
+      </div>
+      <div class="not-box rv">
+        <h3>Gdzie kończy się 49 zł</h3>
+        <ul class="crosses">
+          <li>publikacja strony nie jest częścią ceny — potrzebujesz własnego serwera (VPS, ok. 20–30 zł/mies.) i prowadzi Cię <code>DEPLOYTIPS.md</code>, albo dokładasz sprint, w którym hosting na czas sprintu i miesiąc po nim jest w cenie</li>
+          <li>subskrypcja agenta AI (ok. 100 zł/mies.) jest po Twojej stronie — to jedyny obowiązkowy koszt poza ceną paczki</li>
+          <li>nie ma wsparcia na żywo ani prowadzenia za rękę; Discord to kanał ogólny, bez gwarantowanego czasu odpowiedzi</li>
+          <li>nikt nie zrobi tej strony za Ciebie — decyzje i pilnowanie jakości zostają po Twojej stronie</li>
+        </ul>
+        <p class="caption" style="margin-top:18px">Plik <code>PLAN.md</code> — żywy stan Twojego projektu — tworzy agent w pierwszej fazie pracy. W paczce go nie ma i tak ma być.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. JAK TO WYGLĄDA -->
+<section id="jak" style="border-top:1px solid var(--edge)">
+  <div class="wrap">
+    <p class="mono eyebrow">Pierwsza sesja</p>
+    <h2>Od zipa do strony na Twoim komputerze</h2>
+    <p class="lead" style="margin-bottom:28px">Bez marketingowego „w 5 minut". Realnie: kilkanaście minut setupu, w którym większość czasu zjada instalacja zależności — a potem tyle, ile potrwa Twoja sesja z agentem.</p>
+
+    <div class="day rv"><div class="no">01</div><div>
+      <h3>Sprawdzasz trzy wymagania</h3>
+      <p>Docker, Node 20+, pnpm. Trzy komendy, każda ma coś wypisać. Jeśli którejś brakuje, <code>START.md</code> mówi wprost, skąd ją wziąć.</p>
+      <span class="fx">→ około 2 minuty</span>
+    </div></div>
+    <div class="day rv"><div class="no">02</div><div>
+      <h3>Uruchamiasz projekt lokalnie</h3>
+      <p>Kopiujesz konfigurację, generujesz sekret CMS-u, podnosisz bazę w Dockerze, instalujesz zależności, robisz migrację i odpalasz <code>pnpm dev</code>. Każda komenda jest w instrukcji dosłownie, razem z tym, co zobaczysz po drodze.</p>
+      <span class="fx">→ kilkanaście minut, głównie instalacja paczek</span>
+    </div></div>
+    <div class="day rv"><div class="no">03</div><div>
+      <h3>Zakładasz konto w panelu CMS</h3>
+      <p>Wchodzisz na <code>/admin</code>, zakładasz pierwszego użytkownika i od razu masz panel, w którym potem edytujesz treści strony.</p>
+      <span class="fx">→ efekt: działający CMS pod Twoją kontrolą</span>
+    </div></div>
+    <div class="day rv"><div class="no">04</div><div>
+      <h3>Opisujesz firmę i wpuszczasz agenta</h3>
+      <p>Piszesz krótkie zlecenie (minimalny wsad to branża i miasto — resztę agent dopyta) i mówisz mu: „przeczytaj <code>INIT_PROMPT.md</code> i wykonaj go od A do Z". Agent prowadzi Cię przez brief, kierunek wizualny i budowę, korzystając z promptów i reguł z paczki.</p>
+      <span class="fx">→ efekt: Twoja strona zamiast strony demo</span>
+    </div></div>
+    <div class="day rv"><div class="no">05</div><div>
+      <h3>Wracasz, kiedy chcesz</h3>
+      <p>Agent prowadzi <code>PLAN.md</code> — listę kroków z odhaczaniem. Przerywasz w środku tygodnia i wracasz zdaniem „kontynuuj od pierwszego <code>[ ]</code>".</p>
+      <span class="fx">→ efekt: praca, do której da się wrócić</span>
+    </div></div>
+
+    <p class="callout rv">Instrukcja kończy się tam, gdzie strona działa u Ciebie. Publikacja to następny, opisany krok — nie niespodzianka.</p>
+  </div>
+</section>
+
+<!-- 6. BÓLE -->
+<section id="bole" style="border-top:1px solid var(--edge)">
+  <div class="wrap">
+    <p class="mono eyebrow">Po co to komu</p>
+    <h2>Trzy rzeczy, na których ludzie się wykładają</h2>
+    <p class="lead">Zanim to napisałem, przejrzałem 401 wypowiedzi pod 18 polskimi filmami o pracy z agentami AI. Trzy motywy wracały najczęściej — i pod nie jest napisana ta paczka.</p>
+    <div class="voices">
+      <div class="voice rv">
+        <p>„ma dodać tylko 1 funkcję, a dodając ją kasuje inne i apka się nie uruchamia"</p>
+        <span class="src">komentarz pod polskim tutorialem o AI</span>
+      </div>
+      <div class="voice rv">
+        <p>„Nie działa mi to w terminalu… instaluję node i dalej error, co robię źle?"</p>
+        <span class="src">komentarz pod polskim tutorialem o AI</span>
+      </div>
+      <div class="voice rv">
+        <p>„jak taką aplikację wypuścić, żeby była publicznie dostępna?"</p>
+        <span class="src">komentarz pod polskim tutorialem o AI</span>
+      </div>
+    </div>
+    <ul class="checks" style="max-width:46em">
+      <li><strong>Agent psuje to, co działało.</strong> <code>START.md</code> każe Ci założyć repozytorium gita, zanim wpuścisz agenta do projektu, i pokazuje komendy cofania od najłagodniejszej do pełnego powrotu. Pomyłka agenta kosztuje wtedy jedną komendę, a nie wieczór — i nie musisz „cofać się i zaczynać od nowa, a limity lecą".</li>
+      <li><strong>Środowisko nie wstaje.</strong> Wymagania sprawdzasz przed startem, a nie w połowie instalacji. Sekcja awaryjna rozwiązuje konkretne przypadki: zajęty port bazy, migracja pytająca o utratę danych, błędy <code>pnpm install</code>, brak dostępu do panelu.</li>
+      <li><strong>„Działa lokalnie i co dalej".</strong> Paczka nie udaje, że publikacja robi się sama. <code>DEPLOYTIPS.md</code> mówi, co się psuje przy pierwszym wdrożeniu i jak wyłapać błędy lokalnie, zanim cokolwiek wypchniesz na serwer.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7. DLA KOGO -->
+<section id="dla-kogo" style="border-top:1px solid var(--edge)">
+  <div class="wrap">
+    <p class="mono eyebrow">Dopasowanie</p>
+    <h2>Dla kogo to jest</h2>
+    <div class="who-grid">
+      <div>
+        <p style="font-weight:700;margin-bottom:8px">To jest dla Ciebie, jeśli:</p>
+        <ul class="checks">
+          <li>korzystasz już z Claude Code, Codex lub podobnego agenta</li>
+          <li>chcesz mieć jedną sprawdzoną ścieżkę zamiast porównywania narzędzi</li>
+          <li>potrzebujesz strony firmowej — swojej, klienta albo do portfolio</li>
+          <li>potrafisz wykonać podstawowe instrukcje w terminalu</li>
+          <li>nie chcesz budować wszystkiego od zera przy każdym projekcie</li>
+        </ul>
+      </div>
+      <div class="not-box rv">
+        <h3>To nie jest dla Ciebie, jeśli:</h3>
+        <ul class="crosses">
+          <li>nigdy nie korzystałeś z terminala i nie chcesz się tego uczyć</li>
+          <li>nie chcesz płacić za subskrypcję agenta AI</li>
+          <li>oczekujesz gotowej strony zrobionej za Ciebie</li>
+          <li>chcesz sklep albo rozbudowaną aplikację</li>
+          <li>szukasz kursu wideo, a nie paczki roboczej</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CENA -->
+<section id="cena">
+  <div class="wrap">
+    <div class="price rv">
+      <span class="mono-label">Jedna cena, jeden produkt</span>
+      <p class="big-price">49 zł <small>brutto · pobierasz od razu po płatności</small></p>
+      <p class="quote"><strong>49 zł brutto, płatne jednorazowo.</strong> Zaraz po zapłacie dostajesz mail z linkiem do pobrania paczki (link ważny 7 dni, do 5 pobrań — zgraj ją u siebie od razu). Sprzedaż prowadzę w sklepie apps.devince.dev, tam potwierdzasz regulamin i zgody.</p>
+      <p class="quote"><strong>Paczkę dostajesz natychmiast, więc prawo odstąpienia nie przysługuje — zwrotów nie ma.</strong> Zgodę na natychmiastowe dostarczenie i świadomość utraty tego prawa potwierdzasz przy zakupie (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Reklamacja to osobna sprawa: jeśli starter nie działa zgodnie z opisem, napisz na bartek@devince.dev.</p>
+      <p class="quote"><strong>Licencja bez limitu projektów</strong>, także komercyjnych — własnych i klienckich, bezterminowo. Nie wolno m.in. odsprzedawać samego startera, udostępniać swojego konta innym osobom, publikować startera w całości albo w istotnej części (także w publicznych repozytoriach) ani udzielać sublicencji bez mojej zgody. Pełna lista ograniczeń jest w <a href="../regulamin.html">regulaminie</a>.</p>
+      <div class="sched">
+        <div><span>Zakup</span><span>od razu, dowolnego dnia</span></div>
+        <div><span>Dostawa paczki</span><span>mailem zaraz po płatności</span></div>
+        <div><span>Ważność linku do pobrania</span><span>7 dni, do 5 pobrań</span></div>
+        <div><span>Dostęp do Discorda</span><span>bezterminowo</span></div>
+        <div><span>Koszt obowiązkowy poza paczką</span><span>agent AI ok. 100 zł/mies.</span></div>
+      </div>
+      <p style="margin-top:6px"><a class="btn on-paper" href="https://apps.devince.dev/starter-strona-firmowa" data-umami-event="cta-starter-checkout">Kupuję starter za 49 zł</a></p>
+      <p class="legal-links">Płatność obsługuje Stripe. Fakturę dostaniesz — podaj dane przy zakupie albo napisz po płatności. · <a href="../regulamin.html">Regulamin</a> · <a href="../polityka-prywatnosci.html">Polityka prywatności</a> · <a href="../formularz-odstapienia.html">Formularz odstąpienia</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section id="faq" style="border-top:1px solid var(--edge)">
+  <div class="wrap">
+    <p class="mono eyebrow">Pytania</p>
+    <h2>FAQ</h2>
+    <div style="margin-top:22px">
+      <details open><summary>Co dokładnie dostaję po zapłacie?</summary><p>Mail z linkiem do pobrania zipa. W środku boilerplate Payload CMS 3 + Next.js 15, plik <code>START.md</code> jako jedyne wejście, <code>INIT_PROMPT.md</code> dla agenta, katalog <code>prompty/</code>, reguły designu i podstron, <code>DEPLOYTIPS.md</code> oraz zaproszenie na Discorda. Link jest ważny 7 dni i pozwala na 5 pobrań, więc zgraj paczkę u siebie od razu.</p></details>
+      <details><summary>Czy mogę zwrócić starter?</summary><p>Nie. Paczkę dostajesz natychmiast po płatności, a przy zakupie potwierdzasz zgodę na jej natychmiastowe dostarczenie i przyjmujesz do wiadomości, że tracisz przez to prawo odstąpienia (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Krótko: kto pobrał paczkę, ten za nią płaci. Reklamacje rozpatruję osobno, zgodnie z <a href="../regulamin.html">regulaminem</a>.</p></details>
+      <details><summary>Czego potrzebuję poza paczką?</summary><p>Na komputerze: Docker, Node 20 lub nowszy i pnpm — wszystkie darmowe. Do tego własna subskrypcja agenta AI (Claude Code lub Codex, ok. 100 zł/mies.) — to jedyny obowiązkowy koszt poza ceną paczki. Bez agenta zostaje Ci działający boilerplate, ale stronę budujesz ręcznie.</p></details>
+      <details><summary>Ile to realnie trwa?</summary><p>Setup to kilkanaście minut, z czego większość zjada instalacja zależności. Potem czas zależy od Twojej sesji z agentem i od tego, jak dopracowujesz treści i design. Nikt Cię nie goni — paczka i licencja zostają Twoje bezterminowo, więc możesz wrócić do projektu, kiedy chcesz.</p></details>
+      <details><summary>Czy w cenie 49 zł jest publikacja strony?</summary><p>Nie. Za 49 zł budujesz kompletną stronę z CMS-em u siebie na komputerze. Publikacja to osobny krok: potrzebujesz własnego serwera (VPS, ok. 20–30 zł/mies.) i prowadzi Cię przez to <code>DEPLOYTIPS.md</code> z paczki — co się psuje przy pierwszym wdrożeniu i jak sprawdzić błędy lokalnie, zanim cokolwiek wypchniesz. Domena (ok. 60 zł/rok) jest opcjonalna. Jeśli nie masz serwera i wolisz mieć to dowiezione z grupą, hosting na czas sprintu i miesiąc po nim jest w cenie sprintu.</p></details>
+      <details><summary>Czy muszę umieć programować?</summary><p>Nie musisz być programistą, ale musisz mieć podstawową swobodę techniczną: terminal, instalacja narzędzi, praca z plikami. Jeśli korzystasz już z Claude Code albo Codex, dasz radę.</p></details>
+      <details><summary>Jakiego agenta AI mogę użyć?</summary><p>Instrukcje przygotowane są pod Claude Code; działają też z Codex i podobnymi narzędziami agentowymi. Ważne, żeby agent potrafił pracować na plikach projektu.</p></details>
+      <details><summary>Czy to zadziała na Windowsie?</summary><p>Tak. Instrukcje podają warianty komend dla Linuksa, macOS i Windowsa tam, gdzie się różnią. Docker Desktop, Node i pnpm działają na wszystkich trzech systemach.</p></details>
+      <details><summary>Czy mogę używać startera przy projektach klientów?</summary><p>Tak. Licencja obejmuje nieograniczoną liczbę projektów własnych i klienckich, także komercyjnych. Nie wolno m.in. odsprzedawać samego startera, udostępniać swojego konta innym osobom, publikować startera w całości albo w istotnej części (także w publicznych repozytoriach) ani udzielać sublicencji bez mojej zgody. Pełna lista ograniczeń jest w <a href="../regulamin.html">regulaminie</a>.</p></details>
+      <details><summary>Jak działa pomoc na Discordzie?</summary><p>Każdy, kto kupi starter, dostaje bezterminowy dostęp do ogólnego kanału — to miejsce na pytania i wymianę doświadczeń, bez gwarantowanego czasu odpowiedzi. Wsparcie na żywo jest osobnym świadczeniem i przysługuje wyłącznie uczestnikom sprintu, w jego tygodniu.</p></details>
+      <details><summary>Czy gwarantujesz mi zlecenia albo zarobek?</summary><p>Nie. Starter jest produktem edukacyjnym i roboczym: pomaga dowieźć działający projekt, ale nie jest gwarancją wyniku biznesowego.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 10. FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <h2>Zaczynasz od fundamentu, nie od pustego katalogu</h2>
+    <p class="lead">Masz agenta, subskrypcję i wieczór. Brakuje Ci projektu, który jest już poskładany, i instrukcji, która nie każe Ci zgadywać. To jest w paczce za 49 zł.</p>
+    <p><a class="btn" href="https://apps.devince.dev/starter-strona-firmowa" data-umami-event="cta-starter-checkout">Kupuję starter za 49 zł</a></p>
+    <p class="under-cta" style="margin:1.3em auto 0">49 zł brutto · paczka mailem od razu po płatności · licencja bez limitu projektów · zwrotów nie ma.</p>
+    <p class="caption" style="max-width:44em;margin:2.4em auto 0">Wolisz przejść całą drogę aż do publikacji razem z grupą, z hostingiem w cenie (na czas sprintu i miesiąc po nim) i wsparciem na żywo? To sprint — osobna, całkowicie opcjonalna decyzja, opisana na <a href="../index.html" style="color:var(--txt-soft)">stronie oferty</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols-f">
+      <a href="../index.html">Strona oferty</a>
+      <a href="../regulamin.html">Regulamin</a>
+      <a href="../polityka-prywatnosci.html">Polityka prywatności</a>
+      <a href="../formularz-odstapienia.html">Formularz odstąpienia</a>
+      <a href="https://devince.dev">devince.dev</a>
+    </div>
+    <p>Bartłomiej Filipiuk Devins · NIP 596 158 99 01 · ul. Stacyjna 1, 53-613 Wrocław · bartek@devince.dev</p>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <span class="p">Starter 49 zł<br>paczka od razu</span>
+  <a class="btn" href="https://apps.devince.dev/starter-strona-firmowa" data-umami-event="cta-starter-checkout">Kupuję starter</a>
+</div>
+
+<dialog id="lb" class="lightbox">
+  <button class="lb-close" aria-label="Zamknij podgląd">✕</button>
+  <img id="lb-img" alt="">
+</dialog>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  const lb=document.getElementById('lb'),lbi=document.getElementById('lb-img');
+  document.querySelectorAll('.shot').forEach(img=>img.addEventListener('click',()=>{
+    lbi.src=img.src;lbi.alt=img.alt;lb.showModal();
+  }));
+  lb.addEventListener('click',e=>{if(e.target!==lbi)lb.close()});
+</script>
+</body>
+</html>
