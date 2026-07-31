@@ -133,6 +133,10 @@
   .sched div:last-child{border-bottom:none}
   .sched span:first-child{color:var(--ink-soft)}
   .sched span:last-child{font-family:var(--mono);font-size:.8rem;white-space:nowrap;color:var(--ink)}
+  .checkout-form{margin-top:6px}
+  .checkout-form .consent{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--ink-soft);max-width:38em;margin-bottom:14px;cursor:pointer}
+  .checkout-form .consent input{margin-top:3px;width:17px;height:17px;accent-color:var(--amber-deep);flex-shrink:0;cursor:pointer}
+  .checkout-form .btn{border:none;cursor:pointer;font-family:inherit}
   .price .legal-links{font-size:.8rem;color:var(--ink-soft);margin-top:1.3em}
   .price a{color:var(--ink)}
 
@@ -174,8 +178,8 @@
       <h1>Masz agenta AI.<br>Zbuduj z nim <span class="accent">stronę firmową</span>, a nie kolejne demo.</h1>
       <p class="sub">Kompletna strona firmowa z CMS-em, którą agent przerabia pod konkretną firmę — u Ciebie na komputerze.</p>
       <p class="lead">W paczce jest gotowy projekt na Payload CMS 3 i Next.js 15, instrukcja startowa dla agenta i komplet promptów. Nie zaczynasz od pustego katalogu i nie zaczynasz od czytania kilkunastu plików: otwierasz <code>START.md</code> i idziesz krok po kroku, aż strona chodzi lokalnie.</p>
-      <p style="margin-top:2.1em"><a class="btn" href="https://apps.devince.dev/starter-strona-firmowa" data-umami-event="cta-starter-checkout">Kupuję starter za 49 zł</a></p>
-      <p class="under-cta">49 zł brutto, płatność jednorazowa, sprzedaż w sklepie apps.devince.dev. Link do pobrania paczki dostajesz mailem zaraz po płatności. Paczkę dostajesz natychmiast, więc prawo odstąpienia nie przysługuje — zwrotów nie ma.</p>
+      <p style="margin-top:2.1em"><a class="btn" href="#cena" data-umami-event="cta-starter-hero">Kupuję starter za 49 zł</a></p>
+      <p class="under-cta">49 zł brutto, płatność jednorazowa. Link do pobrania paczki dostajesz mailem zaraz po płatności. Paczkę dostajesz natychmiast, więc prawo odstąpienia nie przysługuje — zwrotów nie ma.</p>
     </div>
     <dl class="specs rv">
       <dt>Cena</dt><dd>49 zł brutto · pobierasz od razu</dd>
@@ -380,7 +384,7 @@
     <div class="price rv">
       <span class="mono-label">Jedna cena, jeden produkt</span>
       <p class="big-price">49 zł <small>brutto · pobierasz od razu po płatności</small></p>
-      <p class="quote"><strong>49 zł brutto, płatne jednorazowo.</strong> Zaraz po zapłacie dostajesz mail z linkiem do pobrania paczki (link ważny 7 dni, do 5 pobrań — zgraj ją u siebie od razu). Sprzedaż prowadzę w sklepie apps.devince.dev, tam potwierdzasz regulamin i zgody.</p>
+      <p class="quote"><strong>49 zł brutto, płatne jednorazowo.</strong> Zaraz po zapłacie dostajesz mail z linkiem do pobrania paczki (link ważny 7 dni, do 5 pobrań — zgraj ją u siebie od razu). Regulamin i zgody potwierdzasz tutaj, przed przejściem do płatności.</p>
       <p class="quote"><strong>Paczkę dostajesz natychmiast, więc prawo odstąpienia nie przysługuje — zwrotów nie ma.</strong> Zgodę na natychmiastowe dostarczenie i świadomość utraty tego prawa potwierdzasz przy zakupie (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Reklamacja to osobna sprawa: jeśli starter nie działa zgodnie z opisem, napisz na bartek@devince.dev.</p>
       <p class="quote"><strong>Licencja bez limitu projektów</strong>, także komercyjnych — własnych i klienckich, bezterminowo. Nie wolno m.in. odsprzedawać samego startera, udostępniać swojego konta innym osobom, publikować startera w całości albo w istotnej części (także w publicznych repozytoriach) ani udzielać sublicencji bez mojej zgody. Pełna lista ograniczeń jest w <a href="../regulamin.html">regulaminie</a>.</p>
       <div class="sched">
@@ -390,7 +394,19 @@
         <div><span>Dostęp do Discorda</span><span>bezterminowo</span></div>
         <div><span>Koszt obowiązkowy poza paczką</span><span>agent AI ok. 100 zł/mies.</span></div>
       </div>
-      <p style="margin-top:6px"><a class="btn on-paper" href="https://apps.devince.dev/starter-strona-firmowa" data-umami-event="cta-starter-checkout">Kupuję starter za 49 zł</a></p>
+      <form class="checkout-form" method="POST" action="https://apps.devince.dev/api/apps/checkout">
+        <input type="hidden" name="slug" value="starter-strona-firmowa">
+        <input type="hidden" name="locale" value="pl">
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>Żądam dostarczenia paczki natychmiast po płatności i przyjmuję do wiadomości, że tym samym tracę prawo odstąpienia od umowy (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Akceptuję <a href="../regulamin.html">Regulamin</a> i <a href="../polityka-prywatnosci.html">Politykę prywatności</a>.</span>
+        </label>
+        <label class="consent">
+          <input type="checkbox" name="newsletter">
+          <span>Chcę dostawać maile o sprincie i kolejnych materiałach. Zgoda dobrowolna, nie jest warunkiem zakupu ani udziału w sprincie — wypiszesz się w każdej chwili.</span>
+        </label>
+        <button class="btn on-paper" type="submit" data-checkout data-umami-event="cta-starter-checkout">Kupuję starter za 49 zł</button>
+      </form>
       <p class="legal-links">Płatność obsługuje Stripe. Fakturę dostaniesz — podaj dane przy zakupie albo napisz po płatności. · <a href="../regulamin.html">Regulamin</a> · <a href="../polityka-prywatnosci.html">Polityka prywatności</a> · <a href="../formularz-odstapienia.html">Formularz odstąpienia</a></p>
     </div>
   </div>
@@ -422,7 +438,7 @@
   <div class="wrap">
     <h2>Zaczynasz od fundamentu, nie od pustego katalogu</h2>
     <p class="lead">Masz agenta, subskrypcję i wieczór. Brakuje Ci projektu, który jest już poskładany, i instrukcji, która nie każe Ci zgadywać. To jest w paczce za 49 zł.</p>
-    <p><a class="btn" href="https://apps.devince.dev/starter-strona-firmowa" data-umami-event="cta-starter-checkout">Kupuję starter za 49 zł</a></p>
+    <p><a class="btn" href="#cena" data-umami-event="cta-starter-final">Kupuję starter za 49 zł</a></p>
     <p class="under-cta" style="margin:1.3em auto 0">49 zł brutto · paczka mailem od razu po płatności · licencja bez limitu projektów · zwrotów nie ma.</p>
     <p class="caption" style="max-width:44em;margin:2.4em auto 0">Wolisz przejść całą drogę aż do publikacji razem z grupą, z hostingiem w cenie (na czas sprintu i miesiąc po nim) i wsparciem na żywo? To sprint — osobna, całkowicie opcjonalna decyzja, opisana na <a href="../index.html" style="color:var(--txt-soft)">stronie oferty</a>.</p>
   </div>
@@ -443,7 +459,7 @@
 
 <div class="sticky-cta">
   <span class="p">Starter 49 zł<br>paczka od razu</span>
-  <a class="btn" href="https://apps.devince.dev/starter-strona-firmowa" data-umami-event="cta-starter-checkout">Kupuję starter</a>
+  <a class="btn" href="#cena" data-umami-event="cta-starter-sticky">Kupuję starter</a>
 </div>
 
 <dialog id="lb" class="lightbox">

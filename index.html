@@ -134,6 +134,11 @@
   .sched div:last-child{border-bottom:none}
   .sched span:first-child{color:var(--ink-soft)}
   .sched span:last-child{font-family:var(--mono);font-size:.8rem;white-space:nowrap;color:var(--ink)}
+  .checkout-form{margin-top:6px}
+  .checkout-form .consent{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--ink-soft);max-width:38em;margin-bottom:14px;cursor:pointer}
+  .checkout-form .consent input{margin-top:3px;width:17px;height:17px;accent-color:var(--amber-deep);flex-shrink:0;cursor:pointer}
+  .checkout-form .consent a{color:var(--ink)}
+  .checkout-form .btn{border:none;cursor:pointer;font-family:inherit}
   .price .legal-links{font-size:.8rem;color:var(--ink-soft);margin-top:1.3em}
   .price .legal-links a{color:var(--ink)}
   .seats{font-family:var(--mono);font-size:.8rem;color:var(--amber-deep);margin-top:1.6em}
@@ -397,8 +402,20 @@
         <div><span>Start sprintu</span><span>pon 31.08.2026</span></div>
         <div><span>Cel ostatniego dnia sprintu — strona online</span><span>pt 4.09.2026</span></div>
       </div>
-      <p style="margin-top:6px"><a class="btn on-paper" href="https://apps.devince.dev/starter-strona-firmowa" data-checkout data-umami-event="cta-checkout">Kupuję starter za 49 zł</a></p>
-      <p class="legal-links">Płatność obsługuje Stripe. Sprzedaż startera prowadzę w sklepie apps.devince.dev — tam potwierdzasz regulamin i zgody. · <a href="regulamin.html">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="formularz-odstapienia.html">Formularz odstąpienia</a></p>
+      <form class="checkout-form" method="POST" action="https://apps.devince.dev/api/apps/checkout">
+        <input type="hidden" name="slug" value="starter-strona-firmowa">
+        <input type="hidden" name="locale" value="pl">
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>Żądam dostarczenia paczki natychmiast po płatności i przyjmuję do wiadomości, że tym samym tracę prawo odstąpienia od umowy (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Akceptuję <a href="regulamin.html">Regulamin</a> i <a href="polityka-prywatnosci.html">Politykę prywatności</a>.</span>
+        </label>
+        <label class="consent">
+          <input type="checkbox" name="newsletter">
+          <span>Chcę dostawać maile o sprincie i kolejnych materiałach. Zgoda dobrowolna, nie jest warunkiem zakupu ani udziału w sprincie — wypiszesz się w każdej chwili.</span>
+        </label>
+        <button class="btn on-paper" type="submit" data-checkout data-umami-event="cta-checkout">Kupuję starter za 49 zł</button>
+      </form>
+      <p class="legal-links">Płatność obsługuje Stripe. · <a href="regulamin.html">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="formularz-odstapienia.html">Formularz odstąpienia</a></p>
       <p class="seats">Sprint: minimum 3 osoby, maksymalnie 8 miejsc, zapisy do 24.08.2026, godz. 20:00. Szczegóły zapisu wysyłam mailem osobom, które przy zakupie zgodziły się na wiadomości. Bez zgody albo bez maila: napisz na bartek@devince.dev do 24.08 do godz. 18:00, odezwę się przed zamknięciem zapisów.</p>
     </div>
   </div>
