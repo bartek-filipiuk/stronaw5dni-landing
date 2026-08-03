@@ -290,7 +290,7 @@
   <div class="wrap">
     <p class="mono eyebrow">Pierwsza sesja</p>
     <h2>Od zipa do strony na Twoim komputerze</h2>
-    <p class="lead" style="margin-bottom:28px">Bez marketingowego „w 5 minut". Realnie: kilkanaście minut setupu, w którym większość czasu zjada instalacja zależności — a potem tyle, ile potrwa Twoja sesja z agentem.</p>
+    <p class="lead" style="margin-bottom:28px">Bez marketingowego „w 5 minut". Realnie: kilka minut setupu, w którym najdłużej czekasz na jednorazowe pobranie obrazu bazy przez Dockera — a potem tyle, ile potrwa Twoja sesja z agentem.</p>
 
     <div class="day rv"><div class="no">01</div><div>
       <h3>Sprawdzasz trzy wymagania</h3>
@@ -300,7 +300,7 @@
     <div class="day rv"><div class="no">02</div><div>
       <h3>Uruchamiasz projekt lokalnie</h3>
       <p>Kopiujesz konfigurację, generujesz sekret CMS-u, podnosisz bazę w Dockerze, instalujesz zależności, robisz migrację i odpalasz <code>pnpm dev</code>. Każda komenda jest w instrukcji dosłownie, razem z tym, co zobaczysz po drodze.</p>
-      <span class="fx">→ kilkanaście minut, głównie instalacja paczek</span>
+      <span class="fx">→ kilka minut; najdłużej trwa jednorazowe pobranie obrazu bazy</span>
     </div></div>
     <div class="day rv"><div class="no">03</div><div>
       <h3>Zakładasz konto w panelu CMS</h3>
@@ -431,7 +431,7 @@
       <details><summary>Nie znam Payload ani Next.js — dam radę?</summary><p>Frameworka nie musisz znać; obsługuje go agent i to on pisze kod. Po Twojej stronie zostają podstawy terminala: uruchomić komendę, wkleić ścieżkę, przeczytać komunikat błędu. Payload i Next.js poznajesz przy okazji, patrząc, co agent robi z projektem — a nie zanim zaczniesz.</p></details>
       <details><summary>Czego potrzebuję poza paczką?</summary><p>Na komputerze: Docker, Node 20 lub nowszy i pnpm — wszystkie darmowe. Do tego własna subskrypcja agenta AI (Claude Code lub Codex, ok. 100 zł/mies.) — to jedyny obowiązkowy koszt poza ceną paczki. Bez agenta zostaje Ci działający boilerplate, ale stronę budujesz ręcznie.</p></details>
       <details><summary>Mam Windows — zadziała?</summary><p>Zalecam WSL2 z Docker Desktop. To środowisko linuksowe, czyli to samo, w którym paczkę testowałem, więc powinna działać bez żadnych zmian. Natywnie na Windowsie, poza WSL, nie testowałem jej i nie będę zgadywał, jak się zachowa. Instrukcja zaznacza różnice między systemami tam, gdzie występują.</p></details>
-      <details><summary>Ile to realnie trwa?</summary><p>Setup to kilkanaście minut, z czego większość zjada instalacja zależności. Potem czas zależy od Twojej sesji z agentem i od tego, jak dopracowujesz treści i design. Nikt Cię nie goni — paczka i licencja zostają Twoje bezterminowo, więc możesz wrócić do projektu, kiedy chcesz.</p></details>
+      <details><summary>Ile to realnie trwa?</summary><p>Setup to kilka minut — najdłużej trwa jednorazowe pobranie obrazu bazy przez Dockera, sama instalacja zależności schodzi w kilka sekund. Potem czas zależy od Twojej sesji z agentem i od tego, jak dopracowujesz treści i design. Nikt Cię nie goni — paczka i licencja zostają Twoje bezterminowo, więc możesz wrócić do projektu, kiedy chcesz.</p></details>
       <details><summary>Utknę w połowie — kto mi pomoże?</summary><p>Najpierw <code>START.md</code>: ma sekcję awaryjną pisaną z realnego testu na czystej maszynie — zajęty port bazy, migracja pytająca o utratę danych, błędy <code>pnpm install</code>, brak dostępu do panelu. Jeśli to nie wystarczy, zostaje Discord: każdy, kto kupi starter, dostaje bezterminowy dostęp do kanału ogólnego — miejsce na pytania i wymianę doświadczeń, bez gwarantowanego czasu odpowiedzi. Pomoc na żywo jest osobnym świadczeniem i przysługuje wyłącznie uczestnikom sprintu, w jego tygodniu.</p></details>
       <details><summary>Dostanę aktualizacje paczki?</summary><p>Nie obiecuję aktualizacji paczki — kupujesz to, co jest opisane na tej stronie, w wersji, która jest dziś. Za to w środku masz gotowe konfiguracje Dependabota i Renovate z instrukcją wpięcia w <code>DEPLOYTIPS.md</code>: wypychasz repozytorium na swojego GitHuba i od tego momentu aktualizacje zależności robisz u siebie, zgrupowanymi pull requestami raz w tygodniu.</p></details>
       <details><summary>Jakiego agenta AI mogę użyć?</summary><p>Instrukcje przygotowane są pod Claude Code; działają też z Codex i podobnymi narzędziami agentowymi. Ważne, żeby agent potrafił pracować na plikach projektu.</p></details>
