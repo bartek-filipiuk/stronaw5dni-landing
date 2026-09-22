@@ -16,9 +16,9 @@
 <style>
   :root{
     --bg:#15181E; --bg-2:#1B1F27; --surface:#20252E; --edge:#2C323D;
-    --txt:#F0EDE5; --txt-soft:#A8A395; --txt-dim:#6E6A5F;
+    --txt:#F0EDE5; --txt-soft:#A8A395; --txt-dim:#9A9486;
     --amber:#FFC24B; --amber-deep:#E8A72A; --ok:#5FD68C; --red:#E8745A;
-    --paper:#F5EFE2; --ink:#16130E; --ink-soft:#4A443A; --paper-edge:#E0D7C4;
+    --paper:#F5EFE2; --ink:#16130E; --ink-soft:#4A443A; --paper-edge:#E0D7C4; --amber-ink:#8A5A00;
     --mono:'JetBrains Mono',monospace; --disp:'Bricolage Grotesque',sans-serif; --sans:'Instrument Sans',sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -123,7 +123,7 @@
   /* CENA */
   .price{background:var(--paper);color:var(--ink);border-radius:24px;padding:clamp(32px,6vw,68px);box-shadow:0 0 0 1px rgba(255,194,75,.25), 0 40px 120px rgba(0,0,0,.5)}
   .price h2{color:var(--ink)}
-  .price .mono-label{font-family:var(--mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--amber-deep);margin-bottom:14px;display:block}
+  .price .mono-label{font-family:var(--mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--amber-ink);margin-bottom:14px;display:block}
   .price .big-price{font-family:var(--disp);font-weight:800;font-size:clamp(2.8rem,7.5vw,4.4rem);letter-spacing:-.02em;line-height:1}
   .price .big-price small{font-family:var(--sans);font-weight:600;font-size:.34em;color:var(--ink-soft);letter-spacing:0}
   .price .quote{border-left:3px solid var(--amber-deep);padding-left:1em;margin:1.2em 0;color:var(--ink-soft);max-width:42em}
@@ -135,7 +135,7 @@
   .sched span:last-child{font-family:var(--mono);font-size:.8rem;white-space:nowrap;color:var(--ink)}
   .checkout-form{margin-top:6px}
   .checkout-form .consent{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--ink-soft);max-width:38em;margin-bottom:14px;cursor:pointer}
-  .checkout-form .consent input{margin-top:3px;width:17px;height:17px;accent-color:var(--amber-deep);flex-shrink:0;cursor:pointer}
+  .checkout-form .consent input{margin-top:3px;width:17px;height:17px;accent-color:var(--amber-ink);flex-shrink:0;cursor:pointer}
   .checkout-form .btn{border:none;cursor:pointer;font-family:inherit}
   .price .legal-links{font-size:.8rem;color:var(--ink-soft);margin-top:1.3em}
   .price a{color:var(--ink)}
@@ -163,12 +163,21 @@
   .sticky-cta .btn{font-size:.9rem;padding:.8em 1.2em;white-space:nowrap}
   @media(min-width:768px){.sticky-cta{display:none}}
 
+  :focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:4px}
+  .price :focus-visible{outline-color:var(--ink)}
+  .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--amber);color:var(--ink);font-weight:700;padding:.6em 1em;border-radius:8px;text-decoration:none}
+  .skip:focus{top:12px}
+  .shot-btn{padding:0;border:none;background:none;cursor:zoom-in;display:block;width:100%;border-radius:12px}
+  .shot-btn .shot{cursor:zoom-in}
+  .sticky-cta{transition:transform .25s ease}
+  .sticky-cta.off{transform:translateY(110%)}
   .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
   .rv.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Przejdź do treści</a>
 
 <!-- 1. HERO -->
 <header class="hero">
@@ -179,20 +188,22 @@
         zbudowana z Twoim agentem AI na <span class="accent">gotowym starterze</span>.</h1>
       <p class="sub">Payload CMS 3 + Next.js 15, prompty na każdy etap i instrukcja od rozpakowania do działającej strony. Wymagany własny agent — Claude Code lub Codex — i podstawy pracy z nim.</p>
       <p class="lead">Nie zaczynasz od pustego katalogu i nie zaczynasz od czytania kilkunastu plików: otwierasz <code>START.md</code> i idziesz krok po kroku, aż strona chodzi lokalnie.</p>
-      <p style="margin-top:2.1em"><a class="btn" href="#cena" data-umami-event="cta-starter-hero">Kupuję starter za 49 zł</a></p>
+      <p style="margin-top:2.1em"><a class="btn" href="#kup" data-umami-event="cta-starter-hero">Kupuję starter za 49 zł</a></p>
       <p class="under-cta">49 zł brutto, płatność jednorazowa. Link do pobrania paczki dostajesz mailem zaraz po płatności. Paczkę dostajesz natychmiast, więc prawo odstąpienia nie przysługuje — zwrotów nie ma.</p>
     </div>
     <dl class="specs rv">
       <dt>Cena</dt><dd>49 zł brutto · pobierasz od razu</dd>
       <dt>Co budujesz</dt><dd>kompletną stronę firmową z CMS, lokalnie na swoim komputerze</dd>
       <dt>W paczce</dt><dd>boilerplate Payload CMS 3 + Next.js 15, prompty, START.md</dd>
-      <dt>Publikacja</dt><dd>osobny krok: własny serwer wg DEPLOYTIPS.md albo sprint, w którym hosting jest na czas sprintu i miesiąc po nim</dd>
+      <dt>Publikacja</dt><dd>osobny krok: własny serwer wg DEPLOYTIPS.md albo <a href="../#program" style="color:var(--amber)">warsztat wdrożeniowy</a></dd>
       <dt>Potrzebujesz</dt><dd>Docker, Node 20+, pnpm, subskrypcja agenta AI</dd>
       <dt>Licencja</dt><dd>bez limitu projektów, także komercyjnych</dd>
       <dt>Discord</dt><dd>kanał ogólny, dostęp bezterminowy</dd>
     </dl>
   </div>
 </header>
+
+<main id="main">
 
 <!-- 2. DEMO -->
 <section id="demo">
@@ -207,10 +218,10 @@
       </div>
     </div>
     <div class="shots">
-      <img class="shot rv" src="../media/screen-desktop.png" alt="Move Studio — strona główna, desktop" loading="lazy">
-      <img class="shot rv" src="../media/screen-mobile.png" alt="Move Studio — wersja mobilna" loading="lazy">
-      <img class="shot rv" src="../media/screen-cms.png" alt="Panel Payload CMS — edycja treści" loading="lazy">
-      <img class="shot rv" src="../media/screen-live.png" alt="Strona live na movestudiopilates.pl" loading="lazy">
+      <button class="shot-btn rv" type="button" aria-label="Powiększ: Move Studio, strona główna na komputerze"><img class="shot" src="../media/screen-desktop.png" alt="" loading="lazy"></button>
+      <button class="shot-btn rv" type="button" aria-label="Powiększ: Move Studio, wersja mobilna"><img class="shot" src="../media/screen-mobile.png" alt="" loading="lazy"></button>
+      <button class="shot-btn rv" type="button" aria-label="Powiększ: panel Payload CMS, edycja treści"><img class="shot" src="../media/screen-cms.png" alt="" loading="lazy"></button>
+      <button class="shot-btn rv" type="button" aria-label="Powiększ: strona na movestudiopilates.pl"><img class="shot" src="../media/screen-live.png" alt="" loading="lazy"></button>
     </div>
     <p class="caption">Move Studio powstało na tym samym starterze i w tym samym modelu pracy, który dostajesz w paczce. Publikacja na własnej domenie to osobny krok — opisuję go niżej uczciwie.</p>
   </div>
@@ -274,7 +285,7 @@
       <div class="not-box rv">
         <h3>Gdzie kończy się 49 zł</h3>
         <ul class="crosses">
-          <li>publikacja strony nie jest częścią ceny — potrzebujesz własnego serwera (VPS, ok. 20–30 zł/mies.) i prowadzi Cię <code>DEPLOYTIPS.md</code>, albo dokładasz sprint, w którym hosting na czas sprintu i miesiąc po nim jest w cenie</li>
+          <li>publikacja strony nie jest częścią ceny — potrzebujesz własnego serwera (VPS, ok. 20–40 zł/mies.) i prowadzi Cię <code>DEPLOYTIPS.md</code>, albo przechodzisz to z grupą na <a href="../" style="color:var(--amber)">warsztacie „Od localhosta do produkcji”</a> (serwer też własny)</li>
           <li>subskrypcja agenta AI (ok. 100 zł/mies.) jest po Twojej stronie — to jedyny obowiązkowy koszt poza ceną paczki</li>
           <li>nie ma wsparcia na żywo ani prowadzenia za rękę; Discord to kanał ogólny, bez gwarantowanego czasu odpowiedzi</li>
           <li>nikt nie zrobi tej strony za Ciebie — decyzje i pilnowanie jakości zostają po Twojej stronie</li>
@@ -383,12 +394,9 @@
 <!-- 8. CENA -->
 <section id="cena">
   <div class="wrap">
-    <div class="price rv">
+    <div class="price rv" id="kup">
       <span class="mono-label">Jedna cena, jeden produkt</span>
       <p class="big-price">49 zł <small>brutto · pobierasz od razu po płatności</small></p>
-      <p class="quote"><strong>49 zł brutto, płatne jednorazowo.</strong> Zaraz po zapłacie dostajesz mail z linkiem do pobrania paczki (link ważny 7 dni, do 5 pobrań — zgraj ją u siebie od razu). Regulamin i zgody potwierdzasz tutaj, przed przejściem do płatności.</p>
-      <p class="quote"><strong>Paczkę dostajesz natychmiast, więc prawo odstąpienia nie przysługuje — zwrotów nie ma.</strong> Zgodę na natychmiastowe dostarczenie i świadomość utraty tego prawa potwierdzasz przy zakupie (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Reklamacja to osobna sprawa: jeśli starter nie działa zgodnie z opisem, napisz na bartek@devince.dev.</p>
-      <p class="quote"><strong>Licencja bez limitu projektów</strong>, także komercyjnych — własnych i klienckich, bezterminowo. Nie wolno m.in. odsprzedawać samego startera, udostępniać swojego konta innym osobom, publikować startera w całości albo w istotnej części (także w publicznych repozytoriach) ani udzielać sublicencji bez mojej zgody. Pełna lista ograniczeń jest w <a href="../regulamin.html">regulaminie</a>.</p>
       <div class="sched">
         <div><span>Zakup</span><span>od razu, dowolnego dnia</span></div>
         <div><span>Dostawa paczki</span><span>mailem zaraz po płatności</span></div>
@@ -405,10 +413,12 @@
         </label>
         <label class="consent">
           <input type="checkbox" name="newsletter">
-          <span>Chcę dostawać maile o sprincie i kolejnych materiałach. Zgoda dobrowolna, nie jest warunkiem zakupu ani udziału w sprincie — wypiszesz się w każdej chwili.</span>
+          <span>Chcę dostawać maile o warsztatach i kolejnych materiałach. Zgoda dobrowolna, nie jest warunkiem zakupu — wypiszesz się w każdej chwili.</span>
         </label>
         <button class="btn on-paper" type="submit" data-checkout data-umami-event="cta-starter-checkout">Kupuję starter za 49 zł</button>
       </form>
+      <p class="quote"><strong>Licencja bez limitu projektów</strong>, także komercyjnych — własnych i klienckich, bezterminowo. Nie wolno m.in. odsprzedawać samego startera, udostępniać swojego konta innym osobom, publikować startera w całości albo w istotnej części (także w publicznych repozytoriach) ani udzielać sublicencji bez mojej zgody. Pełna lista ograniczeń jest w <a href="../regulamin.html">regulaminie</a>.</p>
+      <p class="quote"><strong>Paczkę dostajesz natychmiast, więc prawo odstąpienia nie przysługuje — zwrotów nie ma.</strong> Zgodę na natychmiastowe dostarczenie i świadomość utraty tego prawa potwierdzasz przy zakupie (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Reklamacja to osobna sprawa: jeśli starter nie działa zgodnie z opisem, napisz na bartek@devince.dev.</p>
       <p class="legal-links">Płatność obsługuje Stripe. Fakturę dostaniesz — podaj dane przy zakupie albo napisz po płatności. · <a href="../regulamin.html">Regulamin</a> · <a href="../polityka-prywatnosci.html">Polityka prywatności</a> · <a href="../formularz-odstapienia.html">Formularz odstąpienia</a></p>
     </div>
   </div>
@@ -425,14 +435,14 @@
       <details><summary>Po co mi to, skoro agent zbuduje stronę od zera za darmo?</summary><p>Zbuduje — tylko od zera agent improwizuje architekturę, a wtedy wraca to, co ludzie opisują wyżej: „ma dodać tylko 1 funkcję, a dodając ją kasuje inne", i cofasz się w kółko, a limity lecą. Tu płacisz za sprawdzony fundament, reguły, które trzymają agenta w ryzach, i proces z punktem powrotu, kiedy coś pójdzie nie tak. Płacisz za przewidywalność, nie za kod — kod agent napisze tak czy inaczej.</p></details>
       <details><summary>Czym to się różni od darmowego szablonu?</summary><p>Szablon daje wygląd. Tu dostajesz działający CMS, komplet promptów i proces napisany pod pracę z agentem. Szablon nie mówi agentowi, jak ma pracować — a to jest ta część, na której projekt najczęściej się wykłada.</p></details>
       <details><summary>Dlaczego tylko 49 zł?</summary><p>Bo to cena pierwszej wersji paczki. Rozwijam ją i cena kolejnych wersji może być wyższa — to cała polityka cenowa, bez liczników i terminów.</p></details>
-      <details><summary>Czy w cenie 49 zł jest publikacja strony?</summary><p>Nie. Za 49 zł budujesz kompletną stronę z CMS-em u siebie na komputerze. Publikacja to osobny krok: potrzebujesz własnego serwera (VPS, ok. 20–30 zł/mies.) i prowadzi Cię przez to <code>DEPLOYTIPS.md</code> z paczki — co się psuje przy pierwszym wdrożeniu i jak sprawdzić błędy lokalnie, zanim cokolwiek wypchniesz. Domena (ok. 60 zł/rok) jest opcjonalna. Jeśli nie masz serwera i wolisz mieć to dowiezione z grupą, hosting na czas sprintu i miesiąc po nim jest w cenie sprintu.</p></details>
+      <details><summary>Czy w cenie 49 zł jest publikacja strony?</summary><p>Nie. Za 49 zł budujesz kompletną stronę z CMS-em u siebie na komputerze. Publikacja to osobny krok: potrzebujesz własnego serwera (VPS, ok. 20–40 zł/mies.) i prowadzi Cię przez to <code>DEPLOYTIPS.md</code> z paczki — co się psuje przy pierwszym wdrożeniu i jak sprawdzić błędy lokalnie, zanim cokolwiek wypchniesz. Domena (ok. 15–60 zł/rok) jest opcjonalna. Jeśli wolisz przejść wdrożenie z grupą i moją pomocą, jest <a href="../">warsztat „Od localhosta do produkcji”</a> (249 zł; posiadaczom startera zwracam 49 zł po potwierdzeniu edycji).</p></details>
       <details><summary>Czy mogę zwrócić starter?</summary><p>Nie. Paczkę dostajesz natychmiast po płatności, a przy zakupie potwierdzasz zgodę na jej natychmiastowe dostarczenie i przyjmujesz do wiadomości, że tracisz przez to prawo odstąpienia (art. 38 ust. 1 pkt 13 ustawy o prawach konsumenta). Krótko: kto pobrał paczkę, ten za nią płaci. Reklamacje rozpatruję osobno, zgodnie z <a href="../regulamin.html">regulaminem</a>.</p></details>
       <details><summary>Czy muszę umieć programować?</summary><p>Nie musisz być programistą, ale musisz mieć podstawową swobodę techniczną: terminal, instalacja narzędzi, praca z plikami. Jeśli korzystasz już z Claude Code albo Codex, dasz radę.</p></details>
       <details><summary>Nie znam Payload ani Next.js — dam radę?</summary><p>Frameworka nie musisz znać; obsługuje go agent i to on pisze kod. Po Twojej stronie zostają podstawy terminala: uruchomić komendę, wkleić ścieżkę, przeczytać komunikat błędu. Payload i Next.js poznajesz przy okazji, patrząc, co agent robi z projektem — a nie zanim zaczniesz.</p></details>
       <details><summary>Czego potrzebuję poza paczką?</summary><p>Na komputerze: Docker, Node 20 lub nowszy i pnpm — wszystkie darmowe. Do tego własna subskrypcja agenta AI (Claude Code lub Codex, ok. 100 zł/mies.) — to jedyny obowiązkowy koszt poza ceną paczki. Bez agenta zostaje Ci działający boilerplate, ale stronę budujesz ręcznie.</p></details>
       <details><summary>Mam Windows — zadziała?</summary><p>Zalecam WSL2 z Docker Desktop. To środowisko linuksowe, czyli to samo, w którym paczkę testowałem, więc powinna działać bez żadnych zmian. Natywnie na Windowsie, poza WSL, nie testowałem jej i nie będę zgadywał, jak się zachowa. Instrukcja zaznacza różnice między systemami tam, gdzie występują.</p></details>
       <details><summary>Ile to realnie trwa?</summary><p>Setup to kilka minut — najdłużej trwa jednorazowe pobranie obrazu bazy przez Dockera, sama instalacja zależności schodzi w kilka sekund. Potem czas zależy od Twojej sesji z agentem i od tego, jak dopracowujesz treści i design. Nikt Cię nie goni — paczka i licencja zostają Twoje bezterminowo, więc możesz wrócić do projektu, kiedy chcesz.</p></details>
-      <details><summary>Utknę w połowie — kto mi pomoże?</summary><p>Najpierw <code>START.md</code>: ma sekcję awaryjną pisaną z realnego testu na czystej maszynie — zajęty port bazy, migracja pytająca o utratę danych, błędy <code>pnpm install</code>, brak dostępu do panelu. Jeśli to nie wystarczy, zostaje Discord: każdy, kto kupi starter, dostaje bezterminowy dostęp do kanału ogólnego — miejsce na pytania i wymianę doświadczeń, bez gwarantowanego czasu odpowiedzi. Pomoc na żywo jest osobnym świadczeniem i przysługuje wyłącznie uczestnikom sprintu, w jego tygodniu.</p></details>
+      <details><summary>Utknę w połowie — kto mi pomoże?</summary><p>Najpierw <code>START.md</code>: ma sekcję awaryjną pisaną z realnego testu na czystej maszynie — zajęty port bazy, migracja pytająca o utratę danych, błędy <code>pnpm install</code>, brak dostępu do panelu. Jeśli to nie wystarczy, zostaje Discord: każdy, kto kupi starter, dostaje bezterminowy dostęp do kanału ogólnego — miejsce na pytania i wymianę doświadczeń, bez gwarantowanego czasu odpowiedzi. Pomoc na żywo jest osobnym świadczeniem i przysługuje uczestnikom warsztatu, w terminie jego edycji.</p></details>
       <details><summary>Dostanę aktualizacje paczki?</summary><p>Nie obiecuję aktualizacji paczki — kupujesz to, co jest opisane na tej stronie, w wersji, która jest dziś. Za to w środku masz gotowe konfiguracje Dependabota i Renovate z instrukcją wpięcia w <code>DEPLOYTIPS.md</code>: wypychasz repozytorium na swojego GitHuba i od tego momentu aktualizacje zależności robisz u siebie, zgrupowanymi pull requestami raz w tygodniu.</p></details>
       <details><summary>Jakiego agenta AI mogę użyć?</summary><p>Instrukcje przygotowane są pod Claude Code; działają też z Codex i podobnymi narzędziami agentowymi. Ważne, żeby agent potrafił pracować na plikach projektu.</p></details>
       <details><summary>Narzędzia AI się zmieniają — prompty się nie zestarzeją?</summary><p>Prompty i reguły z paczki nie są pisane pod jedną wersję jednego narzędzia. Nie ma w nich sztuczek pod konkretny model — jest opis, co ma powstać i w jakiej kolejności, dlatego ten sam zestaw działa i w Claude Code, i w Codex. To proces, nie hack pod wersję: gdy zmienisz narzędzie, zmienia się co najwyżej to, gdzie wklejasz tekst.</p></details>
@@ -448,11 +458,13 @@
   <div class="wrap">
     <h2>Zaczynasz od fundamentu, nie od pustego katalogu</h2>
     <p class="lead">Masz agenta, subskrypcję i wieczór. Brakuje Ci projektu, który jest już poskładany, i instrukcji, która nie każe Ci zgadywać. To jest w paczce za 49 zł.</p>
-    <p><a class="btn" href="#cena" data-umami-event="cta-starter-final">Kupuję starter za 49 zł</a></p>
+    <p><a class="btn" href="#kup" data-umami-event="cta-starter-final">Kupuję starter za 49 zł</a></p>
     <p class="under-cta" style="margin:1.3em auto 0">49 zł brutto · paczka mailem od razu po płatności · licencja bez limitu projektów · zwrotów nie ma.</p>
-    <p class="caption" style="max-width:44em;margin:2.4em auto 0">Wolisz przejść całą drogę aż do publikacji razem z grupą, z hostingiem w cenie (na czas sprintu i miesiąc po nim) i wsparciem na żywo? To sprint — osobna, całkowicie opcjonalna decyzja, opisana na <a href="../index.html" style="color:var(--txt-soft)">stronie oferty</a>.</p>
+    <p class="caption" style="max-width:44em;margin:2.4em auto 0">Strona już działa lokalnie i chcesz ją opublikować na własnym serwerze z grupą i moją pomocą? To <a href="../" style="color:var(--txt-soft)">warsztat „Od localhosta do produkcji”</a>: osobna, całkowicie opcjonalna decyzja. Posiadaczom startera zwracam 49 zł po potwierdzeniu edycji.</p>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">
@@ -469,11 +481,11 @@
 
 <div class="sticky-cta">
   <span class="p">Starter 49 zł<br>paczka od razu</span>
-  <a class="btn" href="#cena" data-umami-event="cta-starter-sticky">Kupuję starter</a>
+  <a class="btn" href="#kup" data-umami-event="cta-starter-sticky">Kupuję starter</a>
 </div>
 
-<dialog id="lb" class="lightbox">
-  <button class="lb-close" aria-label="Zamknij podgląd">✕</button>
+<dialog id="lb" class="lightbox" aria-label="Podgląd zrzutu ekranu">
+  <button class="lb-close" type="button" aria-label="Zamknij podgląd">✕</button>
   <img id="lb-img" alt="">
 </dialog>
 
@@ -481,11 +493,23 @@
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
+  // Pasek na dole: niewidoczny, dopóki widać przycisk w hero (inaczej go zasłania na małych
+  // ekranach) i gdy widać panel zakupu (nie zasłania formularza).
+  const sticky=document.querySelector('.sticky-cta'),seen=new Map();
+  const syncSticky=()=>{const off=[...seen.values()].some(Boolean);sticky.classList.toggle('off',off);sticky.toggleAttribute('inert',off)};
+  const so=new IntersectionObserver(es=>{es.forEach(e=>seen.set(e.target,e.isIntersecting));syncSticky()},{threshold:0});
+  [document.querySelector('.hero .btn'),document.getElementById('kup')].forEach(el=>{seen.set(el,true);so.observe(el)});
+  syncSticky();
+
   const lb=document.getElementById('lb'),lbi=document.getElementById('lb-img');
-  document.querySelectorAll('.shot').forEach(img=>img.addEventListener('click',()=>{
-    lbi.src=img.src;lbi.alt=img.alt;lb.showModal();
+  let opener=null;
+  document.querySelectorAll('.shot-btn').forEach(b=>b.addEventListener('click',()=>{
+    const img=b.querySelector('img');
+    opener=b;lbi.src=img.src;lbi.alt=b.getAttribute('aria-label').replace('Powiększ: ','');lb.showModal();
   }));
-  lb.addEventListener('click',e=>{if(e.target!==lbi)lb.close()});
+  lb.querySelector('.lb-close').addEventListener('click',()=>lb.close());
+  lb.addEventListener('click',e=>{if(e.target===lb)lb.close()});
+  lb.addEventListener('close',()=>{if(opener)opener.focus()});
 </script>
 </body>
 </html>
