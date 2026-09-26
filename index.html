@@ -8,291 +8,204 @@
 <meta property="og:title" content="Od localhosta do produkcji — warsztat w 5 dni">
 <meta property="og:description" content="Wdrożenie strony na własny VPS: domena, HTTPS, aktualizacja, kopia zapasowa i jej odtworzenie. 26–30.10.2026, 3 spotkania na żywo, 249 zł.">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#15181E">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;700;800;900&family=Chivo+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/screen-live.webp">
+<link rel="stylesheet" href="css/site.css">
 <script defer src="https://stats.67projects.app/script.js" data-website-id="8e5e06a0-a30c-4d65-846d-87bd01b04a56"></script>
-<style>
-  :root{
-    --bg:#15181E; --bg-2:#1B1F27; --surface:#20252E; --edge:#2C323D;
-    /* --txt-dim podniesiony z #6E6A5F (~3,2:1) do ~5,8:1 na --bg (audyt S06) */
-    --txt:#F0EDE5; --txt-soft:#A8A395; --txt-dim:#9A9486;
-    --amber:#FFC24B; --amber-deep:#E8A72A; --ok:#5FD68C; --red:#E8745A;
-    /* --amber-ink: bursztyn czytelny na kremowym tle (~5:1); --amber-deep miał tam 1,8:1 */
-    --paper:#F5EFE2; --ink:#16130E; --ink-soft:#4A443A; --paper-edge:#E0D7C4; --amber-ink:#8A5A00;
-    --mono:'JetBrains Mono',monospace; --disp:'Bricolage Grotesque',sans-serif; --sans:'Instrument Sans',sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;scroll-padding-top:16px}
-  body{
-    font-family:var(--sans);color:var(--txt);background:var(--bg);
-    line-height:1.65;font-size:17px;
-    background-image:
-      radial-gradient(ellipse 90% 50% at 50% -10%, rgba(255,194,75,.07), transparent),
-      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size:100% 100%, 64px 64px, 64px 64px;
-  }
-  ::selection{background:var(--amber);color:var(--ink)}
-  :focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:4px}
-  .price :focus-visible{outline-color:var(--ink)}
-  .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--amber);color:var(--ink);font-weight:700;padding:.6em 1em;border-radius:8px;text-decoration:none}
-  .skip:focus{top:12px}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-  section{padding:76px 0}
-  @media(min-width:768px){section{padding:110px 0}}
-
-  .mono{font-family:var(--mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase}
-  .eyebrow{color:var(--amber);display:flex;align-items:center;gap:.6em;margin-bottom:1.3em}
-  .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 12px var(--ok);flex-shrink:0}
-  h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.05;letter-spacing:-.02em}
-  h1{font-size:clamp(2.6rem,7.6vw,5.2rem);font-weight:800}
-  h2{font-size:clamp(1.8rem,4.4vw,2.9rem);margin-bottom:.5em}
-  .lead{font-size:clamp(1.05rem,2vw,1.22rem);color:var(--txt-soft);max-width:37em}
-
-  .btn{
-    display:inline-block;background:var(--amber);color:var(--ink);text-decoration:none;
-    font-weight:700;font-size:1.05rem;padding:1.05em 1.8em;border-radius:12px;
-    box-shadow:0 3px 0 var(--amber-deep), 0 12px 40px rgba(255,194,75,.22);
-    transition:transform .15s ease, box-shadow .15s ease;
-  }
-  .btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--amber-deep), 0 18px 48px rgba(255,194,75,.3)}
-  .btn:active{transform:translateY(1px)}
-  .btn.on-paper{background:var(--ink);color:var(--amber);box-shadow:0 3px 0 #000, 0 12px 34px rgba(22,19,14,.35)}
-  .btn.on-paper:hover{box-shadow:0 5px 0 #000, 0 16px 40px rgba(22,19,14,.4)}
-  .under-cta{font-size:.86rem;color:var(--txt-soft);max-width:34em;margin-top:1.1em}
-
-  /* NAV */
-  .topnav{display:flex;flex-wrap:wrap;gap:6px 22px;margin-bottom:44px;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase}
-  .topnav a{color:var(--txt-soft);text-decoration:none;padding:4px 0;border-bottom:1px solid transparent}
-  .topnav a:hover{color:var(--amber);border-bottom-color:var(--amber)}
-  .topnav .brand{color:var(--txt);margin-right:auto}
-
-  /* HERO */
-  .hero{padding:36px 0 80px;border-bottom:1px solid var(--edge);position:relative;overflow:hidden}
-  .hero .sub{font-family:var(--disp);font-weight:500;font-size:clamp(1.2rem,3vw,1.6rem);color:var(--txt-soft);margin:.55em 0 1em;max-width:24em;letter-spacing:-.01em}
-  .hero-grid{display:grid;gap:48px}
-  @media(min-width:920px){.hero-grid{grid-template-columns:1.5fr 1fr;align-items:end}}
-  .specs{border:1px solid var(--edge);border-radius:16px;background:linear-gradient(160deg,var(--surface),var(--bg-2));padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
-  .specs dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--txt-dim);margin-top:15px}
-  .specs dt:first-child{margin-top:0}
-  .specs dd{font-weight:600;color:var(--txt)}
-  .accent{color:var(--amber)}
-
-  /* DEMO */
-  .browser{border:1px solid var(--edge);border-radius:16px;overflow:hidden;background:var(--bg-2);box-shadow:0 0 0 1px rgba(255,194,75,.12), 0 30px 90px rgba(0,0,0,.5), 0 0 80px rgba(255,194,75,.06)}
-  .browser-bar{display:flex;align-items:center;gap:6px;padding:11px 15px;border-bottom:1px solid var(--edge);background:var(--surface)}
-  .browser-bar i{width:10px;height:10px;border-radius:50%;background:var(--edge)}
-  .browser-bar i:nth-child(1){background:#D26A5A}.browser-bar i:nth-child(2){background:#D8B45A}.browser-bar i:nth-child(3){background:#6BBF80}
-  .browser-bar .url{font-family:var(--mono);font-size:.72rem;color:var(--txt-soft);margin-left:10px;background:var(--bg);border:1px solid var(--edge);border-radius:6px;padding:2px 12px}
-  .demo-video{width:100%;aspect-ratio:16/9;display:block;background:#000}
-  .shots{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin-top:16px}
-  @media(min-width:768px){.shots{grid-template-columns:repeat(4,1fr)}}
-  .shot-btn{padding:0;border:none;background:none;cursor:zoom-in;display:block;width:100%;border-radius:12px}
-  .shot{aspect-ratio:4/3;border:1px solid var(--edge);border-radius:12px;background:var(--bg-2);width:100%;object-fit:cover;object-position:top;display:block;transition:border-color .2s,transform .2s}
-  .shot-btn:hover .shot,.shot-btn:focus-visible .shot{border-color:rgba(255,194,75,.6);transform:translateY(-2px)}
-  .lightbox{border:none;background:transparent;padding:0;position:fixed;inset:0;margin:auto;width:fit-content;height:fit-content;max-width:min(94vw,1400px);max-height:92vh;overflow:visible}
-  .lightbox img{max-width:min(94vw,1400px);max-height:88vh;display:block;border-radius:12px;border:1px solid var(--edge)}
-  .lightbox::backdrop{background:rgba(10,12,16,.85);backdrop-filter:blur(6px)}
-  .lb-close{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:none;background:var(--amber);color:var(--ink);font-size:1.1rem;font-weight:700;cursor:pointer;line-height:1;box-shadow:0 4px 14px rgba(0,0,0,.4)}
-  .caption{font-size:.88rem;color:var(--txt-dim);margin-top:16px;max-width:52em}
-
-  /* LISTY */
-  .formula{font-family:var(--mono);font-size:clamp(.85rem,2.4vw,1.02rem);border:1.5px dashed var(--amber);color:var(--amber);border-radius:12px;padding:15px 20px;display:inline-block;margin:14px 0 34px;background:rgba(255,194,75,.06)}
-  .cols{display:grid;gap:40px}
-  @media(min-width:880px){.cols{grid-template-columns:1.4fr 1fr}}
-  ul.checks{list-style:none}
-  ul.checks li{padding:10px 0 10px 34px;position:relative;border-bottom:1px solid var(--edge)}
-  ul.checks li::before{content:"✓";position:absolute;left:6px;color:var(--ok);font-weight:700}
-  .not-box{border:1px solid var(--edge);border-radius:16px;padding:28px;background:var(--bg-2);align-self:start}
-  .not-box h3{font-size:1.15rem;margin-bottom:12px}
-  .not-box ul.checks li:last-child{border-bottom:none;padding-bottom:0}
-  ul.crosses{list-style:none}
-  ul.crosses li{padding:8px 0 8px 30px;position:relative;color:var(--txt-soft)}
-  ul.crosses li::before{content:"✕";position:absolute;left:4px;color:var(--red);font-weight:700}
-  .grid-3{display:grid;gap:26px;margin-top:28px}
-  @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}}
-  .costs{list-style:none}
-  .costs li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--edge);font-size:.95rem}
-  .costs li:last-child{border-bottom:none}
-  .costs li span:last-child{font-family:var(--mono);font-size:.8rem;color:var(--txt-soft);white-space:nowrap}
-
-  /* PROGRAM */
-  .day{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--edge)}
-  .day:last-of-type{border-bottom:none}
-  .day .no{font-family:var(--disp);font-weight:800;font-size:2.3rem;color:transparent;-webkit-text-stroke:1.5px var(--amber);line-height:1;min-width:2.1em}
-  .day h3{font-size:1.25rem;margin-bottom:.35em}
-  .day .when{font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--txt-soft);display:block;margin-bottom:.4em}
-  .day .when.live{color:var(--amber)}
-  .day p{color:var(--txt-soft);max-width:44em}
-  .day .fx{font-family:var(--mono);font-size:.76rem;color:var(--ok);margin-top:.7em;display:block}
-
-  /* AUTOR */
-  .host-card{display:grid;gap:26px;border:1px solid var(--edge);border-radius:20px;background:linear-gradient(170deg,var(--surface),var(--bg-2));padding:clamp(26px,4vw,42px);box-shadow:0 0 0 1px rgba(255,194,75,.10), 0 24px 70px rgba(0,0,0,.4)}
-  @media(min-width:768px){.host-card{grid-template-columns:auto 1fr;align-items:center;gap:36px}}
-  .avatar-lg{width:clamp(110px,14vw,150px);height:clamp(110px,14vw,150px);border-radius:50%;background:var(--surface) url('media/bartek.jpg') center/cover;border:3px solid var(--amber);box-shadow:0 0 40px rgba(255,194,75,.2)}
-  .host-card a{color:var(--amber)}
-
-  /* ZAKUP — zwarty jasny panel */
-  .price{background:var(--paper);color:var(--ink);border-radius:24px;padding:clamp(26px,5vw,56px);box-shadow:0 0 0 1px rgba(255,194,75,.25), 0 40px 120px rgba(0,0,0,.5)}
-  .price h2{color:var(--ink);font-size:clamp(1.6rem,3.6vw,2.3rem)}
-  .price .mono-label{font-family:var(--mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--amber-ink);margin-bottom:10px;display:block}
-  .price .big-price{font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,7vw,4rem);letter-spacing:-.02em;line-height:1;margin:.25em 0 .1em}
-  .price .big-price small{font-family:var(--sans);font-weight:600;font-size:.34em;color:var(--ink-soft);letter-spacing:0}
-  .sched{display:grid;margin:22px 0;border:1px solid var(--paper-edge);border-radius:14px;overflow:hidden;background:#fff}
-  .sched div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 16px;padding:11px 16px;border-bottom:1px solid var(--paper-edge);font-size:.92rem}
-  .sched div:last-child{border-bottom:none}
-  .sched span:first-child{color:var(--ink-soft)}
-  .sched span:last-child{font-weight:600;color:var(--ink);text-align:right}
-  .checkout-form .consent{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--ink-soft);max-width:40em;margin-bottom:14px;cursor:pointer}
-  .checkout-form .consent input{margin-top:3px;width:18px;height:18px;accent-color:var(--amber-ink);flex-shrink:0;cursor:pointer}
-  .checkout-form .consent a,.price .legal-links a,.price .note a{color:var(--ink)}
-  .checkout-form .btn{border:none;cursor:pointer;font-family:inherit;margin-top:4px}
-  .price .note{font-size:.86rem;color:var(--ink-soft);margin-top:1.2em;max-width:44em}
-  .price .legal-links{font-size:.82rem;color:var(--ink-soft);margin-top:1em}
-
-  /* FAQ */
-  details{border-bottom:1px solid var(--edge)}
-  summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:21px 0;font-weight:600;font-size:1.03rem}
-  summary::-webkit-details-marker{display:none}
-  summary::after{content:"+";font-family:var(--mono);font-size:1.5rem;color:var(--amber);transition:transform .2s;flex-shrink:0}
-  details[open] summary::after{transform:rotate(45deg)}
-  details p{padding:0 0 22px;color:var(--txt-soft);max-width:46em}
-  details p a{color:var(--amber)}
-
-  .final{text-align:center;border-top:1px solid var(--edge)}
-  .final .lead{margin:0 auto 2.2em}
-
-  footer{border-top:1px solid var(--edge);padding:36px 0 116px;font-size:.84rem;color:var(--txt-dim)}
-  footer a{color:var(--txt-soft)}
-  footer .cols-f{display:flex;flex-wrap:wrap;gap:10px 26px;margin-bottom:14px}
-  @media(min-width:768px){footer{padding-bottom:36px}}
-
-  /* STICKY CTA mobile — chowany, gdy panel zakupu jest w widoku (audyt S11) */
-  .sticky-cta{position:fixed;left:0;right:0;bottom:0;background:rgba(21,24,30,.94);backdrop-filter:blur(10px);border-top:1px solid var(--edge);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:14px;align-items:center;justify-content:space-between;z-index:50;transition:transform .25s ease}
-  .sticky-cta.off{transform:translateY(110%)}
-  .sticky-cta .p{font-family:var(--mono);font-size:.72rem;line-height:1.4;color:var(--txt-soft)}
-  .sticky-cta .btn{font-size:.92rem;padding:.8em 1.2em;white-space:nowrap}
-  @media(min-width:768px){.sticky-cta{display:none}}
-
-  .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-  .rv.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}}
-</style>
 </head>
 <body>
 <a class="skip" href="#main">Przejdź do treści</a>
 
-<!-- 1. HERO: jeden rezultat, termin, cena -->
-<header class="hero">
-  <div class="wrap">
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#" aria-label="Strona w 5 dni, początek strony"><img src="favicon.svg" alt="" width="28" height="28"><span>Strona w 5 dni</span></a>
     <nav class="topnav" aria-label="Sekcje strony">
-      <span class="brand">Strona w 5 dni</span>
       <a href="#program">Program</a>
       <a href="#dla-kogo">Dla kogo</a>
-      <a href="#kup">Cena i zapis</a>
+      <a href="#prowadzacy">Prowadzący</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <div class="hero-grid">
-      <div>
-        <p class="mono eyebrow">Warsztat online · edycja 1 · 26–30.10.2026 · grupa 6–8 osób</p>
-        <h1>Od localhosta<br>do <span class="accent">produkcji</span></h1>
-        <p class="sub">Masz stronę zbudowaną z agentem AI, która działa na Twoim komputerze? W 5 dni wdrożysz ją na własny serwer.</p>
-        <p class="lead">Domena z HTTPS, wdrożona zmiana, kopia zapasowa poza serwerem i próba jej odtworzenia. Trzy spotkania na żywo, zadania z instrukcją między nimi i mała grupa, w której na pytania odpowiadam ja, a nie forum.</p>
-        <p style="margin-top:2.1em"><a class="btn" href="#kup" data-umami-event="cta-hero">Dołączam do warsztatu — 249 zł</a></p>
-        <p class="under-cta">249 zł brutto, jedna płatność. Zapisy do 19.10.2026, 20:00. Warsztat rusza przy 6 osobach; jeśli grupa się nie zbierze, zwracam całą kwotę.</p>
-      </div>
-      <dl class="specs rv">
-        <dt>Termin</dt><dd>pn 26.10 – pt 30.10.2026, online</dd>
-        <dt>Na żywo</dt><dd>pn, śr, pt 19:00–20:15 · nagrania po każdym spotkaniu</dd>
-        <dt>Grupa</dt><dd>minimum 6, maksimum 8 osób</dd>
-        <dt>W cenie</dt><dd>instrukcje i checklisty, paczka startera, kanał edycji na Discordzie</dd>
-        <dt>Poza ceną</dt><dd>własny VPS i domena, płatne u dostawców</dd>
-        <dt>Cena</dt><dd>249 zł brutto · 14 dni na odstąpienie</dd>
-      </dl>
-    </div>
+    <a class="btn btn-sm" href="#kup" data-umami-event="cta-nav">Zapis · 249 zł</a>
   </div>
 </header>
 
 <main id="main">
 
-<!-- 2. DOWÓD blisko hero (audyt S08) -->
-<section id="dowod">
+<!-- 1. HERO: rezultat + dowód w jednym kadrze -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="kicker mono">Warsztat online · edycja 1 · <span class="nw">26–30.10.2026</span></p>
+      <h1>Od localhosta<br>do <span class="hl">produkcji</span></h1>
+      <p class="sub">Masz stronę zbudowaną z agentem AI, która działa tylko na Twoim komputerze? W 5 dni wdrożysz ją na własny serwer i będziesz umieć ją utrzymać.</p>
+      <div class="cta-row">
+        <a class="btn" href="#kup" data-umami-event="cta-hero">Dołączam do warsztatu — 249 zł</a>
+        <a class="link-arrow" href="#program">Zobacz, co robimy każdego dnia</a>
+      </div>
+      <ul class="trust">
+        <li>3 spotkania na żywo + nagrania</li>
+        <li>grupa 6–8 osób, odpowiadam osobiście</li>
+        <li>pełny zwrot, jeśli grupa się nie zbierze</li>
+      </ul>
+    </div>
+
+    <figure class="hero-proof">
+      <div class="browser">
+        <div class="browser-bar" aria-hidden="true">
+          <i></i><i></i><i></i>
+          <span class="url" id="url"><svg class="lock" viewBox="0 0 12 14" width="10" height="12"><rect x="1" y="6" width="10" height="7.5" rx="1.5" fill="currentColor"/><path d="M3.3 6V4.2a2.7 2.7 0 0 1 5.4 0V6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="url-local">localhost:3000</span><span class="url-prod">https://movestudiopilates.pl</span></span>
+        </div>
+        <img src="media/screen-live.webp" width="800" height="600" alt="Strona Move Studio Pilates pod publicznym adresem, wdrożona na VPS przez Coolify" fetchpriority="high">
+      </div>
+      <figcaption>Strona zbudowana na stacku z warsztatu (Next.js, Payload, Postgres), działa na moim VPS. Przykład autora, nie wynik uczestnika.</figcaption>
+    </figure>
+  </div>
+
   <div class="wrap">
-    <p class="mono eyebrow">Tak wygląda meta</p>
-    <h2>Strona, panel i własny serwer</h2>
-    <p class="lead" style="margin-bottom:38px">Poniżej strona zbudowana na tym samym stacku, na którym ćwiczymy: Next.js, Payload CMS i Postgres. Działa na moim VPS przez Coolify, tak jak po warsztacie będzie działała Twoja. Na filmie: strona, panel, edycja treści i publikacja.</p>
-    <div class="browser rv">
-      <div class="browser-bar"><i></i><i></i><i></i><span class="url">movestudiopilates.pl</span></div>
-      <video class="demo-video" src="media/demo-move-studio.mp4" poster="media/demo-poster.jpg" autoplay muted loop playsinline controls preload="metadata" aria-label="Film 49 sekund: strona, panel CMS, edycja treści i publikacja"></video>
-    </div>
-    <div class="shots">
-      <button class="shot-btn rv" type="button" data-full="media/screen-desktop.png" aria-label="Powiększ: strona główna na komputerze"><img class="shot" src="media/screen-desktop.png" alt="" loading="lazy"></button>
-      <button class="shot-btn rv" type="button" data-full="media/screen-mobile.png" aria-label="Powiększ: wersja mobilna"><img class="shot" src="media/screen-mobile.png" alt="" loading="lazy"></button>
-      <button class="shot-btn rv" type="button" data-full="media/screen-cms.png" aria-label="Powiększ: panel Payload CMS"><img class="shot" src="media/screen-cms.png" alt="" loading="lazy"></button>
-      <button class="shot-btn rv" type="button" data-full="media/screen-live.png" aria-label="Powiększ: strona na publicznym adresie"><img class="shot" src="media/screen-live.png" alt="" loading="lazy"></button>
-    </div>
-    <p class="caption">Przykład autora, nie wynik uczestnika. Pokazuje stack i sposób publikacji, na których pracujemy na warsztacie.</p>
+    <dl class="facts">
+      <div><dt>Termin</dt><dd>pn 26.10 – pt 30.10</dd></div>
+      <div><dt>Na żywo</dt><dd>pn, śr, pt 19:00–20:15</dd></div>
+      <div><dt>Grupa</dt><dd>6–8 osób</dd></div>
+      <div><dt>Zapisy do</dt><dd>19.10, 20:00 <span class="left" id="left" hidden></span></dd></div>
+    </dl>
   </div>
 </section>
 
-<!-- 3. DOPASOWANIE: dla kogo, czego potrzebujesz, dodatkowe koszty (audyt S05) -->
-<section id="dla-kogo" style="border-top:1px solid var(--edge)">
+<!-- 2. REZULTAT: co masz w piątek -->
+<section id="rezultat" class="band">
+  <div class="wrap res-grid">
+    <div>
+      <p class="kicker mono">Rezultat</p>
+      <h2>Co pokażesz w piątek wieczorem</h2>
+      <p class="formula mono">domena + HTTPS + wdrożona zmiana + odtworzona kopia + karta utrzymania</p>
+    </div>
+    <ol class="deliver">
+      <li><b>Strona na własnej domenie z HTTPS</b><span>na własnym VPS, wdrożona przez Coolify</span></li>
+      <li><b>Wdrożona zmiana</b><span>i wiedza, gdzie szukać logów, gdy coś nie wstaje</span></li>
+      <li><b>Kopia bazy i plików poza serwerem</b><span>oraz przeprowadzona próba jej odtworzenia</span></li>
+      <li><b>Karta utrzymania na 30 dni</b><span>adres, wersja, składniki, miejsce kopii, sposób odtworzenia, koszty</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 3. PROGRAM: przyklejona karta wdrożenia, dni ją odhaczają -->
+<section id="program" class="program">
   <div class="wrap">
-    <p class="mono eyebrow">Dopasowanie</p>
+    <p class="kicker mono">Program</p>
+    <h2>Pięć dni, trzy spotkania</h2>
+    <p class="lead">Spotkania prowadzę na żywo, nagrania trafiają do panelu kursu. W dni bez spotkań robisz zadanie z instrukcją (ok. 1–2 godz.) i piszesz na kanale edycji, gdy utkniesz.</p>
+
+    <div class="prog-grid">
+      <aside class="deploy-card" aria-hidden="true">
+        <p class="dc-head mono"><span>karta-wdrożenia.md</span><span id="dc-pct">0/5</span></p>
+        <ul id="dc-list">
+          <li data-d="1">lista składników + .env.example</li>
+          <li data-d="2">SSH do serwera, DNS domeny</li>
+          <li data-d="3">strona pod Twoim adresem, HTTPS</li>
+          <li data-d="4">wdrożona zmiana, kopia poza serwerem</li>
+          <li data-d="5">odtworzona kopia, plan na 30 dni</li>
+        </ul>
+        <div class="dc-bar"><i id="dc-fill"></i></div>
+      </aside>
+
+      <ol class="days">
+        <li class="day live" data-d="1">
+          <p class="when mono"><span class="tag">na żywo</span> Poniedziałek 26.10 · 19:00–20:15</p>
+          <h3><span class="no">01</span>Co właściwie wdrażamy</h3>
+          <p>Aplikacja, baza danych i przesłane pliki: co z czego się składa i gdzie będzie mieszkać. Przegląd projektu, zmienne środowiskowe bez sekretów w repo, plan serwera.</p>
+          <p class="fx mono">→ lista składników i porządny .env.example</p>
+        </li>
+        <li class="day" data-d="2">
+          <p class="when mono"><span class="tag tag-task">zadanie</span> Wtorek 27.10</p>
+          <h3><span class="no">02</span>Serwer, dostęp i domena</h3>
+          <p>Własny VPS, logowanie przez SSH, podstawy uprawnień, rekordy DNS dla domeny.</p>
+          <p class="fx mono">→ działający dostęp do serwera i domena wskazująca na niego</p>
+        </li>
+        <li class="day live" data-d="3">
+          <p class="when mono"><span class="tag">na żywo</span> Środa 28.10 · 19:00–20:15</p>
+          <h3><span class="no">03</span>Wdrożenie przez Coolify</h3>
+          <p>Pierwsze wdrożenie, domena z HTTPS, dostęp do panelu CMS. Czytamy logi i rozbieramy typowy błąd przy starcie.</p>
+          <p class="fx mono">→ strona pod Twoim adresem, przejęta checklista kontroli</p>
+        </li>
+        <li class="day" data-d="4">
+          <p class="when mono"><span class="tag tag-task">zadanie</span> Czwartek 29.10</p>
+          <h3><span class="no">04</span>Zmiana, aktualizacja, kopia</h3>
+          <p>Zmiana w repo i jej wdrożenie, aktualizacja zależności z przeglądem różnic, kopia bazy i plików poza serwerem.</p>
+          <p class="fx mono">→ wdrożona zmiana i kopia z opisaną zawartością</p>
+        </li>
+        <li class="day live" data-d="5">
+          <p class="when mono"><span class="tag">na żywo</span> Piątek 30.10 · 19:00–20:15</p>
+          <h3><span class="no">05</span>Odtworzenie i plan utrzymania</h3>
+          <p>Odtworzenie kopii w osobnym środowisku, cofanie wydania a migracje bazy, co sprawdzać przez najbliższy miesiąc.</p>
+          <p class="fx mono">→ odtworzona kopia i karta utrzymania na 30 dni</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 4. DOWÓD: film + zrzuty, film ładowany dopiero na klik -->
+<section id="dowod" class="band">
+  <div class="wrap">
+    <p class="kicker mono">Tak wygląda meta</p>
+    <h2>Strona, panel i własny serwer</h2>
+    <p class="lead">Na tym samym stacku ćwiczymy na warsztacie: Next.js, Payload CMS i Postgres, na VPS przez Coolify. Film (49 s): strona, panel, edycja treści i publikacja.</p>
+    <div class="video-box">
+      <button class="video-play" type="button" id="play" aria-label="Odtwórz film, 49 sekund: strona, panel CMS, edycja treści i publikacja">
+        <img src="media/demo-poster.webp" width="1280" height="720" alt="" loading="lazy">
+        <span class="play-ic" aria-hidden="true">▶ <span class="mono">0:49</span></span>
+      </button>
+    </div>
+    <div class="shots">
+      <button class="shot-btn" type="button" data-full="media/screen-desktop-full.webp" aria-label="Powiększ: strona główna na komputerze"><img src="media/screen-desktop.webp" width="800" height="600" alt="" loading="lazy"><span class="mono">desktop</span></button>
+      <button class="shot-btn" type="button" data-full="media/screen-mobile-full.webp" aria-label="Powiększ: wersja mobilna"><img src="media/screen-mobile.webp" width="390" height="844" alt="" loading="lazy"><span class="mono">mobile</span></button>
+      <button class="shot-btn" type="button" data-full="media/screen-cms-full.webp" aria-label="Powiększ: panel Payload CMS"><img src="media/screen-cms.webp" width="800" height="600" alt="" loading="lazy"><span class="mono">panel CMS</span></button>
+      <button class="shot-btn" type="button" data-full="media/screen-live-full.webp" aria-label="Powiększ: strona na publicznym adresie"><img src="media/screen-live.webp" width="800" height="600" alt="" loading="lazy"><span class="mono">publiczny adres</span></button>
+    </div>
+    <p class="caption">Przykład autora, nie wynik uczestnika. Pokazuje stack i sposób publikacji, na których pracujemy.</p>
+  </div>
+</section>
+
+<!-- 5. PROWADZĄCY: wyżej niż na live, bo to główny dowód zaufania przy 1. edycji -->
+<section id="prowadzacy" class="host">
+  <div class="wrap host-grid">
+    <img class="avatar" src="media/bartek.webp" width="320" height="320" alt="Bartek Filipiuk" loading="lazy">
+    <div>
+      <p class="kicker mono">Prowadzący</p>
+      <h2>Bartek Filipiuk</h2>
+      <p class="host-bio">W IT pracuję zawodowo od 2008 roku, przez większość tej drogi w Drupalu i PHP. Od 2023 programuję z agentami AI. Na własnym VPS przez Coolify utrzymuję <a href="https://devince.dev">devince.dev</a>, tę stronę i strony budowane z agentem, jak ta z filmu. Na warsztacie pokazuję proces, którego używam na co dzień, razem z błędami, które po drodze się zdarzają. Od lat uczę też na <a href="https://www.youtube.com/@bartfilipiuk">YouTube</a>.</p>
+      <dl class="host-facts">
+        <div><dt class="mono">w IT</dt><dd>od 2008</dd></div>
+        <div><dt class="mono">z agentami AI</dt><dd>od 2023</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 6. DLA KOGO + CZEGO POTRZEBUJESZ + KOSZTY -->
+<section id="dla-kogo" class="band fit">
+  <div class="wrap">
+    <p class="kicker mono">Dopasowanie</p>
     <h2>Czy to dla Ciebie</h2>
-    <div class="grid-3">
+    <div class="fit-grid">
       <div>
-        <h3 style="font-size:1.15rem;margin-bottom:10px">Dla Ciebie, jeśli:</h3>
+        <h3>Tak, jeśli:</h3>
         <ul class="checks">
           <li>masz stronę albo projekt, który działa lokalnie, i zatrzymujesz się przed publikacją</li>
           <li>pracujesz z Claude Code, Codexem albo podobnym agentem</li>
           <li>chcesz sam publikować i utrzymywać proste strony, swoje albo klientów</li>
           <li>wykonasz polecenia w terminalu, gdy ktoś wyjaśni, co robią</li>
         </ul>
-        <p class="caption">Nie masz jeszcze projektu? Pracujesz na wspólnym projekcie referencyjnym, który dostajesz w cenie.</p>
+        <p class="caption">Nie masz jeszcze projektu? Pracujesz na projekcie referencyjnym, który dostajesz w cenie.</p>
       </div>
-      <div class="not-box rv">
-        <h3>Czego potrzebujesz</h3>
-        <ul class="checks">
-          <li>komputera z Dockerem, Node 20+ i pnpm (sprawdza je skrypt z paczki)</li>
-          <li>konta GitHub</li>
-          <li>własnego VPS i domeny; pomogę wybrać przed startem</li>
-          <li>około 1–2 godzin w dni bez spotkań</li>
-        </ul>
-      </div>
-      <div class="not-box rv">
-        <h3>Koszty poza warsztatem</h3>
-        <ul class="costs">
-          <li><span>VPS</span><span>ok. 20–40 zł/mies.</span></li>
-          <li><span>Domena</span><span>ok. 15–60 zł/rok</span></li>
-          <li><span>Miejsce na kopie</span><span>kilka zł/mies.</span></li>
-          <li><span>Agent AI (opcjonalnie)</span><span>ok. 100 zł/mies.</span></li>
-        </ul>
-        <p class="caption" style="margin-top:12px">Płacisz bezpośrednio dostawcom. Kwoty orientacyjne, wrzesień 2026.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4. CO POKAŻESZ PO WARSZTACIE -->
-<section id="rezultat" style="border-top:1px solid var(--edge)">
-  <div class="wrap">
-    <p class="mono eyebrow">Rezultat</p>
-    <h2>Co pokażesz w piątek wieczorem</h2>
-    <div class="formula">domena + HTTPS + wdrożona zmiana + odtworzona kopia + karta utrzymania</div>
-    <div class="cols">
-      <ul class="checks">
-        <li><strong>stronę na własnej domenie z HTTPS</strong>, na własnym VPS przez Coolify</li>
-        <li><strong>wdrożoną zmianę</strong> i wiedzę, gdzie szukać logów, gdy coś nie wstaje</li>
-        <li><strong>kopię bazy i plików poza serwerem</strong> oraz przeprowadzoną próbę jej odtworzenia</li>
-        <li><strong>kartę utrzymania na 30 dni</strong>: adres, wersja, składniki, miejsce kopii, sposób odtworzenia, koszty</li>
-      </ul>
-      <div class="not-box rv">
-        <h3>Czego tu nie robimy</h3>
+      <div>
+        <h3>Tu tego nie robimy:</h3>
         <ul class="crosses">
-          <li>budowania strony od briefu (to robi <a href="starter/" style="color:var(--amber)">starter</a>)</li>
+          <li>budowania strony od briefu (to robi <a href="starter/">starter</a>)</li>
           <li>migracji z Lovable, Replit i podobnych</li>
           <li>SaaS z płatnościami i kontami klientów</li>
           <li>Kubernetesa i pełnej administracji Linuxem</li>
@@ -300,79 +213,54 @@
         </ul>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- 5. PROGRAM -->
-<section id="program" style="border-top:1px solid var(--edge)">
-  <div class="wrap">
-    <p class="mono eyebrow">Program</p>
-    <h2>Pięć dni, trzy spotkania</h2>
-    <p class="lead" style="margin-bottom:24px">Spotkania prowadzę na żywo, nagrania trafiają do panelu kursu. W dni bez spotkań robisz zadanie z instrukcją i piszesz na kanale edycji, gdy utkniesz.</p>
-
-    <div class="day rv"><div class="no">01</div><div>
-      <span class="when live">Poniedziałek 26.10 · na żywo 19:00–20:15</span>
-      <h3>Co właściwie wdrażamy</h3>
-      <p>Aplikacja, baza danych i przesłane pliki: co z czego się składa i gdzie będzie mieszkać. Przegląd projektu, zmienne środowiskowe bez sekretów w repo, plan serwera.</p>
-      <span class="fx">→ lista składników i porządny .env.example</span>
-    </div></div>
-    <div class="day rv"><div class="no">02</div><div>
-      <span class="when">Wtorek 27.10 · zadanie</span>
-      <h3>Serwer, dostęp i domena</h3>
-      <p>Własny VPS, logowanie przez SSH, podstawy uprawnień, rekordy DNS dla domeny.</p>
-      <span class="fx">→ działający dostęp do serwera i domena wskazująca na niego</span>
-    </div></div>
-    <div class="day rv"><div class="no">03</div><div>
-      <span class="when live">Środa 28.10 · na żywo 19:00–20:15</span>
-      <h3>Wdrożenie przez Coolify</h3>
-      <p>Pierwsze wdrożenie, domena z HTTPS, dostęp do panelu CMS. Czytamy logi i rozbieramy typowy błąd przy starcie.</p>
-      <span class="fx">→ strona pod Twoim adresem, przejęta checklista kontroli</span>
-    </div></div>
-    <div class="day rv"><div class="no">04</div><div>
-      <span class="when">Czwartek 29.10 · zadanie</span>
-      <h3>Zmiana, aktualizacja, kopia</h3>
-      <p>Zmiana w repo i jej wdrożenie, aktualizacja zależności z przeglądem różnic, kopia bazy i plików poza serwerem.</p>
-      <span class="fx">→ wdrożona zmiana i kopia z opisaną zawartością</span>
-    </div></div>
-    <div class="day rv"><div class="no">05</div><div>
-      <span class="when live">Piątek 30.10 · na żywo 19:00–20:15</span>
-      <h3>Odtworzenie i plan utrzymania</h3>
-      <p>Odtworzenie kopii w osobnym środowisku, cofanie wydania a migracje bazy, co sprawdzać przez najbliższy miesiąc.</p>
-      <span class="fx">→ odtworzona kopia i karta utrzymania na 30 dni</span>
-    </div></div>
-  </div>
-</section>
-
-<!-- 6. AUTOR -->
-<section id="prowadzacy" style="border-top:1px solid var(--edge)">
-  <div class="wrap">
-    <p class="mono eyebrow">Prowadzący</p>
-    <div class="host-card rv">
-      <div class="avatar-lg" role="img" aria-label="Zdjęcie: Bartek Filipiuk"></div>
-      <div>
-        <h2 style="font-size:clamp(1.5rem,3.2vw,2.1rem);margin-bottom:.45em">Bartek Filipiuk</h2>
-        <p style="color:var(--txt-soft);max-width:52em">W IT pracuję zawodowo od 2008 roku, przez większość tej drogi w Drupalu i PHP. Od 2023 programuję z agentami AI. Na własnym VPS przez Coolify utrzymuję <a href="https://devince.dev">devince.dev</a>, tę stronę i strony budowane z agentem, jak ta z filmu wyżej. Na warsztacie pokazuję proces, którego używam na co dzień, razem z błędami, które po drodze się zdarzają. Od lat uczę też na <a href="https://www.youtube.com/@bartfilipiuk">YouTube</a>.</p>
+    <div class="need-grid">
+      <div class="need">
+        <h3>Czego potrzebujesz</h3>
+        <ul class="plain">
+          <li>komputera z Dockerem, Node 20+ i pnpm (sprawdza je skrypt z paczki)</li>
+          <li>konta GitHub</li>
+          <li>własnego VPS i domeny; pomogę wybrać przed startem</li>
+          <li>około 1–2 godzin w dni bez spotkań</li>
+        </ul>
+      </div>
+      <div class="need">
+        <h3>Koszty poza warsztatem</h3>
+        <table class="costs">
+          <tr><th scope="row">VPS</th><td class="mono">ok. 20–40 zł/mies.</td></tr>
+          <tr><th scope="row">Domena</th><td class="mono">ok. 15–60 zł/rok</td></tr>
+          <tr><th scope="row">Miejsce na kopie</th><td class="mono">kilka zł/mies.</td></tr>
+          <tr><th scope="row">Agent AI (opcjonalnie)</th><td class="mono">ok. 100 zł/mies.</td></tr>
+        </table>
+        <p class="caption">Płacisz bezpośrednio dostawcom. Kwoty orientacyjne, wrzesień 2026.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 7. ZAKUP: jeden zwarty panel (audyt S04) -->
-<section id="cena">
+<!-- 7. ZAKUP: dwie kolumny — co dostajesz | formularz -->
+<section id="cena" class="buy">
   <div class="wrap">
-    <div class="price" id="kup">
-      <span class="mono-label">Warsztat „Od localhosta do produkcji” · edycja 1</span>
-      <h2>Zapis na warsztat</h2>
-      <p class="big-price">249 zł <small>brutto · jedna płatność</small></p>
-      <div class="sched">
-        <div><span>Termin</span><span>26–30.10.2026, online</span></div>
-        <div><span>Na żywo</span><span>pn, śr, pt 19:00–20:15 + nagrania</span></div>
-        <div><span>Zapisy</span><span>do 19.10.2026, 20:00 · 6–8 osób</span></div>
-        <div><span>Mniej niż 6 osób</span><span>pełny zwrot 249 zł</span></div>
+    <p class="kicker mono">Edycja 1 · 26–30.10.2026</p>
+    <h2 id="kup-h">Zapis na warsztat</h2>
+    <div class="price" id="kup" aria-labelledby="kup-h">
+      <div class="price-info">
+        <h3>W cenie</h3>
+        <ul class="incl">
+          <li>3 spotkania na żywo (pn, śr, pt 19:00–20:15) w terminie edycji, nagrania zostają w panelu</li>
+          <li>instrukcje i checklisty na dni bez spotkań</li>
+          <li>paczka startera i projekt referencyjny</li>
+          <li>kanał edycji na Discordzie: pytania zadajesz, kiedy chcesz; odpowiadam przez 30 dni od uzyskania dostępu</li>
+        </ul>
+        <p class="access">Materiały i nagrania przerabiasz we własnym tempie, dostęp masz przez 12 miesięcy od zakupu.</p>
+        <p class="guarantee"><b>Bez ryzyka:</b> rezygnacja do 19.10, 20:00 albo odstąpienie w 14 dni od zakupu, także po starcie. Mniej niż 6 osób = pełny zwrot 249 zł.</p>
       </div>
-      <form class="checkout-form" method="POST" action="https://courses.devince.dev/api/courses/checkout">
+
+      <form class="checkout" method="POST" action="https://courses.devince.dev/api/courses/checkout">
         <input type="hidden" name="slug" value="od-localhosta-do-produkcji">
         <input type="hidden" name="locale" value="pl">
+        <p class="big-price">249 zł <small>brutto, jedna płatność</small></p>
+        <p class="seats mono">6–8 miejsc · o miejscu decyduje kolejność płatności</p>
         <label class="consent">
           <input type="checkbox" name="consent" required>
           <span>Akceptuję <a href="regulamin.html#warsztat">Regulamin</a> i znam <a href="polityka-prywatnosci.html">Politykę prywatności</a>. Wiem, że mogę zrezygnować do 19.10.2026, 20:00 albo odstąpić od umowy w ciągu 14 dni od zakupu i dostać zwrot całej kwoty.</span>
@@ -381,29 +269,31 @@
           <input type="checkbox" name="newsletter">
           <span>Chcę dostawać maile o kolejnych edycjach i materiałach. Dobrowolne; informacje o kupionej edycji wyślę i tak.</span>
         </label>
-        <button class="btn on-paper" type="submit" data-umami-event="cta-checkout">Dołączam do warsztatu — 249 zł</button>
+        <button class="btn btn-block" type="submit" data-umami-event="cta-checkout">Przejdź do płatności — 249 zł</button>
+        <p class="note">Płatność przez Stripe, faktura na życzenie · <a href="regulamin.html#warsztat">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="formularz-odstapienia.html">Formularz odstąpienia</a>. Po płatności dostajesz mail z dostępem do panelu kursu; 19.10, po potwierdzeniu edycji, link do spotkań i Discord.</p>
       </form>
-      <p class="note">Po płatności dostajesz mail z dostępem do panelu kursu. 19.10, po potwierdzeniu edycji: link do spotkań, kanał na Discordzie (pomoc do 6.11, raz dziennie w dni robocze) i paczka startera. O miejscu decyduje kolejność płatności.</p>
-      <p class="note">Masz już starter za 49 zł? Po zakupie warsztatu napisz na <a href="mailto:bartek@devince.dev">bartek@devince.dev</a>; zwrócę 49 zł po potwierdzeniu edycji 19.10. Chcesz pracować na własnym projekcie? Napisz przed zakupem, jaki ma stack; jeśli nie pasuje, pracujesz na projekcie referencyjnym.</p>
-      <p class="legal-links">Płatność obsługuje Stripe. Faktura na życzenie. · <a href="regulamin.html#warsztat">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="formularz-odstapienia.html">Formularz odstąpienia</a></p>
     </div>
   </div>
 </section>
 
-<!-- 8. FAQ (krótkie, audyt S10) -->
-<section id="faq" style="border-top:1px solid var(--edge)">
-  <div class="wrap">
-    <p class="mono eyebrow">Pytania</p>
-    <h2>FAQ</h2>
-    <div style="margin-top:22px">
+<!-- 8. FAQ -->
+<section id="faq" class="faq">
+  <div class="wrap faq-grid">
+    <div>
+      <p class="kicker mono">Pytania</p>
+      <h2>FAQ</h2>
+      <p class="caption">Nie ma tu Twojego pytania? <a href="mailto:bartek@devince.dev">bartek@devince.dev</a></p>
+    </div>
+    <div>
       <details><summary>Nie mam jeszcze żadnej strony. Czy to ma sens?</summary><p>Tak, jeśli chcesz nauczyć się publikacji i utrzymania. Pracujesz wtedy na projekcie referencyjnym (strona z CMS na starterze), który dostajesz w cenie. Jeśli najpierw chcesz zbudować stronę od briefu z agentem, zacznij od <a href="starter/">startera za 49 zł</a>; jeśli potem kupisz warsztat, zwrócę Ci te 49 zł po potwierdzeniu edycji 19.10.</p></details>
       <details><summary>Czy mogę wdrożyć swój własny projekt?</summary><p>Tak, jeśli pasuje do ścieżki: buduje się lokalnie, masz jego źródła i zrozumiałe zależności, najlepiej Next.js z bazą Postgres. Napisz przed zakupem na bartek@devince.dev, jaki to stack. Jeśli po drodze coś nie zagra, kończysz ćwiczenie na projekcie referencyjnym, a grupa nie czeka.</p></details>
+      <details><summary>Mam już starter za 49 zł.</summary><p>Po zakupie warsztatu napisz na <a href="mailto:bartek@devince.dev">bartek@devince.dev</a>; zwrócę 49 zł po potwierdzeniu edycji 19.10.</p></details>
       <details><summary>Co jeśli grupa się nie zbierze?</summary><p>Warsztat rusza przy minimum 6 osobach. Decyzję wysyłam mailem 19.10.2026 wieczorem. Jeśli grupa się nie zbierze, edycja się nie odbywa, a 249 zł wraca w całości tą samą metodą płatności, najpóźniej w 14 dni.</p></details>
       <details><summary>Mogę się wycofać?</summary><p>Tak. Do zamknięcia zapisów, czyli do 19.10.2026 do 20:00, możesz zrezygnować bez podania przyczyny, a niezależnie od tego przez 14 dni od zakupu przysługuje Ci prawo odstąpienia, także gdy warsztat już się zaczął. W obu przypadkach zwracam całą kwotę. Wystarczy mail albo <a href="formularz-odstapienia.html">formularz odstąpienia</a>.</p></details>
       <details><summary>Nie zdążę na spotkanie na żywo.</summary><p>Nagranie każdego spotkania trafia do panelu kursu po spotkaniu. Pytania możesz zostawić na kanale edycji przed spotkaniem albo po nim.</p></details>
-      <details><summary>Ile to realnie kosztuje poza ceną warsztatu?</summary><p>VPS ok. 20–40 zł miesięcznie, domena ok. 15–60 zł rocznie (zależy od końcówki), miejsce na kopie kilka złotych miesięcznie. Agent AI jest przydatny, ale nie obowiązkowy. Przed startem podpowiem konkretnych dostawców.</p></details>
+      <details><summary>Co jest nagrywane na spotkaniach?</summary><p>Nagrywam tylko mój ekran i mój głos. Jeśli zadasz pytanie na głos, Twój głos może trafić na nagranie; kamer nie nagrywam. Nagrania są dostępne tylko dla uczestników edycji. Szczegóły: <a href="regulamin.html#nagrania-i-wizerunek">Regulamin</a>.</p></details>
       <details><summary>Czy po warsztacie strona będzie w pełni bezpieczna?</summary><p>Będzie mieć HTTPS, zamknięty panel, kopie i sposób ich odtworzenia, i będziesz wiedzieć, co sprawdzać. To nie jest audyt bezpieczeństwa ani gwarancja dla dowolnego zastosowania; ćwiczymy na prostych stronach bez danych klientów.</p></details>
-      <details><summary>Jak długo mam dostęp do materiałów?</summary><p>Instrukcje i nagrania edycji są w panelu kursu przez 12 miesięcy. Kanał edycji na Discordzie działa w tygodniu warsztatu i 7 dni po nim, do 6.11.2026.</p></details>
+      <details><summary>Jak długo mam dostęp do materiałów i pomocy?</summary><p>Instrukcje i nagrania są w panelu kursu przez 12 miesięcy od zakupu i przerabiasz je we własnym tempie. Spotkania na żywo odbywają się tylko w terminie edycji (26–30.10.2026), ich nagrania zostają w panelu. Pytania do lekcji możesz zadawać na Discordzie, kiedy chcesz. Odpowiadam przez 30 dni od uzyskania dostępu, w dni robocze, zwykle raz dziennie; potem kanał dalej działa, ale odpowiedzi nie są gwarantowane.</p></details>
       <details><summary>Dostanę fakturę?</summary><p>Tak. Podaj dane przy płatności albo napisz po zakupie.</p></details>
     </div>
   </div>
@@ -413,9 +303,9 @@
 <section class="final">
   <div class="wrap">
     <h2>Strona, która działa tylko u Ciebie, jeszcze nie jest stroną</h2>
-    <p class="lead">Pięć dni, trzy spotkania i mała grupa. W piątek masz ją pod własnym adresem, z kopią, którą umiesz odtworzyć.</p>
-    <p><a class="btn" href="#kup" data-umami-event="cta-final">Dołączam do warsztatu — 249 zł</a></p>
-    <p class="under-cta" style="margin:1.3em auto 0">26–30.10.2026 · zapisy do 19.10 · 6–8 osób · pełny zwrot, jeśli grupa się nie zbierze</p>
+    <p class="lead">W piątek 30.10 masz ją pod własnym adresem, z kopią, którą umiesz odtworzyć.</p>
+    <a class="btn" href="#kup" data-umami-event="cta-final">Dołączam do warsztatu — 249 zł</a>
+    <p class="caption">zapisy do 19.10, 20:00 · 6–8 osób · pełny zwrot, jeśli grupa się nie zbierze</p>
   </div>
 </section>
 
@@ -423,20 +313,20 @@
 
 <footer>
   <div class="wrap">
-    <div class="cols-f">
+    <nav class="foot-links" aria-label="Stopka">
       <a href="starter/">Starter do budowy strony z agentem (49 zł)</a>
       <a href="regulamin.html">Regulamin</a>
       <a href="polityka-prywatnosci.html">Polityka prywatności</a>
       <a href="formularz-odstapienia.html">Formularz odstąpienia</a>
       <a href="https://devince.dev">devince.dev</a>
-    </div>
+    </nav>
     <p>Bartłomiej Filipiuk Devins · NIP 596 158 99 01 · ul. Stacyjna 1, 53-613 Wrocław · bartek@devince.dev</p>
   </div>
 </footer>
 
-<div class="sticky-cta" id="sticky">
-  <span class="p">Warsztat 26–30.10<br>249 zł · 6–8 osób</span>
-  <a class="btn" href="#kup" data-umami-event="cta-sticky">Dołączam</a>
+<div class="sticky-cta off" id="sticky" inert>
+  <span class="mono">26–30.10 · 249 zł</span>
+  <a class="btn btn-sm" href="#kup" data-umami-event="cta-sticky">Dołączam</a>
 </div>
 
 <dialog id="lb" class="lightbox" aria-label="Podgląd zrzutu ekranu">
@@ -444,27 +334,6 @@
   <img id="lb-img" alt="">
 </dialog>
 
-<script>
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-
-  // Pasek na dole: niewidoczny, dopóki widać przycisk w hero (inaczej go zasłania na małych
-  // ekranach) i gdy widać panel zakupu (nie zasłania formularza).
-  const sticky=document.getElementById('sticky'),seen=new Map();
-  const syncSticky=()=>{const off=[...seen.values()].some(Boolean);sticky.classList.toggle('off',off);sticky.toggleAttribute('inert',off)};
-  const so=new IntersectionObserver(es=>{es.forEach(e=>seen.set(e.target,e.isIntersecting));syncSticky()},{threshold:0});
-  [document.querySelector('.hero .btn'),document.getElementById('kup')].forEach(el=>{seen.set(el,true);so.observe(el)});
-  syncSticky();
-
-  // Podgląd zrzutów: przyciski, Escape zamyka natywnie, fokus wraca na miniaturę.
-  const lb=document.getElementById('lb'),lbi=document.getElementById('lb-img');
-  let opener=null;
-  document.querySelectorAll('.shot-btn').forEach(b=>b.addEventListener('click',()=>{
-    opener=b;lbi.src=b.dataset.full;lbi.alt=b.getAttribute('aria-label').replace('Powiększ: ','');lb.showModal();
-  }));
-  lb.querySelector('.lb-close').addEventListener('click',()=>lb.close());
-  lb.addEventListener('click',e=>{if(e.target===lb)lb.close()});
-  lb.addEventListener('close',()=>{if(opener)opener.focus()});
-</script>
+<script src="js/site.js" defer></script>
 </body>
 </html>
