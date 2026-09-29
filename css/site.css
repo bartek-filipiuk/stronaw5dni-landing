@@ -222,3 +222,16 @@ footer{padding:36px 0 110px;font-size:.84rem;color:var(--txt-dim);border-top:1px
 @media(min-width:768px){.sticky-cta{display:none}}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Zapis na lekcję: pytanie o projekt + pole-pułapka */
+.choices{display:grid;gap:8px;margin:6px 0 18px}
+.choice{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--paper-edge);border-radius:10px;cursor:pointer;font-size:.95rem;color:var(--ink);background:#fff}
+.choice input{accent-color:var(--amber-ink);width:20px;height:20px;flex-shrink:0}
+.choice:has(input:checked){border-color:var(--amber-ink);box-shadow:0 0 0 2px rgba(138,90,0,.15)}
+.field{display:block;margin-bottom:14px}
+.field span{display:block;font-size:.84rem;color:var(--ink-soft);margin-bottom:6px}
+.field input[type=email]{width:100%;font:inherit;font-size:1.05rem;padding:14px 14px;border:1px solid var(--paper-edge);border-radius:10px;background:#fff;color:var(--ink)}
+.field input[type=email]:focus{outline:3px solid var(--amber);outline-offset:2px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.status{max-width:560px;margin:0 auto;text-align:center}
+.status .btn{margin-top:20px}
