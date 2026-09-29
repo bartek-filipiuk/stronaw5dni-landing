@@ -7,7 +7,7 @@
 
   // Ile zostało do zamknięcia zapisów (19.10.2026, 20:00 czasu PL = 18:00 UTC). Po terminie nic nie pokazujemy.
   const left = document.getElementById('left');
-  const ms = Date.UTC(2026, 9, 19, 18, 0) - Date.now();
+  const ms = Date.UTC(2026, 10, 9, 19, 0) - Date.now();
   if (left && ms > 0) {
     const d = Math.floor(ms / 864e5);
     left.textContent = d >= 1 ? `zostało ${d} ${d === 1 ? 'dzień' : 'dni'}` : 'zapisy zamykają się dziś';
