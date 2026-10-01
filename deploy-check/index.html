@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deploy-check: czy Twój projekt wyjdzie z localhosta | Strona w 5 dni</title>
+<meta name="description" content="Jeden plik z instrukcją dla agenta AI. Wklejasz polecenie w katalogu projektu i dostajesz raport: co blokuje wdrożenie i jakiego serwera potrzebujesz.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#15181E">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;700;800;900&family=Chivo+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/site.css">
+<script defer src="https://stats.67projects.app/script.js" data-website-id="8e5e06a0-a30c-4d65-846d-87bd01b04a56"></script>
+</head>
+<body>
+<a class="skip" href="#main">Przejdź do treści</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="../" aria-label="Strona w 5 dni, strona główna"><img src="../favicon.svg" alt="" width="28" height="28"><span>Strona w 5 dni</span></a>
+    <nav class="topnav" aria-label="Sekcje strony">
+      <a href="#polecenie">Polecenie</a>
+      <a href="#co-robi">Co robi agent</a>
+      <a href="#plik">Treść pliku</a>
+    </nav>
+    <a class="btn btn-sm" href="../lekcja/" data-umami-event="deploy-check-lekcja-nav">Lekcja 22.10</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy dc-hero">
+      <p class="kicker mono">Dla zapisanych na lekcję · do użycia od razu</p>
+      <h1>Deploy-<span class="hl">check</span></h1>
+      <p class="sub">Jeden plik z instrukcją dla Twojego agenta AI. Wklejasz polecenie w katalogu projektu, a po kilku minutach masz raport: co blokuje wdrożenie i czego potrzebujesz, żeby strona wyszła z localhosta.</p>
+      <ul class="trust">
+        <li>działa z Claude Code, Codexem i każdym agentem, który uruchamia komendy</li>
+        <li>agent tylko czyta projekt, niczego w nim nie zmienia</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="polecenie" class="band">
+  <div class="wrap">
+    <p class="kicker mono">Krok 1</p>
+    <h2>Wklej to swojemu agentowi</h2>
+    <p class="lead">Otwórz agenta w katalogu projektu i wklej polecenie. Słowo „curl” jest tu celowo: dzięki niemu agent dostaje plik w oryginale, a nie jego streszczenie.</p>
+    <div class="prompt-box">
+      <pre id="prompt" tabindex="0">Pobierz curl-em https://stronaw5dni.pl/deploy-check/deploy-check.md i wykonaj instrukcje z tego pliku na tym projekcie. Niczego nie zmieniaj.</pre>
+      <button class="btn btn-sm" type="button" id="copy" data-umami-event="deploy-check-kopiuj">Skopiuj polecenie</button>
+      <span class="copy-ok mono" id="copy-ok" role="status" aria-live="polite"></span>
+    </div>
+    <p class="caption">Agent może zapytać o zgodę na pobranie pliku albo na uruchomienie buildu. To dobry znak. Na build możesz odpowiedzieć „nie”, raport i tak powstanie.</p>
+  </div>
+</section>
+
+<section id="co-robi" class="band fit">
+  <div class="wrap">
+    <p class="kicker mono">Krok 2</p>
+    <h2>Co się dzieje po wklejeniu</h2>
+    <div class="fit-grid">
+      <div>
+        <h3>Agent sprawdza:</h3>
+        <ul class="checks">
+          <li>z czego składa się projekt: stack, baza, wgrywane pliki, zadania w tle</li>
+          <li>jak się buduje i startuje, i czy build przejdzie bez Twojego lokalnego <code>.env</code></li>
+          <li>zmienne środowiskowe: które są wymagane i czy sekrety nie leżą w repozytorium</li>
+          <li>dane: migracje bazy i miejsce, gdzie lądują wgrane pliki</li>
+          <li>stan gita: zdalne repozytorium, <code>.gitignore</code>, niezapisane zmiany</li>
+          <li>rzeczy, które psują się dopiero na serwerze, na przykład adresy <code>localhost</code> wpisane na sztywno</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Agent nie robi tego:</h3>
+        <ul class="crosses">
+          <li>nie zmienia plików, nie instaluje pakietów, nie commituje</li>
+          <li>nie wypisuje wartości sekretów, tylko nazwy zmiennych</li>
+          <li>nie wysyła niczego poza Twój komputer</li>
+          <li>nie uruchamia buildu bez Twojej zgody</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="raport" class="band">
+  <div class="wrap res-grid">
+    <div>
+      <p class="kicker mono">Krok 3</p>
+      <h2>Raport, najwyżej 50 linii</h2>
+      <p class="lead">Najważniejsza jest sekcja „Czego naprawdę potrzebujesz”. Agent mówi wprost, czy w ogóle potrzebujesz własnego serwera, czy wystarczy Ci darmowy hosting statyczny.</p>
+    </div>
+    <ol class="deliver">
+      <li><b>Co masz</b><span>stack i składniki projektu w kilku liniach</span></li>
+      <li><b>Co blokuje wdrożenie</b><span>do pięciu punktów, od najważniejszego, z nazwą pliku</span></li>
+      <li><b>Warto poprawić</b><span>rzeczy, które nie blokują, ale wrócą jako problem</span></li>
+      <li><b>Sprawdzone i w porządku</b><span>sekrety, git, logi, build</span></li>
+      <li><b>Czego naprawdę potrzebujesz</b><span>hosting statyczny, serwer z bazą albo odłączenie od platformy; do tego zasoby i widełki kosztu</span></li>
+      <li><b>Pytania do Ciebie</b><span>to, czego nie widać w repozytorium</span></li>
+      <li><b>Pierwszy krok</b><span>jedna konkretna rzecz na dziś</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="plik" class="band">
+  <div class="wrap">
+    <p class="kicker mono">Zanim uruchomisz</p>
+    <h2>Przeczytaj plik sam</h2>
+    <p class="lead">W pliku nie ma ukrytych poleceń. Cała instrukcja jest poniżej, to około 70 linii. Przeczytaj ją mimo mojego zapewnienia. Każesz agentowi wykonać tekst pobrany z internetu, a przy takich plikach warto sprawdzać każdy, mój też.</p>
+    <pre class="file" id="file" tabindex="0" aria-label="Treść pliku deploy-check.md">Wczytuję treść pliku…</pre>
+    <noscript><p class="caption">Bez JavaScriptu otwórz plik bezpośrednio: <a href="deploy-check.md">deploy-check.md</a>.</p></noscript>
+    <p class="caption">Ten sam plik pobiera agent: <a href="deploy-check.md">stronaw5dni.pl/deploy-check/deploy-check.md</a>. Jeśli to, co widzisz u siebie po pobraniu, różni się od tekstu powyżej, nie uruchamiaj go i napisz do mnie.</p>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Wyślij mi swój raport</h2>
+    <p class="lead">Z raportów układam lekcję 22.10: im więcej prawdziwych blokad zobaczę wcześniej, tym mniej teorii będzie na żywo. Usuń z raportu wszystko, czego nie chcesz pokazywać, i wklej go w mailu.</p>
+    <a class="btn" href="mailto:bartek@devince.dev?subject=Raport%20deploy-check" data-umami-event="deploy-check-mail">Wyślij raport mailem</a>
+    <p class="caption">Nie jesteś jeszcze zapisany? <a href="../lekcja/" data-umami-event="deploy-check-lekcja">Darmowa lekcja na żywo, czwartek 22.10.2026 o 19:00</a>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="foot-links" aria-label="Stopka">
+      <a href="../lekcja/">Darmowa lekcja 22.10</a>
+      <a href="../">Warsztat „Od localhosta do produkcji”</a>
+      <a href="../polityka-prywatnosci.html">Polityka prywatności</a>
+    </nav>
+    <p>Bartłomiej Filipiuk Devins · NIP 596 158 99 01 · ul. Stacyjna 1, 53-613 Wrocław · bartek@devince.dev</p>
+  </div>
+</footer>
+
+<script>
+  // Treść pliku pokazujemy z tego samego adresu, który pobiera agent,
+  // żeby czytelnik widział dokładnie to, co uruchomi.
+  const file = document.getElementById('file');
+  fetch('deploy-check.md', { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(t => { file.textContent = t.trim(); })
+    .catch(() => { file.textContent = 'Nie udało się wczytać pliku. Otwórz go bezpośrednio: https://stronaw5dni.pl/deploy-check/deploy-check.md'; });
+
+  const btn = document.getElementById('copy'), ok = document.getElementById('copy-ok');
+  btn.addEventListener('click', async () => {
+    const text = document.getElementById('prompt').textContent.trim();
+    try {
+      await navigator.clipboard.writeText(text);
+      ok.textContent = 'Skopiowane';
+    } catch {
+      // Schowek bywa zablokowany (np. brak HTTPS w podglądzie): zaznaczamy tekst do ręcznego skopiowania.
+      const r = document.createRange(); r.selectNodeContents(document.getElementById('prompt'));
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      ok.textContent = 'Zaznaczone, skopiuj Ctrl+C';
+    }
+    setTimeout(() => { ok.textContent = ''; }, 4000);
+  });
+</script>
+</body>
+</html>
