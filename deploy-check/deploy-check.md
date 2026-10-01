@@ -108,6 +108,9 @@ W pozostałych przypadkach podaj wymagania, bez nazw dostawców. Punkty, które
 projektu nie dotyczą (na przykład baza trzymana u zewnętrznego dostawcy),
 zamknij jednym zdaniem:
 
+- klasa serwera: S (2 vCPU, 2 do 4 GB pamięci, 40 GB dysku), M (2 do 4 vCPU,
+  4 do 8 GB, 80 GB) albo L (4 lub więcej vCPU, 8 do 16 GB, 160 GB). Jeśli build
+  ma iść na tym samym serwerze, nie schodź poniżej M,
 - pamięć do działania i osobno do budowania, jeśli build ma iść na tym samym serwerze,
 - miejsce na dysku: aplikacja, baza, wgrane pliki, zapas na obrazy i logi,
 - oprogramowanie: system, środowisko kontenerów albo wersja uruchomieniowa języka,

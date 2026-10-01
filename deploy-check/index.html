@@ -24,6 +24,7 @@
       <a href="#polecenie">Polecenie</a>
       <a href="#co-robi">Co robi agent</a>
       <a href="#raport">Raport</a>
+      <a href="#przyklady">Serwery</a>
       <a href="#plik">Treść pliku</a>
     </nav>
     <a class="btn btn-sm" href="../lekcja/" data-umami-event="deploy-check-lekcja-nav">Lekcja 22.10</a>
@@ -101,7 +102,7 @@
       <li><b>Czego naprawdę potrzebujesz</b><span>hosting statyczny, serwer z bazą albo odłączenie od platformy</span></li>
       <li><b>Lista zadań przed wdrożeniem</b><span>ponumerowane, z plikiem i warunkiem „zrobione, gdy”; oznaczone, co blokuje i kto to robi: agent czy Ty</span></li>
       <li><b>Karta wdrożenia</b><span>repozytorium, budowanie, start, port, zmienne, trwałe katalogi, migracje: to, co przepisujesz do hostingu</span></li>
-      <li><b>Serwer</b><span>pamięć, dysk, oprogramowanie, sieć, kopie zapasowe i szacunek kosztu, bez nazw dostawców</span></li>
+      <li><b>Serwer</b><span>klasa S, M albo L, a do tego pamięć, dysk, sieć, kopie zapasowe i szacunek kosztu; agent nie podaje nazw firm, <a href="#przyklady">przykłady masz niżej</a></span></li>
       <li><b>Sprawdzone i w porządku</b><span>sekrety, repozytorium, logi, build</span></li>
       <li><b>Pytania do Ciebie</b><span>to, czego nie widać w repozytorium</span></li>
     </ol>
@@ -122,11 +123,81 @@
   </div>
 </section>
 
+<section id="przyklady" class="band fit">
+  <div class="wrap">
+    <p class="kicker mono">Po raporcie</p>
+    <h2>Agent podał klasę serwera. Co dalej?</h2>
+    <p class="lead">W sekcji „Serwer” raport podaje klasę: S, M albo L. Poniżej masz zasoby dla każdej z nich i orientacyjne ceny u kilku firm, żebyś wiedział, czego szukać w cennikach.</p>
+
+    <div class="tier-grid">
+      <div class="need">
+        <h3>Klasa S</h3>
+        <table class="costs">
+          <tr><th scope="row">Zasoby</th><td>2 vCPU, 2–4 GB RAM, 40 GB</td></tr>
+          <tr><th scope="row">Cena</th><td>ok. 11–30 zł/mies.</td></tr>
+        </table>
+        <p class="caption">Jedna strona z CMS-em i bazą. Build robisz poza serwerem, bo przy 2 GB pamięci potrafi się wyłożyć.</p>
+        <p class="caption">Przykłady: mikr.us, OVHcloud, Contabo, Hetzner. Drożej, ok. 60–85 zł: cyber_Folks, DigitalOcean.</p>
+      </div>
+      <div class="need">
+        <h3>Klasa M</h3>
+        <table class="costs">
+          <tr><th scope="row">Zasoby</th><td>2–4 vCPU, 4–8 GB RAM, 80 GB</td></tr>
+          <tr><th scope="row">Cena</th><td>ok. 16–45 zł/mies.</td></tr>
+        </table>
+        <p class="caption">Aplikacja z bazą i build na tym samym serwerze. Najczęstszy wybór przy pierwszym wdrożeniu.</p>
+        <p class="caption">Przykłady: mikr.us, OVHcloud, Hetzner. Drożej, ok. 60–115 zł: cyber_Folks, DigitalOcean.</p>
+      </div>
+      <div class="need">
+        <h3>Klasa L</h3>
+        <table class="costs">
+          <tr><th scope="row">Zasoby</th><td>4+ vCPU, 8–16 GB RAM, 160 GB</td></tr>
+          <tr><th scope="row">Cena</th><td>ok. 33–85 zł/mies.</td></tr>
+        </table>
+        <p class="caption">Kilka projektów na jednym serwerze albo jedna cięższa aplikacja.</p>
+        <p class="caption">Przykłady: mikr.us, Contabo, OVHcloud, Hetzner. Drożej, ok. 110–230 zł: cyber_Folks, DigitalOcean.</p>
+      </div>
+    </div>
+
+    <div class="fit-grid">
+      <div>
+        <h3>Wariant A: hosting statyczny</h3>
+        <ul class="checks">
+          <li>Cloudflare Pages: darmowy, ruch na statycznych plikach bez limitu</li>
+          <li>Netlify: darmowy plan z twardym limitem, po jego wyczerpaniu strona staje; płatny od 9 USD</li>
+          <li>Render: darmowy hosting statyczny z limitem transferu</li>
+        </ul>
+        <p class="caption">Robisz stronę dla płacącego klienta? Darmowy plan Vercela i GitHub Pages formalnie na to nie pozwalają. Przeczytaj warunki, zanim tam wdrożysz.</p>
+      </div>
+      <div>
+        <h3>Wariant B bez własnego serwera</h3>
+        <ul class="checks">
+          <li>Railway, Render, DigitalOcean App Platform: mała aplikacja z bazą za ok. 20–50 zł/mies.</li>
+          <li>nie administrujesz serwerem, płacisz za to wyższą ceną przy większym ruchu</li>
+        </ul>
+        <p class="caption">Darmowe plany takich platform usypiają aplikację albo wygaszają bazę po kilku tygodniach. Na produkcję się nie nadają.</p>
+      </div>
+    </div>
+
+    <div class="fit-grid">
+      <div>
+        <h3>Wariant C: projekt z platformy</h3>
+        <p class="caption">Kod da się wyjąć prawie zawsze, przez GitHuba albo paczkę zip. Uwiązanie siedzi gdzie indziej: w bazie, logowaniu i funkcjach, które platforma prowadzi za Ciebie. Projekt z Lovable po eksporcie dalej potrzebuje usług zgodnych z Supabase. Replit nie przenosi sekretów ani bazy. Zanim wybierzesz serwer, ustal z agentem, co trzeba zastąpić.</p>
+      </div>
+      <div class="note-box">
+        <h3>To sugestie, nie reklama</h3>
+        <p class="caption">Nie reklamuję żadnej z tych firm. Nazwy podaję po to, żebyś miał od czego zacząć porównywanie. Ceny sprawdziłem 1.10.2026 i będą się zmieniać, a część ofert bywa czasowo niedostępna.</p>
+        <p class="caption">Zrób własne rozeznanie i wybierz sam. Porównaj aktualne cenniki, sprawdź, gdzie stoją serwery, czy dostaniesz własny adres IPv4 i fakturę, jakiej potrzebujesz. Tanie oferty miewają haczyki: rozliczenie tylko roczne, współdzielone porty albo cena, która rośnie po pierwszym okresie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="plik" class="band">
   <div class="wrap">
     <p class="kicker mono">Zanim uruchomisz</p>
     <h2>Przeczytaj plik sam</h2>
-    <p class="lead">W pliku nie ma ukrytych poleceń. Cała instrukcja jest poniżej, to około 130 linii. Przeczytaj ją mimo mojego zapewnienia. Każesz agentowi wykonać tekst pobrany z internetu, a przy takich plikach warto sprawdzać każdy, mój też.</p>
+    <p class="lead">W pliku nie ma ukrytych poleceń. Cała instrukcja jest poniżej, to około 140 linii. Przeczytaj ją mimo mojego zapewnienia. Każesz agentowi wykonać tekst pobrany z internetu, a przy takich plikach warto sprawdzać każdy, mój też.</p>
     <pre class="file" id="file" tabindex="0" aria-label="Treść pliku deploy-check.md">Wczytuję treść pliku…</pre>
     <noscript><p class="caption">Bez JavaScriptu otwórz plik bezpośrednio: <a href="deploy-check.md">deploy-check.md</a>.</p></noscript>
     <p class="caption">Ten sam plik pobiera agent: <a href="deploy-check.md">stronaw5dni.pl/deploy-check/deploy-check.md</a>. Jeśli to, co widzisz u siebie po pobraniu, różni się od tekstu powyżej, nie uruchamiaj go i napisz do mnie.</p>
